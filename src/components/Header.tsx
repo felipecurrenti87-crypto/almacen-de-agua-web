@@ -72,7 +72,7 @@ export default function Header() {
         >
           <Logo
             variant={isOverDark ? "light" : "dark"}
-            className="h-14 group-hover:scale-105 transition-transform"
+            className="h-10 sm:h-14 group-hover:scale-105 transition-transform"
           />
         </Link>
 

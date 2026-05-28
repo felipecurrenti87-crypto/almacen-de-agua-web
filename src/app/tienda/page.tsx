@@ -29,33 +29,33 @@ export default function TiendaPage() {
   let globalIndex = 0;
 
   return (
-    <div className="pt-24 pb-20 min-h-screen bg-gradient-to-b from-celeste-light/30 to-white">
+    <div className="pt-20 sm:pt-24 pb-16 sm:pb-20 min-h-screen bg-gradient-to-b from-celeste-light/30 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header */}
-        <div className="text-center mb-10">
+        <div className="text-center mb-6 sm:mb-10">
           <TextRevealWords
             as="h1"
-            className="font-heading font-bold text-3xl sm:text-4xl text-azul mb-3"
+            className="font-heading font-bold text-2xl sm:text-3xl md:text-4xl text-azul mb-2 sm:mb-3"
           >
             Nuestra tienda
           </TextRevealWords>
           <AnimatedSection delay={100}>
-            <p className="text-gris-suave max-w-lg mx-auto">
+            <p className="text-gris-suave text-sm sm:text-base max-w-lg mx-auto px-2">
               Explora nuestro catalogo completo de agua purificada, soda y
               dispensers. Elegi entre retiro en tienda o envio a domicilio.
             </p>
           </AnimatedSection>
         </div>
 
-        {/* Centered filter pills */}
+        {/* Centered filter pills — scrollable on mobile */}
         <AnimatedSection delay={200}>
-          <div className="flex justify-center mb-10">
-            <div className="relative flex items-center gap-2 bg-white rounded-2xl p-1.5 shadow-sm border border-celeste-medium/20">
+          <div className="flex justify-center mb-6 sm:mb-10 -mx-4 px-4 sm:mx-0 sm:px-0">
+            <div className="relative flex items-center gap-1 sm:gap-2 bg-white rounded-2xl p-1 sm:p-1.5 shadow-sm border border-celeste-medium/20 overflow-x-auto no-scrollbar">
               {filters.map((f) => (
                 <button
                   key={f.slug}
                   onClick={() => setActive(f.slug)}
-                  className="relative px-5 py-2.5 rounded-xl text-sm font-heading font-semibold transition-colors duration-300 z-10"
+                  className="relative px-4 sm:px-5 py-2.5 rounded-xl text-sm font-heading font-semibold transition-colors duration-300 z-10 whitespace-nowrap flex-shrink-0"
                   style={{
                     color: active === f.slug ? "#FFFFFF" : undefined,
                   }}
@@ -93,19 +93,19 @@ export default function TiendaPage() {
               globalIndex += cat.productos.length;
 
               return (
-                <div key={cat.slug} className="mb-14 last:mb-0">
+                <div key={cat.slug} className="mb-10 sm:mb-14 last:mb-0">
                   <AnimatedSection>
-                    <h2 className="font-heading font-bold text-xl text-azul mb-6 flex items-center gap-3">
-                      <span className="w-8 h-0.5 bg-celeste-neon rounded-full" />
+                    <h2 className="font-heading font-bold text-lg sm:text-xl text-azul mb-4 sm:mb-6 flex items-center gap-2 sm:gap-3">
+                      <span className="w-6 sm:w-8 h-0.5 bg-celeste-neon rounded-full" />
                       {cat.nombre}
-                      <span className="text-gris-suave text-sm font-normal">
+                      <span className="text-gris-suave text-xs sm:text-sm font-normal">
                         ({cat.productos.length}{" "}
                         {cat.productos.length === 1 ? "producto" : "productos"})
                       </span>
                     </h2>
                   </AnimatedSection>
 
-                  <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                  <StaggerContainer className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6">
                     {cat.productos.map((product, i) => (
                       <StaggerItem key={product.id}>
                         <ProductCard
@@ -123,7 +123,7 @@ export default function TiendaPage() {
 
         {/* Discount banner for dispensers */}
         <AnimatedSection delay={300}>
-          <div className="mt-16 relative overflow-hidden rounded-3xl bg-negro p-8 sm:p-12 border border-celeste-neon/10">
+          <div className="mt-10 sm:mt-16 relative overflow-hidden rounded-2xl sm:rounded-3xl bg-negro p-6 sm:p-8 md:p-12 border border-celeste-neon/10">
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
               <div className="absolute top-[-30%] right-[-10%] w-[300px] h-[300px] rounded-full bg-celeste-neon/8 blur-[80px]" />
             </div>

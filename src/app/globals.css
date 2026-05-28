@@ -56,6 +56,10 @@ html.lenis, html.lenis body {
 ::-webkit-scrollbar-thumb { background: var(--color-celeste-neon); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--color-celeste); }
 
+/* Hide scrollbar for filter pills on mobile */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
 ::selection {
   background: rgba(56, 189, 248, 0.3);
   color: var(--color-azul);

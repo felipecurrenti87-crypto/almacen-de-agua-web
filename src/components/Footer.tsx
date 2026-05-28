@@ -14,23 +14,23 @@ export default function Footer() {
         <div className="absolute bottom-[-10%] right-[10%] w-[400px] h-[400px] rounded-full bg-celeste-glow/3 blur-[120px]" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-          <AnimatedSection>
-            <div className="mb-5">
-              <Logo variant="light" className="h-16" />
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-10">
+          <AnimatedSection className="col-span-2 lg:col-span-1">
+            <div className="mb-4 sm:mb-5">
+              <Logo variant="light" className="h-12 sm:h-16" />
             </div>
-            <p className="text-gris-dark text-sm leading-relaxed">
+            <p className="text-gris-dark text-xs sm:text-sm leading-relaxed">
               Agua purificada de calidad para tu familia. Negocio familiar con
               envío a toda la provincia de Mendoza.
             </p>
           </AnimatedSection>
 
           <AnimatedSection delay={100}>
-            <h4 className="font-heading font-bold text-sm uppercase tracking-wider text-celeste-glow mb-4">
+            <h4 className="font-heading font-bold text-xs sm:text-sm uppercase tracking-wider text-celeste-glow mb-3 sm:mb-4">
               Navegación
             </h4>
-            <ul className="space-y-2">
+            <ul className="space-y-1.5 sm:space-y-2">
               {[
                 { href: "/", label: "Inicio" },
                 { href: "/tienda", label: "Tienda" },
@@ -40,7 +40,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-gris-dark text-sm hover:text-celeste-neon transition-colors duration-300"
+                    className="text-gris-dark text-xs sm:text-sm hover:text-celeste-neon transition-colors duration-300"
                   >
                     {link.label}
                   </Link>
@@ -50,10 +50,10 @@ export default function Footer() {
           </AnimatedSection>
 
           <AnimatedSection delay={200}>
-            <h4 className="font-heading font-bold text-sm uppercase tracking-wider text-celeste-glow mb-4">
+            <h4 className="font-heading font-bold text-xs sm:text-sm uppercase tracking-wider text-celeste-glow mb-3 sm:mb-4">
               Contacto
             </h4>
-            <ul className="space-y-3 text-sm text-gris-dark">
+            <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-gris-dark">
               <li className="flex items-start gap-2">
                 <svg
                   className="w-4 h-4 mt-0.5 text-celeste-neon flex-shrink-0"
@@ -112,10 +112,10 @@ export default function Footer() {
           </AnimatedSection>
 
           <AnimatedSection delay={300}>
-            <h4 className="font-heading font-bold text-sm uppercase tracking-wider text-celeste-glow mb-4">
+            <h4 className="font-heading font-bold text-xs sm:text-sm uppercase tracking-wider text-celeste-glow mb-3 sm:mb-4">
               Horarios
             </h4>
-            <ul className="space-y-2 text-sm text-gris-dark">
+            <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm text-gris-dark">
               <li className="flex items-center gap-2">
                 <svg
                   className="w-4 h-4 text-celeste-neon flex-shrink-0"
@@ -156,7 +156,7 @@ export default function Footer() {
           </AnimatedSection>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-celeste-neon/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-celeste-neon/10 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
           <p className="text-gris-dark/60 text-xs">
             &copy; {new Date().getFullYear()} {business.nombre}. Todos los
             derechos reservados.

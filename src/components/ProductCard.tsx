@@ -110,7 +110,7 @@ export default function ProductCard({
         </div>
       )}
 
-      <div className="relative aspect-square bg-gradient-to-br from-celeste-light to-white p-6">
+      <div className="relative aspect-square bg-gradient-to-br from-celeste-light to-white p-3 sm:p-6">
         <div className="absolute top-2 right-4 w-2 h-3 bg-celeste/30 rounded-full animate-drop" />
         <div className="absolute top-8 right-8 w-1.5 h-2.5 bg-celeste/20 rounded-full animate-drop-d1" />
 
@@ -128,21 +128,21 @@ export default function ProductCard({
         </motion.div>
       </div>
 
-      <div className="p-5">
-        <h3 className="font-heading font-bold text-azul text-lg leading-tight mb-1">
+      <div className="p-4 sm:p-5">
+        <h3 className="font-heading font-bold text-azul text-base sm:text-lg leading-tight mb-1">
           {product.nombre}
         </h3>
-        <p className="text-gris-suave text-sm mb-4 line-clamp-2">
+        <p className="text-gris-suave text-xs sm:text-sm mb-3 sm:mb-4 line-clamp-2">
           {product.descripcion}
         </p>
 
-        <div className="flex items-end justify-between mb-4">
+        <div className="flex items-end justify-between mb-3 sm:mb-4">
           <div>
-            <span className="price text-2xl font-bold text-celeste-neon">
+            <span className="price text-xl sm:text-2xl font-bold text-celeste-neon">
               {formatPrice(price)}
             </span>
             {price !== otherPrice && (
-              <p className="text-xs text-gris-suave mt-0.5">
+              <p className="text-[11px] sm:text-xs text-gris-suave mt-0.5">
                 En {otherLabel}: {formatPrice(otherPrice)}
               </p>
             )}
@@ -163,7 +163,7 @@ export default function ProductCard({
           </div>
         )}
 
-        <div className={`${isDispenser ? "flex gap-2" : ""}`}>
+        <div className={`${isDispenser ? "flex flex-col sm:flex-row gap-2" : ""}`}>
           {isDispenser && (
             <Link
               href={`/tienda/${product.id}`}
@@ -174,7 +174,7 @@ export default function ProductCard({
           )}
           <button
             onClick={handleAdd}
-            className={`relative ${isDispenser ? "flex-1" : "w-full"} py-3 px-4 rounded-2xl font-heading font-bold text-sm overflow-hidden`}
+            className={`relative ${isDispenser ? "flex-1" : "w-full"} h-[48px] rounded-2xl font-heading font-bold text-sm overflow-hidden`}
           >
             <AnimatePresence mode="wait" initial={false}>
               {added ? (
@@ -184,7 +184,7 @@ export default function ProductCard({
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: -20, opacity: 0 }}
                   transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                  className="flex items-center justify-center gap-2 bg-green-500 text-white w-full py-3 px-4 rounded-2xl absolute inset-0"
+                  className="flex items-center justify-center gap-2 bg-green-500 text-white rounded-2xl absolute inset-0"
                 >
                   <svg
                     className="w-5 h-5"
@@ -208,7 +208,7 @@ export default function ProductCard({
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: -20, opacity: 0 }}
                   transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                  className="flex items-center justify-center gap-2 bg-negro text-white w-full py-3 px-4 rounded-2xl absolute inset-0 hover:bg-negro-medium transition-colors duration-300"
+                  className="flex items-center justify-center gap-2 bg-negro text-white rounded-2xl absolute inset-0 hover:bg-negro-medium transition-colors duration-300"
                 >
                   <svg
                     className="w-5 h-5"
