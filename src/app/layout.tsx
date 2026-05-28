@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Quicksand, Inter } from "next/font/google";
+import { Plus_Jakarta_Sans, Inter } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
 import Header from "@/components/Header";
@@ -9,10 +9,11 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import SmoothScroll from "@/components/SmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
 
-const quicksand = Quicksand({
-  variable: "--font-quicksand",
+const plusJakarta = Plus_Jakarta_Sans({
+  variable: "--font-plus-jakarta",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
 });
 
 const inter = Inter({
@@ -63,7 +64,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${quicksand.variable} ${inter.variable} antialiased`}
+      className={`${plusJakarta.variable} ${inter.variable} antialiased`}
     >
       <head>
         <script

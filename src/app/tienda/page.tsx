@@ -106,9 +106,9 @@ export default function TiendaPage() {
               </div>
             </div>
 
-            {/* Sub-filter for dispensers */}
+            {/* Sub-filter for dispensers only */}
             <AnimatePresence>
-              {(active === "dispensers" || active === "todos") && (
+              {active === "dispensers" && (
                 <motion.div
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}

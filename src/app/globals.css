@@ -14,7 +14,7 @@
   --color-negro-medium: #1C1C2E;
   --color-gris-suave: #6B7B8D;
   --color-gris-dark: #94A3B8;
-  --font-heading: var(--font-quicksand), "Quicksand", sans-serif;
+  --font-heading: var(--font-plus-jakarta), "Plus Jakarta Sans", sans-serif;
   --font-body: var(--font-inter), "Inter", sans-serif;
 }
 
