@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { categorias } from "@/data/products";
@@ -10,6 +10,7 @@ import { TextRevealWords } from "@/components/TextReveal";
 import { StaggerContainer, StaggerItem } from "@/components/StaggerContainer";
 
 type FilterSlug = "todos" | "agua" | "dispensers";
+type SubFilter = "todos" | "bidon" | "red" | "natural";
 
 const filters: { slug: FilterSlug; label: string }[] = [
   { slug: "todos", label: "Todos" },
@@ -17,13 +18,40 @@ const filters: { slug: FilterSlug; label: string }[] = [
   { slug: "dispensers", label: "Dispensers" },
 ];
 
+const subFilters: { slug: SubFilter; label: string }[] = [
+  { slug: "todos", label: "Todos" },
+  { slug: "bidon", label: "Bidón" },
+  { slug: "red", label: "Red" },
+  { slug: "natural", label: "Naturales" },
+];
+
 export default function TiendaPage() {
   const [active, setActive] = useState<FilterSlug>("todos");
+  const [subActive, setSubActive] = useState<SubFilter>("todos");
 
-  const filtered =
-    active === "todos"
-      ? categorias
-      : categorias.filter((c) => c.slug === active);
+  // Reset sub-filter when main filter changes
+  const handleMainFilter = (slug: FilterSlug) => {
+    setActive(slug);
+    setSubActive("todos");
+  };
+
+  const filtered = useMemo(() => {
+    const base =
+      active === "todos"
+        ? categorias
+        : categorias.filter((c) => c.slug === active);
+
+    // Apply sub-filter only to dispensers
+    if (subActive === "todos") return base;
+
+    return base.map((cat) => {
+      if (cat.slug !== "dispensers") return cat;
+      return {
+        ...cat,
+        productos: cat.productos.filter((p) => p.conexion === subActive),
+      };
+    }).filter((cat) => cat.productos.length > 0);
+  }, [active, subActive]);
 
   // Global product index counter for numbered cards
   let globalIndex = 0;
@@ -49,40 +77,70 @@ export default function TiendaPage() {
 
         {/* Centered filter pills — scrollable on mobile */}
         <AnimatedSection delay={200}>
-          <div className="flex justify-center mb-6 sm:mb-10 -mx-4 px-4 sm:mx-0 sm:px-0">
-            <div className="relative flex items-center gap-1 sm:gap-2 bg-white rounded-2xl p-1 sm:p-1.5 shadow-sm border border-celeste-medium/20 overflow-x-auto no-scrollbar">
-              {filters.map((f) => (
-                <button
-                  key={f.slug}
-                  onClick={() => setActive(f.slug)}
-                  className="relative px-4 sm:px-5 py-2.5 rounded-xl text-sm font-heading font-semibold transition-colors duration-300 z-10 whitespace-nowrap flex-shrink-0"
-                  style={{
-                    color: active === f.slug ? "#FFFFFF" : undefined,
-                  }}
-                >
-                  {/* Animated pill background */}
-                  {active === f.slug && (
-                    <motion.div
-                      layoutId="filter-pill"
-                      className="absolute inset-0 bg-negro rounded-xl shadow-md"
-                      transition={{
-                        type: "spring",
-                        bounce: 0.15,
-                        duration: 0.5,
-                      }}
-                    />
-                  )}
-                  <span className="relative z-10">{f.label}</span>
-                </button>
-              ))}
+          <div className="flex flex-col items-center gap-3 mb-6 sm:mb-10">
+            <div className="flex -mx-4 px-4 sm:mx-0 sm:px-0">
+              <div className="relative flex items-center gap-1 sm:gap-2 bg-white rounded-2xl p-1 sm:p-1.5 shadow-sm border border-celeste-medium/20 overflow-x-auto no-scrollbar">
+                {filters.map((f) => (
+                  <button
+                    key={f.slug}
+                    onClick={() => handleMainFilter(f.slug)}
+                    className="relative px-4 sm:px-5 py-2.5 rounded-xl text-sm font-heading font-semibold transition-colors duration-300 z-10 whitespace-nowrap flex-shrink-0"
+                    style={{
+                      color: active === f.slug ? "#FFFFFF" : undefined,
+                    }}
+                  >
+                    {active === f.slug && (
+                      <motion.div
+                        layoutId="filter-pill"
+                        className="absolute inset-0 bg-negro rounded-xl shadow-md"
+                        transition={{
+                          type: "spring",
+                          bounce: 0.15,
+                          duration: 0.5,
+                        }}
+                      />
+                    )}
+                    <span className="relative z-10">{f.label}</span>
+                  </button>
+                ))}
+              </div>
             </div>
+
+            {/* Sub-filter for dispensers */}
+            <AnimatePresence>
+              {(active === "dispensers" || active === "todos") && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                  className="overflow-hidden"
+                >
+                  <div className="flex items-center gap-1 sm:gap-2 bg-celeste-light/40 rounded-xl p-1 border border-celeste-medium/15 overflow-x-auto no-scrollbar">
+                    {subFilters.map((sf) => (
+                      <button
+                        key={sf.slug}
+                        onClick={() => setSubActive(sf.slug)}
+                        className={`relative px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-heading font-semibold transition-all duration-300 whitespace-nowrap flex-shrink-0 ${
+                          subActive === sf.slug
+                            ? "bg-white text-azul shadow-sm"
+                            : "text-gris-suave hover:text-azul"
+                        }`}
+                      >
+                        {sf.label}
+                      </button>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </AnimatedSection>
 
         {/* Products */}
         <AnimatePresence mode="wait">
           <motion.div
-            key={active}
+            key={`${active}-${subActive}`}
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}

@@ -19,8 +19,8 @@ export interface Product {
   };
   /** Short benefit bullet points */
   beneficios?: string[];
-  /** Connection type: bidon or red */
-  conexion?: "bidon" | "red";
+  /** Connection type: bidon, red, or natural */
+  conexion?: "bidon" | "red" | "natural";
 }
 
 export interface Categoria {
@@ -460,6 +460,70 @@ export const categorias: Categoria[] = [
           "Panel tactil moderno e intuitivo",
           "Sistema de seguridad para ninos",
           "Ideal para hogar, oficina y eventos",
+        ],
+      },
+      // ── Dispensers Naturales ──
+      {
+        id: "natural-blanco",
+        nombre: "Dispenser Natural - Blanco",
+        descripcion: "Dispenser para agua a temperatura ambiente. Compatible con bidones de 10, 12 y 20L. Sin conexion electrica.",
+        precio_tienda: 45000,
+        precio_reparto: 45000,
+        imagen: "/images/products/natural-blanco.png",
+        categoria: "dispensers",
+        conexion: "natural",
+        specs: {
+          dimensiones: "30cm x 25cm x 25cm",
+          extras: ["Peso: 600g", "Material: Plastico de alta resistencia", "Compatible: Bidones de 10, 12 y 20L"],
+        },
+        beneficios: [
+          "No requiere conexion electrica",
+          "Compatible con bidones de 10, 12 y 20 litros",
+          "Diseno ergonomico para llenado facil",
+          "Material resistente y duradero",
+          "Ideal para hogares, oficinas y comercios",
+        ],
+      },
+      {
+        id: "natural-gris",
+        nombre: "Dispenser Natural - Gris",
+        descripcion: "Dispenser para agua a temperatura ambiente. Compatible con bidones de 10, 12 y 20L. Sin conexion electrica.",
+        precio_tienda: 45000,
+        precio_reparto: 45000,
+        imagen: "/images/products/natural-gris.png",
+        categoria: "dispensers",
+        conexion: "natural",
+        specs: {
+          dimensiones: "30cm x 25cm x 25cm",
+          extras: ["Peso: 600g", "Material: Plastico de alta resistencia", "Compatible: Bidones de 10, 12 y 20L"],
+        },
+        beneficios: [
+          "No requiere conexion electrica",
+          "Compatible con bidones de 10, 12 y 20 litros",
+          "Diseno ergonomico para llenado facil",
+          "Material resistente y duradero",
+          "Ideal para hogares, oficinas y comercios",
+        ],
+      },
+      {
+        id: "natural-negro",
+        nombre: "Dispenser Natural - Negro",
+        descripcion: "Dispenser para agua a temperatura ambiente. Compatible con bidones de 10, 12 y 20L. Sin conexion electrica.",
+        precio_tienda: 45000,
+        precio_reparto: 45000,
+        imagen: "/images/products/natural-negro.png",
+        categoria: "dispensers",
+        conexion: "natural",
+        specs: {
+          dimensiones: "30cm x 25cm x 25cm",
+          extras: ["Peso: 600g", "Material: Plastico de alta resistencia", "Compatible: Bidones de 10, 12 y 20L"],
+        },
+        beneficios: [
+          "No requiere conexion electrica",
+          "Compatible con bidones de 10, 12 y 20 litros",
+          "Diseno ergonomico para llenado facil",
+          "Material resistente y duradero",
+          "Ideal para hogares, oficinas y comercios",
         ],
       },
     ],
