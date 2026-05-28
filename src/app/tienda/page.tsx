@@ -57,8 +57,21 @@ export default function TiendaPage() {
   let globalIndex = 0;
 
   return (
-    <div className="pt-20 sm:pt-24 pb-16 sm:pb-20 min-h-screen bg-gradient-to-b from-celeste-light/30 to-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+    <div className="relative pt-20 sm:pt-24 pb-16 sm:pb-20 min-h-screen bg-gradient-to-b from-celeste-light/30 via-white to-celeste-light/20 overflow-hidden">
+      {/* Subtle wave background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-[0.04]">
+        <svg className="absolute bottom-0 left-0 w-[200%] h-[300px] wave-animate" viewBox="0 0 2880 320" fill="none" preserveAspectRatio="none">
+          <path d="M0 224l48-10.7C96 203 192 181 288 186.7 384 192 480 224 576 229.3 672 235 768 213 864 186.7 960 160 1056 128 1152 128s192 32 288 58.7c96 26.3 192 48.3 288 42.6 96-5.3 192-37.3 288-48 96-10.3 192 .3 288 16 96 16.3 192 37.3 240 48l48 10.7V320H0z" fill="currentColor" className="text-celeste" />
+        </svg>
+        <svg className="absolute bottom-[60px] left-0 w-[200%] h-[250px] wave-animate-slow" viewBox="0 0 2880 320" fill="none" preserveAspectRatio="none">
+          <path d="M0 256l48-16c48-16 144-48 240-48s192 32 288 37.3c96 5.7 192-16.3 288-21.3 96-5 192 5 288 26.7 96 21.3 192 53.3 288 48 96-5.7 192-48.3 288-58.7 96-10.3 192 10.7 288 21.3 96 10.7 192 10.7 240 10.7h48V320H0z" fill="currentColor" className="text-celeste-dark" />
+        </svg>
+        <svg className="absolute top-[20%] left-0 w-[200%] h-[200px] wave-animate" style={{ animationDuration: "20s" }} viewBox="0 0 2880 320" fill="none" preserveAspectRatio="none">
+          <path d="M0 64l48 5.3C96 75 192 85 288 112s192 69 288 74.7c96 5.3 192-16.7 288-16.7s192 21 288 42.7c96 21.3 192 42.3 288 37.3 96-5.3 192-37.3 288-48 96-10.3 192 .3 288 5.3 96 5.7 192 5.7 240 5.7h48V0H0z" fill="currentColor" className="text-celeste-medium" />
+        </svg>
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header */}
         <div className="text-center mb-6 sm:mb-10">
           <TextRevealWords
