@@ -12,6 +12,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 import { TextRevealLine, TextRevealWords } from "@/components/TextReveal";
 import { StaggerContainer, StaggerItem } from "@/components/StaggerContainer";
 import ProductImage3D from "@/components/ProductImage3D";
+import ProductReviews from "@/components/ProductReviews";
 
 export default function ProductDetailPage() {
   const params = useParams();
@@ -337,6 +338,13 @@ function DispenserDetail({ product }: { product: Product }) {
               </div>
             )}
           </div>
+        </div>
+      </section>
+
+      {/* Reviews */}
+      <section className="py-12 sm:py-16 bg-negro relative overflow-hidden">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
+          <ProductReviews productId={product.id} />
         </div>
       </section>
 

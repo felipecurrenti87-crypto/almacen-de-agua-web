@@ -37,6 +37,7 @@ export default function Footer() {
                 { href: "/planes", label: "Planes" },
                 { href: "/nosotros", label: "Nosotros" },
                 { href: "/quiero-ser-cliente", label: "Ser cliente" },
+                { href: "/calculadora-envio", label: "Calculadora de envio" },
               ].map((link) => (
                 <li key={link.href}>
                   <Link

@@ -13,6 +13,7 @@ import { useCart } from "@/context/CartContext";
 import type { Product } from "@/data/products";
 import { formatPrice } from "@/data/products";
 import ProductImage3D from "./ProductImage3D";
+import { ProductRatingBadge } from "./ProductReviews";
 
 export default function ProductCard({
   product,
@@ -132,9 +133,10 @@ export default function ProductCard({
         <h3 className="font-heading font-bold text-azul text-base sm:text-lg leading-tight mb-1">
           {product.nombre}
         </h3>
-        <p className="text-gris-suave text-xs sm:text-sm mb-3 sm:mb-4 line-clamp-2">
+        <p className="text-gris-suave text-xs sm:text-sm mb-2 sm:mb-3 line-clamp-2">
           {product.descripcion}
         </p>
+        <ProductRatingBadge productId={product.id} />
 
         <div className="flex items-end justify-between mb-3 sm:mb-4">
           <div>
