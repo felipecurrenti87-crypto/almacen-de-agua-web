@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { business } from "@/data/business";
 import AnimatedSection from "@/components/AnimatedSection";
 import { TextRevealLine, TextRevealWords } from "@/components/TextReveal";
@@ -13,7 +15,7 @@ const values = [
       </svg>
     ),
     title: "Calidad garantizada",
-    desc: "Agua purificada con los más altos estándares de calidad. Cada bidón pasa por un riguroso proceso de purificación para que tu familia beba agua segura.",
+    desc: "Agua purificada con los mas altos estandares de calidad. Cada bidon pasa por un riguroso proceso de purificacion para que tu familia beba agua segura.",
   },
   {
     icon: (
@@ -22,7 +24,7 @@ const values = [
       </svg>
     ),
     title: "Familia y servicio",
-    desc: "Somos un negocio familiar que valora cada cliente. Atención personalizada, cercanía y compromiso con la comunidad mendocina.",
+    desc: "Somos un negocio familiar que valora cada cliente. Atencion personalizada, cercania y compromiso con la comunidad mendocina.",
   },
   {
     icon: (
@@ -31,11 +33,29 @@ const values = [
       </svg>
     ),
     title: "Compromiso diario",
-    desc: "Nos levantamos cada día con el objetivo de llevar agua pura a cada hogar de Mendoza. Tu bienestar es nuestra motivación.",
+    desc: "Nos levantamos cada dia con el objetivo de llevar agua pura a cada hogar de Mendoza. Tu bienestar es nuestra motivacion.",
   },
 ];
 
 export default function NosotrosPage() {
+  const [form, setForm] = useState({ nombre: "", email: "", mensaje: "" });
+  const [sent, setSent] = useState(false);
+
+  const updateField = (field: string, value: string) =>
+    setForm((prev) => ({ ...prev, [field]: value }));
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const msg = `Hola! Soy ${form.nombre}.\n\n${form.mensaje}\n\nMi email: ${form.email}`;
+    window.open(
+      `${business.whatsappLink}?text=${encodeURIComponent(msg)}`,
+      "_blank"
+    );
+    setSent(true);
+    setForm({ nombre: "", email: "", mensaje: "" });
+    setTimeout(() => setSent(false), 4000);
+  };
+
   return (
     <div>
       {/* Hero — DARK */}
@@ -43,6 +63,24 @@ export default function NosotrosPage() {
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-[-10%] right-[10%] w-[400px] h-[400px] rounded-full bg-celeste-neon/6 blur-[120px] animate-orb-pulse" />
           <div className="absolute bottom-[-15%] left-[5%] w-[500px] h-[500px] rounded-full bg-celeste-glow/4 blur-[140px] animate-orb-pulse" style={{ animationDelay: "3s" }} />
+        </div>
+
+        {/* Wave pattern on hero */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <svg
+            className="absolute inset-0 w-full h-full opacity-[0.06] animate-wave-drift"
+            xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="none"
+          >
+            <defs>
+              <pattern id="waves-nosotros-hero" x="0" y="0" width="200" height="80" patternUnits="userSpaceOnUse">
+                <path d="M0 40 Q50 20, 100 40 Q150 60, 200 40" fill="none" stroke="rgba(125,211,252,0.5)" strokeWidth="1" />
+                <path d="M0 60 Q50 40, 100 60 Q150 80, 200 60" fill="none" stroke="rgba(56,189,248,0.3)" strokeWidth="1" />
+                <path d="M0 20 Q50 0, 100 20 Q150 40, 200 20" fill="none" stroke="rgba(125,211,252,0.25)" strokeWidth="1" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#waves-nosotros-hero)" />
+          </svg>
         </div>
 
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 text-center">
@@ -53,8 +91,8 @@ export default function NosotrosPage() {
           </AnimatedSection>
           <TextRevealLine delay={100}>
             <h1 className="font-heading font-bold text-4xl sm:text-5xl text-white mt-3 mb-6">
-              Conocé{" "}
-              <span className="gradient-text-glow">Almacén de Agua</span>
+              Conoce{" "}
+              <span className="gradient-text-glow">Almacen de Agua</span>
             </h1>
           </TextRevealLine>
           <AnimatedSection delay={200}>
@@ -70,33 +108,36 @@ export default function NosotrosPage() {
         <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent" />
       </section>
 
-      {/* Story */}
+      {/* Story section — with wave background */}
       <section className="relative py-20 md:py-28 bg-gradient-to-b from-white via-white to-celeste-light/20 overflow-hidden">
-        {/* Wave background */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-[0.035]">
-          <svg className="absolute bottom-0 left-0 w-[200%] h-[250px] wave-animate" viewBox="0 0 2880 320" fill="none" preserveAspectRatio="none"><path d="M0 224l48-10.7C96 203 192 181 288 186.7 384 192 480 224 576 229.3 672 235 768 213 864 186.7 960 160 1056 128 1152 128s192 32 288 58.7c96 26.3 192 48.3 288 42.6 96-5.3 192-37.3 288-48 96-10.3 192 .3 288 16 96 16.3 192 37.3 240 48l48 10.7V320H0z" fill="currentColor" className="text-celeste" /></svg>
-          <svg className="absolute top-[30%] left-0 w-[200%] h-[200px] wave-animate-slow" viewBox="0 0 2880 320" fill="none" preserveAspectRatio="none"><path d="M0 256l48-16c48-16 144-48 240-48s192 32 288 37.3c96 5.7 192-16.3 288-21.3 96-5 192 5 288 26.7 96 21.3 192 53.3 288 48 96-5.7 192-48.3 288-58.7 96-10.3 192 10.7 288 21.3 96 10.7 192 10.7 240 10.7h48V320H0z" fill="currentColor" className="text-celeste-medium" /></svg>
+        {/* Wave pattern background — identical to homepage */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <svg
+            className="absolute inset-0 w-full h-full opacity-[0.06] animate-wave-drift"
+            xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="none"
+          >
+            <defs>
+              <pattern id="waves-nosotros-story" x="0" y="0" width="200" height="80" patternUnits="userSpaceOnUse">
+                <path d="M0 40 Q50 20, 100 40 Q150 60, 200 40" fill="none" stroke="rgba(125,211,252,0.5)" strokeWidth="1" />
+                <path d="M0 60 Q50 40, 100 60 Q150 80, 200 60" fill="none" stroke="rgba(56,189,248,0.3)" strokeWidth="1" />
+                <path d="M0 20 Q50 0, 100 20 Q150 40, 200 20" fill="none" stroke="rgba(125,211,252,0.25)" strokeWidth="1" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#waves-nosotros-story)" />
+          </svg>
         </div>
+
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <AnimatedSection>
               <div className="relative">
-                {/* REEMPLAZAR: subir foto en public/images/about-store.webp (800x600) */}
-                <div className="aspect-[4/3] rounded-3xl bg-gradient-to-br from-negro-light to-negro-medium flex items-center justify-center overflow-hidden border border-celeste-neon/10">
-                  <div className="text-center">
-                    <div className="w-20 h-20 rounded-full bg-celeste-neon/10 flex items-center justify-center mx-auto mb-4">
-                      <svg className="w-10 h-10 text-celeste-neon" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 3C12 3 7 10 7 14a5 5 0 0010 0c0-4-5-11-5-11z" />
-                      </svg>
-                    </div>
-                    <span className="font-heading font-bold text-white text-lg">
-                      {business.nombre}
-                    </span>
-                    <p className="text-gris-dark text-sm mt-1">
-                      Godoy Cruz, Mendoza
-                    </p>
-                    <p className="text-celeste-neon/60 text-xs mt-3">Subí about-store.webp a /public/images/</p>
-                  </div>
+                <div className="aspect-[4/3] rounded-3xl overflow-hidden border border-celeste-medium/20 shadow-lg">
+                  <img
+                    src="/images/about-store.jpg"
+                    alt="Tienda Almacen de Agua - Godoy Cruz, Mendoza"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <div className="absolute -bottom-3 -right-3 w-3 h-4 bg-celeste-neon/30 rounded-full animate-drop" />
                 <div className="absolute -top-2 -left-2 w-2 h-3 bg-celeste-glow/20 rounded-full animate-drop-d1" />
@@ -110,7 +151,7 @@ export default function NosotrosPage() {
               <AnimatedSection delay={150}>
                 <div className="space-y-4 text-gris-suave leading-relaxed">
                   <p>
-                    Almacén de Agua nació como un sueño familiar: acercar agua
+                    Almacen de Agua nacio como un sueno familiar: acercar agua
                     purificada de calidad a los hogares y comercios de Mendoza a
                     un precio justo y con un servicio cercano.
                   </p>
@@ -122,8 +163,8 @@ export default function NosotrosPage() {
                   </p>
                   <p>
                     Trabajamos con productos Puragua, una marca reconocida por su
-                    calidad y confiabilidad, garantizando que cada bidón de agua y
-                    cada soda que entregamos cumple con los más altos estándares.
+                    calidad y confiabilidad, garantizando que cada bidon de agua y
+                    cada soda que entregamos cumple con los mas altos estandares.
                   </p>
                 </div>
               </AnimatedSection>
@@ -166,6 +207,199 @@ export default function NosotrosPage() {
         </div>
       </section>
 
+      {/* ── CONTACTO SECTION ── with wave background */}
+      <section className="relative py-20 md:py-28 bg-gradient-to-b from-white via-white to-celeste-light/20 overflow-hidden">
+        {/* Wave pattern background — identical to homepage */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <svg
+            className="absolute inset-0 w-full h-full opacity-[0.06] animate-wave-drift"
+            xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="none"
+          >
+            <defs>
+              <pattern id="waves-nosotros-contact" x="0" y="0" width="200" height="80" patternUnits="userSpaceOnUse">
+                <path d="M0 40 Q50 20, 100 40 Q150 60, 200 40" fill="none" stroke="rgba(125,211,252,0.5)" strokeWidth="1" />
+                <path d="M0 60 Q50 40, 100 60 Q150 80, 200 60" fill="none" stroke="rgba(56,189,248,0.3)" strokeWidth="1" />
+                <path d="M0 20 Q50 0, 100 20 Q150 40, 200 20" fill="none" stroke="rgba(125,211,252,0.25)" strokeWidth="1" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#waves-nosotros-contact)" />
+          </svg>
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
+          {/* Section heading */}
+          <div className="text-center mb-12">
+            <AnimatedSection>
+              <span className="font-heading font-semibold text-celeste-neon text-sm uppercase tracking-wider">
+                Estamos para ayudarte
+              </span>
+            </AnimatedSection>
+            <TextRevealWords className="font-heading font-bold text-3xl sm:text-4xl text-azul mt-3">
+              Contactanos
+            </TextRevealWords>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Contact info */}
+            <div className="space-y-8">
+              <div>
+                <TextRevealWords className="font-heading font-bold text-2xl text-azul mb-6">
+                  Datos de contacto
+                </TextRevealWords>
+
+                <StaggerContainer className="space-y-5">
+                  <StaggerItem>
+                    <ContactItem
+                      icon={
+                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                      }
+                      title="Direccion"
+                      value={business.direccion}
+                    />
+                  </StaggerItem>
+                  <StaggerItem>
+                    <ContactItem
+                      icon={
+                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        </svg>
+                      }
+                      title="Telefono"
+                      value={business.telefono}
+                    />
+                  </StaggerItem>
+                  <StaggerItem>
+                    <ContactItem
+                      icon={
+                        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                        </svg>
+                      }
+                      title="WhatsApp"
+                      value={business.whatsapp}
+                      href={business.whatsappLink}
+                    />
+                  </StaggerItem>
+                  <StaggerItem>
+                    <ContactItem
+                      icon={
+                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                          <circle cx="12" cy="12" r="10" />
+                          <path strokeLinecap="round" d="M12 6v6l4 2" />
+                        </svg>
+                      }
+                      title="Horarios"
+                      value={`${business.horarios.semana} | ${business.horarios.sabado}`}
+                    />
+                  </StaggerItem>
+                </StaggerContainer>
+              </div>
+
+              {/* Map */}
+              <AnimatedSection delay={200}>
+                <div className="rounded-3xl overflow-hidden border border-celeste-medium/20 shadow-sm h-[300px]">
+                  <iframe
+                    src={business.googleMapsEmbed}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Ubicacion de Almacen de Agua"
+                  />
+                </div>
+              </AnimatedSection>
+            </div>
+
+            {/* Form */}
+            <AnimatedSection delay={100}>
+              <div className="bg-celeste-light/30 rounded-3xl p-8 border border-celeste-medium/20">
+                <h2 className="font-heading font-bold text-2xl text-azul mb-2">
+                  Envianos un mensaje
+                </h2>
+                <p className="text-gris-suave text-sm mb-6">
+                  Completa el formulario y te contactamos por WhatsApp.
+                </p>
+
+                <AnimatePresence>
+                  {sent && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -8 }}
+                      className="mb-6 p-4 bg-green-50 border border-green-200 rounded-2xl flex items-center gap-3"
+                    >
+                      <svg className="w-5 h-5 text-green-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span className="text-green-700 text-sm font-heading font-semibold">
+                        Mensaje enviado! Te redirigimos a WhatsApp.
+                      </span>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-heading font-semibold text-azul mb-1.5">
+                      Nombre <span className="text-celeste-neon">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      value={form.nombre}
+                      onChange={(e) => updateField("nombre", e.target.value)}
+                      required
+                      placeholder="Tu nombre"
+                      className="w-full px-4 py-3 rounded-xl border border-celeste-medium/30 bg-white text-azul placeholder:text-gris-suave/50 focus:outline-none focus:ring-2 focus:ring-celeste-neon/40 focus:border-celeste-neon text-sm transition-all"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-heading font-semibold text-azul mb-1.5">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      value={form.email}
+                      onChange={(e) => updateField("email", e.target.value)}
+                      placeholder="tu@email.com"
+                      className="w-full px-4 py-3 rounded-xl border border-celeste-medium/30 bg-white text-azul placeholder:text-gris-suave/50 focus:outline-none focus:ring-2 focus:ring-celeste-neon/40 focus:border-celeste-neon text-sm transition-all"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-heading font-semibold text-azul mb-1.5">
+                      Mensaje <span className="text-celeste-neon">*</span>
+                    </label>
+                    <textarea
+                      value={form.mensaje}
+                      onChange={(e) => updateField("mensaje", e.target.value)}
+                      required
+                      placeholder="En que podemos ayudarte?"
+                      rows={5}
+                      className="w-full px-4 py-3 rounded-xl border border-celeste-medium/30 bg-white text-azul placeholder:text-gris-suave/50 focus:outline-none focus:ring-2 focus:ring-celeste-neon/40 focus:border-celeste-neon text-sm transition-all resize-none"
+                    />
+                  </div>
+
+                  <motion.button
+                    type="submit"
+                    whileTap={{ scale: 0.98 }}
+                    className="w-full py-4 rounded-2xl bg-negro text-white font-heading font-bold hover:bg-negro-medium transition-all duration-300 hover:shadow-xl hover:shadow-celeste-neon/15"
+                  >
+                    Enviar mensaje
+                  </motion.button>
+                </form>
+              </div>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
       {/* CTA — DARK */}
       <section className="py-20 md:py-28 bg-negro relative overflow-hidden">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -174,10 +408,10 @@ export default function NosotrosPage() {
         <div className="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <AnimatedSection>
             <TextRevealWords className="font-heading font-bold text-3xl text-white mb-4">
-              ¿Querés probar nuestra agua?
+              Queres probar nuestra agua?
             </TextRevealWords>
             <p className="text-gris-dark text-lg mb-8">
-              Hacé tu primer pedido y descubrí por qué nuestros clientes nos
+              Hace tu primer pedido y descubri por que nuestros clientes nos
               eligen cada semana.
             </p>
             <a
@@ -196,4 +430,45 @@ export default function NosotrosPage() {
       </section>
     </div>
   );
+}
+
+function ContactItem({
+  icon,
+  title,
+  value,
+  href,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  value: string;
+  href?: string;
+}) {
+  const content = (
+    <div className="flex items-start gap-4 group">
+      <div className="w-11 h-11 rounded-xl bg-negro text-celeste-neon flex items-center justify-center flex-shrink-0 group-hover:bg-celeste-neon group-hover:text-negro transition-all duration-300">
+        {icon}
+      </div>
+      <div>
+        <p className="text-xs text-gris-suave font-heading uppercase tracking-wider">
+          {title}
+        </p>
+        <p className="text-azul font-semibold text-sm mt-0.5">{value}</p>
+      </div>
+    </div>
+  );
+
+  if (href) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block hover:translate-x-1 transition-transform"
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return content;
 }
