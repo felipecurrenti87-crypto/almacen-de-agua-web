@@ -27,9 +27,7 @@ export default function CheckoutPage() {
     notas: "",
   });
 
-  const [payMethod, setPayMethod] = useState<"whatsapp" | "transferencia">(
-    "whatsapp"
-  );
+  const payMethod = "whatsapp";
 
   const updateField = (field: string, value: string) =>
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -224,99 +222,18 @@ export default function CheckoutPage() {
                   <h2 className="font-heading font-bold text-lg text-azul mb-4">
                     Forma de pago
                   </h2>
-                  <div className="space-y-3">
-                    <label
-                      className={`flex items-center gap-4 p-4 rounded-2xl border-2 transition-all cursor-pointer ${
-                        payMethod === "whatsapp"
-                          ? "border-[#25D366] bg-[#25D366]/5"
-                          : "border-celeste-medium/20 hover:border-celeste-medium"
-                      }`}
-                    >
-                      <input
-                        type="radio"
-                        name="pay"
-                        checked={payMethod === "whatsapp"}
-                        onChange={() => setPayMethod("whatsapp")}
-                        className="sr-only"
-                      />
-                      <div
-                        className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-                          payMethod === "whatsapp"
-                            ? "border-[#25D366]"
-                            : "border-gris-suave/40"
-                        }`}
-                      >
-                        {payMethod === "whatsapp" && (
-                          <motion.div
-                            layoutId="payment-dot"
-                            className="w-2.5 h-2.5 rounded-full bg-[#25D366]"
-                          />
-                        )}
-                      </div>
-                      <div className="flex-1">
-                        <span className="font-heading font-bold text-sm text-azul block">
-                          Confirmar por WhatsApp
-                        </span>
-                        <span className="text-xs text-gris-suave">
-                          Te contactamos para coordinar el pago
-                        </span>
-                      </div>
-                      <svg className="w-6 h-6 text-[#25D366]" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                      </svg>
-                    </label>
-
-                    <label
-                      className={`flex items-center gap-4 p-4 rounded-2xl border-2 transition-all cursor-pointer ${
-                        payMethod === "transferencia"
-                          ? "border-celeste-neon bg-celeste-neon/5"
-                          : "border-celeste-medium/20 hover:border-celeste-medium"
-                      }`}
-                    >
-                      <input
-                        type="radio"
-                        name="pay"
-                        checked={payMethod === "transferencia"}
-                        onChange={() => setPayMethod("transferencia")}
-                        className="sr-only"
-                      />
-                      <div
-                        className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-                          payMethod === "transferencia"
-                            ? "border-celeste-neon"
-                            : "border-gris-suave/40"
-                        }`}
-                      >
-                        {payMethod === "transferencia" && (
-                          <motion.div
-                            layoutId="payment-dot"
-                            className="w-2.5 h-2.5 rounded-full bg-celeste-neon"
-                          />
-                        )}
-                      </div>
-                      <div className="flex-1">
-                        <span className="font-heading font-bold text-sm text-azul block">
-                          Transferencia bancaria
-                        </span>
-                        <span className="text-xs text-gris-suave">
-                          Te enviamos los datos por WhatsApp
-                        </span>
-                      </div>
-                      <svg className="w-6 h-6 text-celeste-neon" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" />
-                      </svg>
-                    </label>
-                  </div>
-
-                  <div className="mt-4 p-4 bg-negro/5 rounded-2xl">
-                    <p className="text-xs text-gris-suave flex items-start gap-2">
-                      <svg className="w-4 h-4 text-celeste-neon flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      Pronto vas a poder pagar online con Mercado Pago.
-                      Mientras tanto, coordinamos el pago por WhatsApp o
-                      transferencia.
-                    </p>
+                  <div className="flex items-center gap-4 p-4 rounded-2xl border-2 border-[#25D366] bg-[#25D366]/5">
+                    <svg className="w-6 h-6 text-[#25D366] flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                    </svg>
+                    <div>
+                      <span className="font-heading font-bold text-sm text-azul block">
+                        Confirmar por WhatsApp
+                      </span>
+                      <span className="text-xs text-gris-suave">
+                        Te contactamos para coordinar el pago y la entrega
+                      </span>
+                    </div>
                   </div>
                 </div>
               </AnimatedSection>
@@ -375,9 +292,7 @@ export default function CheckoutPage() {
                     whileTap={{ scale: 0.98 }}
                     className="w-full py-4 rounded-2xl font-heading font-bold text-white bg-negro hover:bg-negro-medium transition-all duration-300 hover:shadow-xl hover:shadow-celeste-neon/15"
                   >
-                    {payMethod === "whatsapp"
-                      ? "Confirmar por WhatsApp"
-                      : "Solicitar datos de transferencia"}
+                    Confirmar por WhatsApp
                   </motion.button>
                 </div>
               </AnimatedSection>

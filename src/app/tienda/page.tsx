@@ -28,6 +28,7 @@ const subFilters: { slug: SubFilter; label: string }[] = [
 export default function TiendaPage() {
   const [active, setActive] = useState<FilterSlug>("todos");
   const [subActive, setSubActive] = useState<SubFilter>("todos");
+  const [search, setSearch] = useState("");
 
   // Reset sub-filter when main filter changes
   const handleMainFilter = (slug: FilterSlug) => {
@@ -36,22 +37,37 @@ export default function TiendaPage() {
   };
 
   const filtered = useMemo(() => {
-    const base =
+    let base =
       active === "todos"
         ? categorias
         : categorias.filter((c) => c.slug === active);
 
     // Apply sub-filter only to dispensers
-    if (subActive === "todos") return base;
+    if (subActive !== "todos") {
+      base = base.map((cat) => {
+        if (cat.slug !== "dispensers") return cat;
+        return {
+          ...cat,
+          productos: cat.productos.filter((p) => p.conexion === subActive),
+        };
+      }).filter((cat) => cat.productos.length > 0);
+    }
 
-    return base.map((cat) => {
-      if (cat.slug !== "dispensers") return cat;
-      return {
+    // Apply text search
+    if (search.trim()) {
+      const q = search.toLowerCase().trim();
+      base = base.map((cat) => ({
         ...cat,
-        productos: cat.productos.filter((p) => p.conexion === subActive),
-      };
-    }).filter((cat) => cat.productos.length > 0);
-  }, [active, subActive]);
+        productos: cat.productos.filter(
+          (p) =>
+            p.nombre.toLowerCase().includes(q) ||
+            p.descripcion.toLowerCase().includes(q)
+        ),
+      })).filter((cat) => cat.productos.length > 0);
+    }
+
+    return base;
+  }, [active, subActive, search]);
 
   // Global product index counter for numbered cards
   let globalIndex = 0;
@@ -90,6 +106,34 @@ export default function TiendaPage() {
               Explora nuestro catalogo completo de agua purificada, soda y
               dispensers. Elegi entre retiro en tienda o envio a domicilio.
             </p>
+          </AnimatedSection>
+
+          {/* Search bar */}
+          <AnimatedSection delay={150}>
+            <div className="max-w-md mx-auto mt-4 sm:mt-6">
+              <div className="relative">
+                <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gris-suave/60" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+                <input
+                  type="text"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  placeholder="Buscar productos..."
+                  className="w-full pl-11 pr-4 py-3 rounded-2xl border border-celeste-medium/30 bg-white/80 backdrop-blur-sm text-azul placeholder:text-gris-suave/50 focus:outline-none focus:ring-2 focus:ring-celeste-neon/40 focus:border-celeste-neon text-sm font-body transition-all shadow-sm"
+                />
+                {search && (
+                  <button
+                    onClick={() => setSearch("")}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-celeste-light flex items-center justify-center hover:bg-celeste-medium/30 transition-colors"
+                  >
+                    <svg className="w-3 h-3 text-gris-suave" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                )}
+              </div>
+            </div>
           </AnimatedSection>
         </div>
 
@@ -158,12 +202,23 @@ export default function TiendaPage() {
         {/* Products */}
         <AnimatePresence mode="wait">
           <motion.div
-            key={`${active}-${subActive}`}
+            key={`${active}-${subActive}-${search}`}
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
           >
+            {filtered.length === 0 && (
+              <div className="text-center py-16">
+                <div className="w-16 h-16 rounded-full bg-celeste-light flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-celeste" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                </div>
+                <p className="font-heading font-bold text-azul text-lg mb-1">No encontramos resultados</p>
+                <p className="text-gris-suave text-sm">Proba con otro termino de busqueda o cambia los filtros.</p>
+              </div>
+            )}
             {filtered.map((cat) => {
               const startIndex = globalIndex;
               globalIndex += cat.productos.length;
@@ -208,14 +263,13 @@ export default function TiendaPage() {
                 Dispensers
               </span>
               <h3 className="font-heading font-bold text-2xl sm:text-3xl text-white mb-3">
-                Consulta por descuentos especiales
+                Envio e instalacion sin cargo
               </h3>
               <p className="text-gris-dark text-base max-w-lg mx-auto mb-6">
-                Tenemos precios exclusivos en dispensers. Contactanos por WhatsApp
-                para recibir tu cotizacion personalizada.
+                Todos nuestros dispensers incluyen envio gratuito, instalacion profesional y garantia. Consulta por financiacion y planes de pago.
               </p>
               <Link
-                href="/contacto"
+                href="/nosotros"
                 className="liquid-glass-btn inline-flex items-center gap-2 px-8 py-4 rounded-2xl font-heading font-bold text-white text-lg"
               >
                 Consultar ahora

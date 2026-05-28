@@ -7,7 +7,6 @@ import Footer from "@/components/Footer";
 import Cart from "@/components/Cart";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import SmoothScroll from "@/components/SmoothScroll";
-import CustomCursor from "@/components/CustomCursor";
 
 const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta",
@@ -121,7 +120,6 @@ export default function RootLayout({
             <Footer />
             <Cart />
             <WhatsAppButton />
-            <CustomCursor />
           </SmoothScroll>
         </CartProvider>
       </body>

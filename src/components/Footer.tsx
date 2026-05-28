@@ -162,7 +162,12 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} {business.nombre}. Todos los
             derechos reservados.
           </p>
-          <p className="text-gris-dark/40 text-xs">{business.direccion}</p>
+          <Link
+            href="/politica-de-privacidad"
+            className="text-gris-dark/40 text-xs hover:text-celeste-neon transition-colors"
+          >
+            Politica de privacidad
+          </Link>
         </div>
       </div>
     </footer>
