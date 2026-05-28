@@ -28,7 +28,7 @@ export default function Footer() {
 
           <AnimatedSection delay={100}>
             <h4 className="font-heading font-bold text-xs sm:text-sm uppercase tracking-wider text-celeste-glow mb-3 sm:mb-4">
-              Navegación
+              Navegacion
             </h4>
             <ul className="space-y-1.5 sm:space-y-2">
               {[
@@ -37,7 +37,28 @@ export default function Footer() {
                 { href: "/planes", label: "Planes" },
                 { href: "/nosotros", label: "Nosotros" },
                 { href: "/quiero-ser-cliente", label: "Ser cliente" },
+              ].map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-gris-dark text-xs sm:text-sm hover:text-celeste-neon transition-colors duration-300"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            <h4 className="font-heading font-bold text-xs sm:text-sm uppercase tracking-wider text-celeste-glow mb-3 sm:mb-4 mt-5 sm:mt-6">
+              Herramientas
+            </h4>
+            <ul className="space-y-1.5 sm:space-y-2">
+              {[
                 { href: "/calculadora-envio", label: "Calculadora de envio" },
+                { href: "/calculadora-hidratacion", label: "Calculadora de hidratacion" },
+                { href: "/comparador", label: "Comparador de dispensers" },
+                { href: "/recordatorio-pedido", label: "Recordatorio de pedido" },
+                { href: "/seguimiento", label: "Seguimiento de pedido" },
               ].map((link) => (
                 <li key={link.href}>
                   <Link

@@ -18,12 +18,7 @@
   --font-body: var(--font-inter), "Inter", sans-serif;
 }
 
-/* Hide default cursor on devices that support hover (custom cursor replaces it) */
-@media (hover: hover) and (pointer: fine) {
-  * {
-    cursor: none !important;
-  }
-}
+/* Default cursor restored */
 
 html {
   /* scroll-behavior handled by Lenis */
@@ -34,6 +29,48 @@ body {
   color: var(--color-azul);
   background-color: #FFFFFF;
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark mode overrides */
+html.dark body {
+  background-color: var(--color-negro);
+  color: var(--color-gris-dark);
+}
+html.dark .bg-white {
+  background-color: var(--color-negro) !important;
+}
+html.dark .bg-celeste-light\/30,
+html.dark .bg-celeste-light\/40,
+html.dark .bg-celeste-light\/20 {
+  background-color: var(--color-negro-light) !important;
+}
+html.dark .text-azul {
+  color: #e2e8f0 !important;
+}
+html.dark .text-gris-suave {
+  color: var(--color-gris-dark) !important;
+}
+html.dark .bg-white\/90 {
+  background-color: rgba(10, 10, 15, 0.9) !important;
+}
+html.dark .bg-white\/80 {
+  background-color: rgba(10, 10, 15, 0.8) !important;
+}
+html.dark .bg-white\/50 {
+  background-color: rgba(10, 10, 15, 0.5) !important;
+}
+html.dark .border-celeste-medium\/30 {
+  border-color: rgba(56, 189, 248, 0.15) !important;
+}
+html.dark .shadow-lg {
+  --tw-shadow-color: rgba(56, 189, 248, 0.05);
+}
+html.dark .from-white {
+  --tw-gradient-from: var(--color-negro) !important;
+}
+html.dark .via-white\/60 {
+  --tw-gradient-via: rgba(10, 10, 15, 0.6) !important;
 }
 
 /* Lenis smooth scroll integration */
@@ -89,10 +126,11 @@ html.lenis, html.lenis body {
 }
 
 .gradient-text-glow {
-  background: linear-gradient(135deg, var(--color-celeste-glow) 0%, var(--color-celeste-neon) 100%);
+  background: linear-gradient(135deg, #b4e7ff 0%, var(--color-celeste-neon) 40%, var(--color-celeste-glow) 70%, #e0f4ff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  filter: drop-shadow(0 0 18px rgba(56,189,248,0.35)) drop-shadow(0 0 40px rgba(125,211,252,0.15));
 }
 
 .price {

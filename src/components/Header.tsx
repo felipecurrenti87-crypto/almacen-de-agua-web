@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useCart } from "@/context/CartContext";
 import PriceToggle from "./PriceToggle";
 import Logo from "./Logo";
+import DarkModeToggle from "./DarkModeToggle";
 
 const navLinks = [
   { href: "/", label: "Inicio" },
@@ -99,6 +100,7 @@ export default function Header() {
         {/* Right controls — fixed right */}
         <div className="flex items-center gap-3 flex-shrink-0 ml-auto md:ml-0">
           <PriceToggle className="hidden sm:flex" />
+          <DarkModeToggle className={`hidden sm:flex ${hoverBg} ${iconColor}`} />
 
           <button
             onClick={toggleCart}

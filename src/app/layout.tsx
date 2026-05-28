@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Cart from "@/components/Cart";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import ChatWidget from "@/components/ChatWidget";
 import SmoothScroll from "@/components/SmoothScroll";
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -129,6 +130,7 @@ export default function RootLayout({
             <main className="flex-1">{children}</main>
             <Footer />
             <Cart />
+            <ChatWidget />
             <WhatsAppButton />
           </SmoothScroll>
         </CartProvider>
