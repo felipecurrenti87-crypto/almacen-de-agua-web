@@ -66,6 +66,16 @@ export default function RootLayout({
       className={`${plusJakarta.variable} ${inter.variable} antialiased`}
     >
       <head>
+        {/* Google Analytics 4 */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-EHNXRGL2H4"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-EHNXRGL2H4');`,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
