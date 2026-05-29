@@ -4,7 +4,7 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { useState, useRef, useCallback } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { getProduct, formatPrice } from "@/data/products";
+import { getProduct, allProducts, formatPrice } from "@/data/products";
 import type { Product } from "@/data/products";
 import { useCart } from "@/context/CartContext";
 import { business } from "@/data/business";
@@ -18,7 +18,7 @@ export default function ProductDetailPage() {
   const params = useParams();
   const product = getProduct(params.id as string);
 
-  if (!product || product.categoria !== "dispensers") {
+  if (!product) {
     return (
       <div className="pt-32 pb-20 min-h-screen bg-white text-center">
         <h1 className="font-heading font-bold text-2xl text-azul mb-4">
@@ -34,7 +34,13 @@ export default function ProductDetailPage() {
     );
   }
 
-  return <DispenserDetail product={product} />;
+  // Dispensers get full detail page with specs
+  if (product.categoria === "dispensers") {
+    return <DispenserDetail product={product} />;
+  }
+
+  // Agua/soda get a simpler detail page
+  return <SimpleProductDetail product={product} />;
 }
 
 function DispenserDetail({ product }: { product: Product }) {
@@ -381,6 +387,217 @@ function DispenserDetail({ product }: { product: Product }) {
               </Link>
             </div>
           </AnimatedSection>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function SimpleProductDetail({ product }: { product: Product }) {
+  const { addItem, getItemPrice, deliveryMode } = useCart();
+  const [added, setAdded] = useState(false);
+  const [qty, setQty] = useState(1);
+
+  const price = getItemPrice(product);
+  const otherPrice = deliveryMode === "tienda" ? product.precio_reparto : product.precio_tienda;
+  const otherLabel = deliveryMode === "tienda" ? "reparto" : "tienda";
+
+  const handleAdd = () => {
+    for (let i = 0; i < qty; i++) addItem(product);
+    setAdded(true);
+    setTimeout(() => setAdded(false), 1500);
+  };
+
+  const whatsappMsg = `Hola! Me interesa: ${product.nombre} (x${qty}). Me pueden dar mas informacion?`;
+
+  // Related products (same category, excluding current)
+  const related = allProducts
+    .filter((p) => p.categoria === product.categoria && p.id !== product.id)
+    .slice(0, 3);
+
+  return (
+    <div>
+      {/* Hero — DARK */}
+      <section className="relative bg-negro pt-20 pb-12 sm:pt-28 sm:pb-20 md:pt-36 md:pb-28 overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-[-10%] right-[5%] w-[400px] h-[400px] rounded-full bg-celeste-neon/6 blur-[120px] animate-orb-pulse" />
+          <div className="absolute bottom-[-15%] left-[10%] w-[500px] h-[500px] rounded-full bg-celeste-glow/4 blur-[140px] animate-orb-pulse" style={{ animationDelay: "3s" }} />
+        </div>
+
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-6">
+          {/* Breadcrumb */}
+          <AnimatedSection>
+            <nav className="flex items-center gap-2 text-sm text-gris-dark mb-8">
+              <Link href="/tienda" className="hover:text-celeste-neon transition-colors">
+                Tienda
+              </Link>
+              <span>/</span>
+              <Link href="/tienda" className="hover:text-celeste-neon transition-colors">
+                Agua y Soda
+              </Link>
+              <span>/</span>
+              <span className="text-celeste-glow">{product.nombre}</span>
+            </nav>
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 items-center">
+            {/* Image */}
+            <AnimatedSection>
+              <div className="relative aspect-square max-w-[320px] mx-auto rounded-3xl bg-gradient-to-br from-negro-light to-negro-medium p-8 border border-celeste-neon/10 overflow-hidden">
+                <div className="absolute top-6 right-8 w-2 h-3 bg-celeste-glow/25 rounded-full animate-drop" />
+                <ProductImage3D
+                  src={product.imagen}
+                  alt={product.nombre}
+                  categoria={product.categoria}
+                  mouseX={useMotionValue(0)}
+                  mouseY={useMotionValue(0)}
+                />
+              </div>
+            </AnimatedSection>
+
+            {/* Info */}
+            <div>
+              <TextRevealLine>
+                <h1 className="font-heading font-bold text-2xl sm:text-3xl md:text-4xl text-white mb-3">
+                  {product.nombre}
+                </h1>
+              </TextRevealLine>
+
+              <AnimatedSection delay={100}>
+                <p className="text-gris-dark text-base sm:text-lg leading-relaxed mb-6">
+                  {product.descripcion}
+                </p>
+              </AnimatedSection>
+
+              <AnimatedSection delay={200}>
+                <div className="mb-6">
+                  <span className="price text-3xl sm:text-4xl font-bold text-celeste-neon">
+                    {formatPrice(price)}
+                  </span>
+                  {price !== otherPrice && (
+                    <p className="text-gris-dark text-sm mt-1">
+                      En {otherLabel}: {formatPrice(otherPrice)}
+                    </p>
+                  )}
+                </div>
+              </AnimatedSection>
+
+              {/* Quantity selector */}
+              <AnimatedSection delay={300}>
+                <div className="flex items-center gap-4 mb-6">
+                  <span className="text-gris-dark text-sm font-heading">Cantidad:</span>
+                  <div className="flex items-center gap-0 bg-negro-medium rounded-xl border border-celeste-neon/15 overflow-hidden">
+                    <button
+                      onClick={() => setQty(Math.max(1, qty - 1))}
+                      className="w-10 h-10 flex items-center justify-center text-white hover:bg-celeste-neon/10 transition-colors"
+                      aria-label="Reducir cantidad"
+                    >
+                      −
+                    </button>
+                    <span className="w-10 h-10 flex items-center justify-center text-white font-heading font-bold text-sm border-x border-celeste-neon/10">
+                      {qty}
+                    </span>
+                    <button
+                      onClick={() => setQty(Math.min(20, qty + 1))}
+                      className="w-10 h-10 flex items-center justify-center text-white hover:bg-celeste-neon/10 transition-colors"
+                      aria-label="Aumentar cantidad"
+                    >
+                      +
+                    </button>
+                  </div>
+                  <span className="text-celeste-glow text-sm font-heading font-semibold">
+                    Total: {formatPrice(price * qty)}
+                  </span>
+                </div>
+              </AnimatedSection>
+
+              <AnimatedSection delay={400}>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <button
+                    onClick={handleAdd}
+                    className={`flex-1 flex items-center justify-center gap-2 py-3.5 px-6 rounded-2xl font-heading font-bold text-lg transition-all duration-300 ${
+                      added
+                        ? "bg-green-500 text-white"
+                        : "liquid-glass-btn text-white hover:-translate-y-0.5"
+                    }`}
+                  >
+                    {added ? (
+                      <>
+                        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                        Agregado!
+                      </>
+                    ) : (
+                      <>
+                        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+                        </svg>
+                        Agregar {qty > 1 ? `(${qty})` : ""} al carrito
+                      </>
+                    )}
+                  </button>
+                  <a
+                    href={`${business.whatsappLink}?text=${encodeURIComponent(whatsappMsg)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 liquid-glass-btn-outline flex items-center justify-center gap-2 py-3.5 px-6 rounded-2xl font-heading font-bold text-lg text-white hover:-translate-y-0.5 transition-all"
+                  >
+                    <svg className="w-5 h-5 text-[#25D366]" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                    </svg>
+                    Pedir por WhatsApp
+                  </a>
+                </div>
+              </AnimatedSection>
+            </div>
+          </div>
+        </div>
+
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent" />
+      </section>
+
+      {/* Related products */}
+      {related.length > 0 && (
+        <section className="py-14 sm:py-20 bg-white">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6">
+            <TextRevealWords className="font-heading font-bold text-2xl sm:text-3xl text-azul mb-8 text-center">
+              Tambien te puede interesar
+            </TextRevealWords>
+            <StaggerContainer className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6">
+              {related.map((p) => (
+                <StaggerItem key={p.id}>
+                  <Link
+                    href={`/tienda/${p.id}`}
+                    className="group block bg-celeste-light/30 rounded-2xl p-4 border border-celeste-medium/20 hover:border-celeste/40 hover:shadow-lg transition-all duration-300"
+                  >
+                    <div className="aspect-square mb-3 flex items-center justify-center">
+                      <ProductImage3D
+                        src={p.imagen}
+                        alt={p.nombre}
+                        categoria={p.categoria}
+                        mouseX={useMotionValue(0)}
+                        mouseY={useMotionValue(0)}
+                      />
+                    </div>
+                    <h3 className="font-heading font-bold text-azul text-sm mb-1 group-hover:text-celeste-neon transition-colors">
+                      {p.nombre}
+                    </h3>
+                    <span className="price text-celeste-neon font-bold text-lg">
+                      {formatPrice(getItemPrice(p))}
+                    </span>
+                  </Link>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+          </div>
+        </section>
+      )}
+
+      {/* Reviews */}
+      <section className="py-12 sm:py-16 bg-celeste-light/20">
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-6">
+          <ProductReviews productId={product.id} />
         </div>
       </section>
     </div>

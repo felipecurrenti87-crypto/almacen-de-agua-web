@@ -163,10 +163,10 @@ export default function ProductCard({
           <div className="mb-3">
             <span className={`inline-flex items-center gap-1.5 text-xs font-heading font-semibold px-3 py-1 rounded-full ${
               product.conexion === "red"
-                ? "bg-blue-50 text-blue-600 border border-blue-200"
+                ? "bg-blue-500/10 text-blue-500 border border-blue-500/25"
                 : product.conexion === "natural"
-                  ? "bg-emerald-50 text-emerald-600 border border-emerald-200"
-                  : "bg-cyan-50 text-cyan-600 border border-cyan-200"
+                  ? "bg-emerald-500/10 text-emerald-500 border border-emerald-500/25"
+                  : "bg-cyan-500/10 text-cyan-500 border border-cyan-500/25"
             }`}>
               <span className="w-1.5 h-1.5 rounded-full bg-current" />
               {product.conexion === "red" ? "Conexion a Red" : product.conexion === "natural" ? "Natural" : "Botellon"}

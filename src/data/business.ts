@@ -16,9 +16,10 @@ export const business = {
   totalResenas: 45,
   googleMapsEmbed:
     "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3350.4!2d-68.8383!3d-32.9283!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sBeltr%C3%A1n+Sur+423%2C+Godoy+Cruz%2C+Mendoza!5e0!3m2!1ses!2sar!4v1700000000000!5m2!1ses!2sar",
+  email: "contacto@almacendeagua.com.ar",
   redes: {
-    instagram: "#",
-    facebook: "#",
+    instagram: "https://www.instagram.com/almacendeaguamza",
+    facebook: "https://www.facebook.com/almacendeaguamza",
   },
 } as const;
 

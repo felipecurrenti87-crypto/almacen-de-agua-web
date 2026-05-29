@@ -162,7 +162,7 @@ export default function ChatWidget() {
                   <p className="font-heading font-bold text-white text-sm">Asistente IA</p>
                   <div className="flex items-center gap-1">
                     <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
-                    <span className="text-gris-dark text-xs">En linea</span>
+                    <span className="text-gris-dark text-xs">Asistente automatico</span>
                   </div>
                 </div>
               </div>

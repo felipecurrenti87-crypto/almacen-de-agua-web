@@ -99,6 +99,14 @@ export default function CalculadoraHidratacionPage() {
               Descubri cuanta agua necesitas tomar por dia segun tu peso, actividad y clima.
             </p>
           </AnimatedSection>
+          <AnimatedSection delay={150}>
+            <div className="mt-4 inline-flex items-center gap-2 bg-yellow-500/10 text-yellow-300 text-xs font-heading px-3 py-1.5 rounded-full border border-yellow-500/20">
+              <svg className="w-3.5 h-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Orientativa — consulta con tu medico para recomendaciones personalizadas
+            </div>
+          </AnimatedSection>
         </div>
 
         {/* Calculator Card */}
