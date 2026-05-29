@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Cart from "@/components/Cart";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import ChatWidget from "@/components/ChatWidget";
 import SmoothScroll from "@/components/SmoothScroll";
+import ChatWidgetLazy from "@/components/ChatWidgetLazy";
 
 const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
+  weight: ["500", "600", "700"],
 });
 
 const inter = Inter({
@@ -67,16 +67,6 @@ export default function RootLayout({
       className={`${plusJakarta.variable} ${inter.variable} antialiased`}
     >
       <head>
-        {/* Google Analytics 4 */}
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-EHNXRGL2H4"
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-EHNXRGL2H4');`,
-          }}
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -130,8 +120,15 @@ export default function RootLayout({
             <main className="flex-1">{children}</main>
             <Footer />
             <Cart />
-            <ChatWidget />
+            <ChatWidgetLazy />
             <WhatsAppButton />
+            <Script
+              src="https://www.googletagmanager.com/gtag/js?id=G-EHNXRGL2H4"
+              strategy="afterInteractive"
+            />
+            <Script id="gtag-init" strategy="afterInteractive">
+              {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-EHNXRGL2H4');`}
+            </Script>
           </SmoothScroll>
         </CartProvider>
       </body>
