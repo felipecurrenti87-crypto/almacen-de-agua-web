@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 const placeholders: Record<string, { emoji: string; bg: string }> = {
   agua: { emoji: "💧", bg: "from-blue-100 to-cyan-50" },
@@ -33,13 +34,15 @@ export default function ProductImage({
   }
 
   return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
+    <Image
       src={src}
       alt={alt}
+      width={400}
+      height={400}
       className="w-full h-full object-contain drop-shadow-lg"
       onError={() => setError(true)}
       loading="lazy"
+      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
     />
   );
 }

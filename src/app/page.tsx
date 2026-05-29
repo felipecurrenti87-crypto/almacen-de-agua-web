@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
-import { useRef, useCallback } from "react";
+import { useRef, useCallback, useMemo } from "react";
 import { categorias, formatPrice } from "@/data/products";
 import { business, resenas } from "@/data/business";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -64,6 +65,12 @@ export default function Home() {
     offset: ["start start", "end start"],
   });
 
+  // Detect touch device — disable expensive springs on mobile
+  const isTouch = useMemo(() => {
+    if (typeof window === "undefined") return false;
+    return window.matchMedia("(hover: none)").matches;
+  }, []);
+
   // Parallax: text moves up + fades as you scroll past hero
   const heroTextY = useTransform(scrollYProgress, [0, 1], [0, -80]);
   const heroTextOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
@@ -71,7 +78,7 @@ export default function Home() {
   // Right side image parallax (moves slower = depth)
   const heroImageY = useTransform(scrollYProgress, [0, 1], [0, -40]);
 
-  // Water ripple effect - mouse tracking on hero
+  // Water ripple effect - mouse tracking on hero (desktop only)
   const rippleX = useMotionValue(50);
   const rippleY = useMotionValue(50);
   const smoothRippleX = useSpring(rippleX, { damping: 30, stiffness: 150 });
@@ -79,24 +86,26 @@ export default function Home() {
   const rippleLeft = useTransform(smoothRippleX, (v) => `${v}%`);
   const rippleTop = useTransform(smoothRippleY, (v) => `${v}%`);
 
-  // Hero image mouse-tracking interactivity
+  // Hero image mouse-tracking interactivity (desktop only — 3 springs instead of 6)
   const heroImgX = useMotionValue(0);
   const heroImgY = useMotionValue(0);
-  const heroSmoothX = useSpring(useTransform(heroImgX, [-0.5, 0.5], [-15, 15]), { damping: 20, stiffness: 200 });
-  const heroSmoothY = useSpring(useTransform(heroImgY, [-0.5, 0.5], [-15, 15]), { damping: 20, stiffness: 200 });
-  const heroRotateY = useSpring(useTransform(heroImgX, [-0.5, 0.5], [-8, 8]), { damping: 20, stiffness: 200 });
-  const heroRotateX = useSpring(useTransform(heroImgY, [-0.5, 0.5], [6, -6]), { damping: 20, stiffness: 200 });
+  const springConfig = { damping: 20, stiffness: 200 };
+  const heroSmoothX = useSpring(useTransform(heroImgX, [-0.5, 0.5], [-15, 15]), springConfig);
+  const heroSmoothY = useSpring(useTransform(heroImgY, [-0.5, 0.5], [-15, 15]), springConfig);
+  const heroRotateY = useSpring(useTransform(heroImgX, [-0.5, 0.5], [-8, 8]), springConfig);
+  const heroRotateX = useSpring(useTransform(heroImgY, [-0.5, 0.5], [6, -6]), springConfig);
   const heroGlowX = useSpring(useTransform(heroImgX, [-0.5, 0.5], [-25, 25]), { damping: 30, stiffness: 150 });
   const heroGlowY = useSpring(useTransform(heroImgY, [-0.5, 0.5], [-25, 25]), { damping: 30, stiffness: 150 });
 
   const handleHeroMouse = useCallback(
     (e: React.MouseEvent) => {
+      if (isTouch) return; // Skip on touch devices
       const rect = heroRef.current?.getBoundingClientRect();
       if (!rect) return;
       rippleX.set(((e.clientX - rect.left) / rect.width) * 100);
       rippleY.set(((e.clientY - rect.top) / rect.height) * 100);
     },
-    [rippleX, rippleY]
+    [rippleX, rippleY, isTouch]
   );
 
   return (
@@ -172,11 +181,14 @@ export default function Home() {
             {/* Mobile hero image — shown above text on small screens */}
             <AnimatedSection delay={200} className="lg:hidden w-full order-first">
               <div className="relative w-[65%] max-w-[280px] mx-auto aspect-[4/5]">
-                <img
+                <Image
                   src="/images/hero-principal.png"
                   alt="Almacén de Agua - Agua purificada para tu familia"
+                  width={280}
+                  height={350}
                   className="w-full h-full object-contain drop-shadow-2xl"
                   draggable={false}
+                  priority
                 />
               </div>
             </AnimatedSection>
@@ -278,18 +290,26 @@ export default function Home() {
                   />
 
                   {/* Main hero image with tilt */}
-                  <motion.img
-                    src="/images/hero-principal.png"
-                    alt="Almacén de Agua - Agua purificada para tu familia"
-                    className="relative w-full h-full object-contain drop-shadow-2xl z-[1]"
+                  <motion.div
+                    className="relative w-full h-full z-[1]"
                     style={{
                       x: heroSmoothX,
                       y: heroSmoothY,
                       rotateY: heroRotateY,
                       rotateX: heroRotateX,
                     }}
-                    draggable={false}
-                  />
+                  >
+                    <Image
+                      src="/images/hero-principal.png"
+                      alt="Almacén de Agua - Agua purificada para tu familia"
+                      width={600}
+                      height={750}
+                      className="w-full h-full object-contain drop-shadow-2xl"
+                      draggable={false}
+                      priority
+                      sizes="(max-width: 1024px) 0vw, 50vw"
+                    />
+                  </motion.div>
 
                   {/* Gradient fade on the left edge for blending */}
                   <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-negro to-transparent z-[2]" />

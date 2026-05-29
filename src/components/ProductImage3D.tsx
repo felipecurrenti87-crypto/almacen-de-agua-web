@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import Image from "next/image";
 import { motion, useSpring, useTransform, type MotionValue } from "framer-motion";
 
 const placeholders: Record<string, { emoji: string; bg: string }> = {
@@ -75,13 +76,15 @@ export default function ProductImage3D({
   // Static render for touch / reduced-motion
   if (!shouldAnimate) {
     return (
-      // eslint-disable-next-line @next/next/no-img-element
-      <img
+      <Image
         src={src}
         alt={alt}
+        width={400}
+        height={400}
         className="w-full h-full object-contain drop-shadow-lg"
         onError={() => setError(true)}
         loading="lazy"
+        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
       />
     );
   }
@@ -89,11 +92,8 @@ export default function ProductImage3D({
   return (
     <div className="relative w-full h-full">
       {/* Layer 1: Shadow (back) — same image darkened + blurred */}
-      <motion.img
-        src={src}
-        alt=""
-        aria-hidden
-        className="absolute inset-0 w-full h-full object-contain pointer-events-none select-none"
+      <motion.div
+        className="absolute inset-0 w-full h-full pointer-events-none select-none"
         style={{
           x: shadowX,
           y: shadowY,
@@ -101,19 +101,30 @@ export default function ProductImage3D({
           opacity: 0.15,
           scale: 0.92,
         }}
-        onError={() => setError(true)}
-        loading="lazy"
-        draggable={false}
-      />
+        aria-hidden
+      >
+        <Image
+          src={src}
+          alt=""
+          width={400}
+          height={400}
+          className="w-full h-full object-contain"
+          onError={() => setError(true)}
+          loading="lazy"
+          sizes="(max-width: 640px) 50vw, 25vw"
+        />
+      </motion.div>
 
       {/* Layer 2: Main product (center) — inherits parallax from parent */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
+      <Image
         src={src}
         alt={alt}
+        width={400}
+        height={400}
         className="relative w-full h-full object-contain drop-shadow-lg z-10"
         onError={() => setError(true)}
         loading="lazy"
+        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
         draggable={false}
       />
 

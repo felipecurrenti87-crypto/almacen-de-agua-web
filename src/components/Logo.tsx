@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 /**
  * Reusable logo component with dark/light variants.
@@ -68,15 +69,17 @@ export default function Logo({
   }
 
   return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
+    <Image
       src="/images/logo.png"
       alt="Almacén de Agua"
+      width={160}
+      height={48}
       className={`object-contain transition-all duration-300 ${
         variant === "light" ? "brightness-0 invert" : ""
       } ${className}`}
       onError={() => setError(true)}
       draggable={false}
+      priority
     />
   );
 }

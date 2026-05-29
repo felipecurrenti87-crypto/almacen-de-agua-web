@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback, useMemo } from "react";
 import Link from "next/link";
 import {
   motion,
@@ -25,6 +25,12 @@ export default function ProductCard({
   const { addItem, deliveryMode, getItemPrice } = useCart();
   const [added, setAdded] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
+
+  // Disable expensive tilt/parallax springs on touch devices
+  const isTouch = useMemo(() => {
+    if (typeof window === "undefined") return false;
+    return window.matchMedia("(hover: none)").matches;
+  }, []);
 
   const price = getItemPrice(product);
   const otherPrice =
@@ -61,13 +67,14 @@ export default function ProductCard({
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent) => {
+      if (isTouch) return; // Skip on touch devices
       const rect = cardRef.current?.getBoundingClientRect();
       if (!rect) return;
       // Normalized -0.5 to 0.5
       mouseX.set((e.clientX - rect.left) / rect.width - 0.5);
       mouseY.set((e.clientY - rect.top) / rect.height - 0.5);
     },
-    [mouseX, mouseY]
+    [mouseX, mouseY, isTouch]
   );
 
   const handleMouseLeave = useCallback(() => {

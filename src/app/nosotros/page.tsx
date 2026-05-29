@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { business } from "@/data/business";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -133,10 +134,13 @@ export default function NosotrosPage() {
             <AnimatedSection>
               <div className="relative">
                 <div className="aspect-[4/3] rounded-3xl overflow-hidden border border-celeste-medium/20 shadow-lg">
-                  <img
+                  <Image
                     src="/images/about-store.jpg"
                     alt="Tienda Almacen de Agua - Godoy Cruz, Mendoza"
+                    width={600}
+                    height={450}
                     className="w-full h-full object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                   />
                 </div>
                 <div className="absolute -bottom-3 -right-3 w-3 h-4 bg-celeste-neon/30 rounded-full animate-drop" />
