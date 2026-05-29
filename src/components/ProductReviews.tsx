@@ -1,6 +1,6 @@
 "use client";
 
-import { getReviewsByProduct, getAverageRating } from "@/data/reviews";
+import { getReviewsByProduct, getAverageRating, getRelativeTime } from "@/data/reviews";
 import { motion } from "framer-motion";
 
 export default function ProductReviews({ productId }: { productId: string }) {
@@ -37,7 +37,7 @@ export default function ProductReviews({ productId }: { productId: string }) {
                 </div>
                 <span className="font-heading font-semibold text-white text-sm">{review.autor}</span>
               </div>
-              <span className="text-gris-dark text-xs">{review.fecha}</span>
+              <span className="text-gris-dark text-xs">{getRelativeTime(review.fecha)}</span>
             </div>
             <div className="flex items-center gap-0.5 mb-2">
               {Array.from({ length: 5 }).map((_, j) => (

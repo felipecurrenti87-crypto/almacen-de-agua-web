@@ -2,8 +2,25 @@ export interface Review {
   autor: string;
   texto: string;
   rating: number;
-  fecha: string;
+  fecha: string; // ISO date string
   productId: string;
+}
+
+/** Calculate relative time from ISO date string */
+export function getRelativeTime(isoDate: string): string {
+  const now = new Date();
+  const date = new Date(isoDate);
+  const diffMs = now.getTime() - date.getTime();
+  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+  if (diffDays === 0) return "Hoy";
+  if (diffDays === 1) return "Ayer";
+  if (diffDays < 7) return `Hace ${diffDays} dias`;
+  if (diffDays < 14) return "Hace 1 semana";
+  if (diffDays < 30) return `Hace ${Math.floor(diffDays / 7)} semanas`;
+  if (diffDays < 60) return "Hace 1 mes";
+  if (diffDays < 365) return `Hace ${Math.floor(diffDays / 30)} meses`;
+  return `Hace ${Math.floor(diffDays / 365)} año${Math.floor(diffDays / 365) > 1 ? "s" : ""}`;
 }
 
 export const productReviews: Review[] = [
@@ -13,21 +30,21 @@ export const productReviews: Review[] = [
     autor: "Jose V.",
     texto: "Excelente agua, se nota la diferencia con el agua de la canilla. Mis hijos la prefieren.",
     rating: 5,
-    fecha: "Hace 2 semanas",
+    fecha: "2025-05-10",
   },
   {
     productId: "bidon-20l",
     autor: "Maria L.",
     texto: "Pedimos todas las semanas, el reparto es puntual y el agua es de calidad. Muy recomendable.",
     rating: 5,
-    fecha: "Hace 1 mes",
+    fecha: "2025-04-22",
   },
   {
     productId: "bidon-20l",
     autor: "Carlos R.",
     texto: "Buen producto y buen precio. El bidon viene siempre sellado y limpio.",
     rating: 4,
-    fecha: "Hace 3 semanas",
+    fecha: "2025-05-02",
   },
 
   // Bidon 12L
@@ -36,14 +53,14 @@ export const productReviews: Review[] = [
     autor: "Ana P.",
     texto: "Perfecto para mi que vivo sola. Mas liviano que el de 20L y mas facil de manejar.",
     rating: 5,
-    fecha: "Hace 1 semana",
+    fecha: "2025-05-18",
   },
   {
     productId: "bidon-12l",
     autor: "Luis M.",
     texto: "Lo uso en la oficina con una bomba USB. Muy practico y el agua es rica.",
     rating: 4,
-    fecha: "Hace 2 meses",
+    fecha: "2025-03-15",
   },
 
   // Soda
@@ -52,14 +69,14 @@ export const productReviews: Review[] = [
     autor: "Patricia G.",
     texto: "La soda Puragua es la mejor de Mendoza. Tiene la gasificacion justa.",
     rating: 5,
-    fecha: "Hace 3 semanas",
+    fecha: "2025-05-05",
   },
   {
     productId: "soda-sifon",
     autor: "Roberto D.",
     texto: "Siempre pido soda junto con los bidones. Muy buena calidad.",
     rating: 5,
-    fecha: "Hace 1 mes",
+    fecha: "2025-04-18",
   },
 
   // Platinum 3 Temp Bidon
@@ -68,14 +85,14 @@ export const productReviews: Review[] = [
     autor: "Familia Gonzalez",
     texto: "El mejor dispenser que tuvimos. Las 3 temperaturas son un lujo, sobre todo el agua natural para los chicos.",
     rating: 5,
-    fecha: "Hace 2 meses",
+    fecha: "2025-03-20",
   },
   {
     productId: "platinum-3temp-bidon",
     autor: "Claudia S.",
     texto: "El LED le da un toque moderno. Lo tengo en el living y queda espectacular.",
     rating: 5,
-    fecha: "Hace 3 meses",
+    fecha: "2025-02-28",
   },
 
   // Platinum 3 Temp Red
@@ -84,7 +101,7 @@ export const productReviews: Review[] = [
     autor: "Estudio Contable MZ",
     texto: "Excelente para la oficina. Sin botellones es mucho mas practico. La instalacion fue rapida y profesional.",
     rating: 5,
-    fecha: "Hace 1 mes",
+    fecha: "2025-04-10",
   },
 
   // Monocasco Bidon
@@ -93,7 +110,7 @@ export const productReviews: Review[] = [
     autor: "Laura F.",
     texto: "Sencillo pero cumple perfecto. Lo recomiendo para quien busca algo basico y confiable.",
     rating: 4,
-    fecha: "Hace 6 semanas",
+    fecha: "2025-04-05",
   },
 
   // Platinum Refrigerador Red
@@ -102,16 +119,16 @@ export const productReviews: Review[] = [
     autor: "Consultora ABC",
     texto: "La heladerita es genial para guardar agua saborizada del equipo. Un golazo para la oficina.",
     rating: 5,
-    fecha: "Hace 3 semanas",
+    fecha: "2025-05-08",
   },
 
   // Zafiro LED Bidon
   {
     productId: "zafiro-led-bidon",
     autor: "Diego A.",
-    texto: "El diseño con LED es impresionante. Todos mis invitados preguntan donde lo compre.",
+    texto: "El diseno con LED es impresionante. Todos mis invitados preguntan donde lo compre.",
     rating: 5,
-    fecha: "Hace 2 meses",
+    fecha: "2025-03-25",
   },
 
   // Platinum Digital con Hielo
@@ -120,14 +137,14 @@ export const productReviews: Review[] = [
     autor: "Familia Ruiz",
     texto: "Increible. Hace hielo perfecto y el panel tactil funciona de 10. Vale cada peso.",
     rating: 5,
-    fecha: "Hace 1 mes",
+    fecha: "2025-04-28",
   },
   {
     productId: "platinum-digital-hielo-red",
     autor: "Bar & Lounge MZ",
     texto: "Lo usamos en el bar para los tragos. 13kg de hielo por dia nos salva la noche. Excelente inversion.",
     rating: 5,
-    fecha: "Hace 2 semanas",
+    fecha: "2025-05-15",
   },
 
   // Natural
@@ -136,14 +153,14 @@ export const productReviews: Review[] = [
     autor: "Marta J.",
     texto: "Simple y practico. Lo uso en la cocina para tener siempre agua a mano sin enchufar nada.",
     rating: 4,
-    fecha: "Hace 1 mes",
+    fecha: "2025-04-15",
   },
   {
     productId: "natural-negro",
     autor: "Federico N.",
     texto: "El color negro queda elegante. Funcional y barato, no necesitas mas.",
     rating: 4,
-    fecha: "Hace 3 semanas",
+    fecha: "2025-05-01",
   },
 ];
 

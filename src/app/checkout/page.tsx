@@ -58,18 +58,80 @@ export default function CheckoutPage() {
       .join("\n");
   };
 
+  const [orderSent, setOrderSent] = useState(false);
+  const [orderRef, setOrderRef] = useState("");
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     if (payMethod === "whatsapp") {
-      const msg = buildWhatsAppMsg();
+      // Generate order reference
+      const ref = `ADA-${Date.now().toString(36).toUpperCase()}`;
+      setOrderRef(ref);
+
+      const msg = buildWhatsAppMsg() + `\n\nRef: ${ref}`;
       window.open(
         `${business.whatsappLink}?text=${encodeURIComponent(msg)}`,
         "_blank"
       );
       clearCart();
+      setOrderSent(true);
     }
   };
+
+  // Order confirmation view
+  if (orderSent) {
+    return (
+      <div className="pt-32 pb-20 min-h-screen flex flex-col items-center justify-center text-center px-4">
+        <motion.div
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="max-w-md"
+        >
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+            className="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mb-6 mx-auto"
+          >
+            <svg className="w-10 h-10 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+          </motion.div>
+          <h1 className="font-heading font-bold text-2xl text-azul mb-2">
+            Pedido enviado!
+          </h1>
+          <p className="text-gris-suave mb-4">
+            Tu pedido fue enviado por WhatsApp. Te vamos a contactar para confirmar el pago y coordinar la entrega.
+          </p>
+          <div className="bg-celeste-light/40 rounded-2xl p-4 mb-6 border border-celeste-medium/20">
+            <p className="text-xs text-gris-suave mb-1">Referencia de pedido</p>
+            <p className="font-heading font-bold text-lg text-azul">{orderRef}</p>
+            <p className="text-xs text-gris-suave mt-2">
+              Guarda este codigo para consultar el estado de tu pedido
+            </p>
+          </div>
+          <div className="space-y-3">
+            <Link
+              href="/tienda"
+              className="block bg-negro text-white px-8 py-3 rounded-2xl font-heading font-bold hover:bg-negro-medium transition-colors"
+            >
+              Seguir comprando
+            </Link>
+            <a
+              href={`${business.whatsappLink}?text=${encodeURIComponent(`Hola! Acabo de enviar un pedido (Ref: ${orderRef}). Quiero confirmar que lo recibieron.`)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block border-2 border-[#25D366] text-[#25D366] px-8 py-3 rounded-2xl font-heading font-bold hover:bg-[#25D366]/5 transition-colors"
+            >
+              Confirmar por WhatsApp
+            </a>
+          </div>
+        </motion.div>
+      </div>
+    );
+  }
 
   if (items.length === 0) {
     return (
@@ -85,10 +147,10 @@ export default function CheckoutPage() {
             </svg>
           </div>
           <h1 className="font-heading font-bold text-2xl text-azul mb-3">
-            Tu carrito está vacío
+            Tu carrito esta vacio
           </h1>
           <p className="text-gris-suave mb-6">
-            Agregá productos antes de ir al checkout.
+            Agrega productos antes de ir al checkout.
           </p>
           <Link
             href="/tienda"

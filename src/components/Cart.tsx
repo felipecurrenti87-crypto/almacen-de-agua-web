@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCart } from "@/context/CartContext";
 import { formatPrice } from "@/data/products";
@@ -17,6 +18,16 @@ export default function Cart() {
     deliveryMode,
     getItemPrice,
   } = useCart();
+
+  // Close cart with Escape key
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeCart();
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [isOpen, closeCart]);
 
   const whatsappOrder = () => {
     const lines = items.map(
@@ -54,6 +65,8 @@ export default function Cart() {
               stiffness: 300,
               mass: 0.8,
             }}
+            role="dialog"
+            aria-label="Carrito de compras"
             className="fixed top-0 right-0 h-full w-full max-w-md bg-white z-50 shadow-2xl flex flex-col"
           >
             {/* Header */}
@@ -165,6 +178,7 @@ export default function Cart() {
                                   )
                                 }
                                 className="w-7 h-7 rounded-full bg-white border border-celeste-medium flex items-center justify-center text-azul hover:bg-celeste-light transition-colors"
+                                aria-label={`Reducir cantidad de ${item.product.nombre}`}
                               >
                                 <svg
                                   className="w-3 h-3"
@@ -195,6 +209,7 @@ export default function Cart() {
                                   )
                                 }
                                 className="w-7 h-7 rounded-full bg-white border border-celeste-medium flex items-center justify-center text-azul hover:bg-celeste-light transition-colors"
+                                aria-label={`Aumentar cantidad de ${item.product.nombre}`}
                               >
                                 <svg
                                   className="w-3 h-3"

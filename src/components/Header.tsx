@@ -59,6 +59,16 @@ export default function Header() {
     setToolsOpen(false);
   }, [pathname]);
 
+  // Close tools dropdown with Escape
+  useEffect(() => {
+    if (!toolsOpen) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setToolsOpen(false);
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [toolsOpen]);
+
   const textColor = isOverDark ? "text-white" : "text-azul";
   const hoverBg = isOverDark
     ? "hover:bg-white/10"
@@ -126,6 +136,8 @@ export default function Header() {
               onClick={() => setToolsOpen(!toolsOpen)}
               className={`w-10 h-10 flex items-center justify-center rounded-full transition-colors ${hoverBg}`}
               aria-label="Herramientas"
+              aria-expanded={toolsOpen}
+              aria-haspopup="true"
             >
               <svg
                 className={`w-5 h-5 transition-colors duration-300 ${iconColor}`}
