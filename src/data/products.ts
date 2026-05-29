@@ -170,26 +170,6 @@ export const categorias: Categoria[] = [
       },
       // ── Monocasco ──
       {
-        id: "monocasco-red",
-        nombre: "Monocasco - Red",
-        descripcion:
-          "Dispenser compacto de red para hogar u oficina. Agua fria y caliente con diseno moderno e integrado.",
-        precio_tienda: 290000,
-        precio_reparto: 290000,
-        imagen: "/images/products/monocasco-red.png",
-        categoria: "dispensers",
-        conexion: "red",
-        specs: {
-          temperaturas: ["Fria: hasta 5°C", "Caliente: hasta 85°C"],
-          extras: ["Diseno monocasco compacto", "Conexion directa a red"],
-        },
-        beneficios: [
-          "Diseno moderno y compacto",
-          "Practicidad y eficiencia",
-          "Ideal para espacios reducidos",
-        ],
-      },
-      {
         id: "monocasco-bidon",
         nombre: "Monocasco - Bidon",
         descripcion:

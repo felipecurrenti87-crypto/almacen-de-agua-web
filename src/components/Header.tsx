@@ -9,12 +9,20 @@ import PriceToggle from "./PriceToggle";
 import Logo from "./Logo";
 import DarkModeToggle from "./DarkModeToggle";
 
+const toolLinks = [
+  { href: "/calculadora-envio", label: "Calculadora de envio", emoji: "🗺️" },
+  { href: "/calculadora-hidratacion", label: "Calculadora de hidratacion", emoji: "💧" },
+  { href: "/comparador", label: "Comparador de dispensers", emoji: "🏷️" },
+  { href: "/recordatorio-pedido", label: "Recordatorio de pedido", emoji: "📅" },
+  { href: "/seguimiento", label: "Seguimiento de pedido", emoji: "📦" },
+];
+
 const navLinks = [
   { href: "/", label: "Inicio" },
   { href: "/tienda", label: "Tienda" },
   { href: "/planes", label: "Planes" },
   { href: "/nosotros", label: "Nosotros" },
-  { href: "/quiero-ser-cliente", label: "Ser cliente" },
+  { href: "/quiero-ser-cliente", label: "Quiero ser cliente", cta: true },
 ];
 
 export default function Header() {
@@ -22,6 +30,7 @@ export default function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [toolsOpen, setToolsOpen] = useState(false);
 
   // Dark-aware: hero is ~100vh on home page
   const isHome = pathname === "/";
@@ -47,6 +56,7 @@ export default function Header() {
   // Close menu on route change
   useEffect(() => {
     setMenuOpen(false);
+    setToolsOpen(false);
   }, [pathname]);
 
   const textColor = isOverDark ? "text-white" : "text-azul";
@@ -84,13 +94,21 @@ export default function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className={`px-4 py-2 rounded-full text-sm font-heading font-semibold transition-all duration-300 ${textColor} ${hoverBg} ${
-                pathname === link.href
-                  ? isOverDark
-                    ? "bg-white/10"
-                    : "bg-celeste-light text-azul-accent"
-                  : ""
-              }`}
+              className={
+                link.cta
+                  ? `px-5 py-2 rounded-full text-sm font-heading font-bold transition-all duration-300 ${
+                      isOverDark
+                        ? "bg-celeste-neon text-negro hover:bg-celeste-glow"
+                        : "bg-negro text-white hover:bg-negro-medium"
+                    }`
+                  : `px-4 py-2 rounded-full text-sm font-heading font-semibold transition-all duration-300 ${textColor} ${hoverBg} ${
+                      pathname === link.href
+                        ? isOverDark
+                          ? "bg-white/10"
+                          : "bg-celeste-light text-azul-accent"
+                        : ""
+                    }`
+              }
             >
               {link.label}
             </Link>
@@ -101,6 +119,55 @@ export default function Header() {
         <div className="flex items-center gap-3 flex-shrink-0 ml-auto md:ml-0">
           <PriceToggle className="hidden sm:flex" />
           <DarkModeToggle className={`hidden sm:flex ${hoverBg} ${iconColor}`} />
+
+          {/* Tools dropdown */}
+          <div className="relative hidden sm:block">
+            <button
+              onClick={() => setToolsOpen(!toolsOpen)}
+              className={`w-10 h-10 flex items-center justify-center rounded-full transition-colors ${hoverBg}`}
+              aria-label="Herramientas"
+            >
+              <svg
+                className={`w-5 h-5 transition-colors duration-300 ${iconColor}`}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </button>
+            <AnimatePresence>
+              {toolsOpen && (
+                <>
+                  <div className="fixed inset-0 z-20" onClick={() => setToolsOpen(false)} />
+                  <motion.div
+                    initial={{ opacity: 0, y: -8, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -8, scale: 0.95 }}
+                    transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                    className="absolute right-0 top-12 z-30 w-56 bg-negro rounded-2xl border border-celeste-neon/15 shadow-xl shadow-celeste-neon/10 overflow-hidden py-2"
+                  >
+                    <p className="px-4 py-2 text-celeste-glow text-xs font-heading font-bold uppercase tracking-wider">
+                      Herramientas
+                    </p>
+                    {toolLinks.map((t) => (
+                      <Link
+                        key={t.href}
+                        href={t.href}
+                        onClick={() => setToolsOpen(false)}
+                        className="flex items-center gap-3 px-4 py-2.5 text-sm text-gris-dark hover:text-white hover:bg-celeste-neon/10 transition-colors font-heading"
+                      >
+                        <span className="text-base">{t.emoji}</span>
+                        {t.label}
+                      </Link>
+                    ))}
+                  </motion.div>
+                </>
+              )}
+            </AnimatePresence>
+          </div>
 
           <button
             onClick={toggleCart}
@@ -187,9 +254,11 @@ export default function Header() {
                     href={link.href}
                     onClick={() => setMenuOpen(false)}
                     className={`block w-full text-center px-6 py-4 rounded-2xl text-lg font-heading font-bold transition-all ${
-                      pathname === link.href
-                        ? "bg-negro text-white"
-                        : "text-azul hover:bg-celeste-light hover:text-azul-accent"
+                      link.cta
+                        ? "bg-celeste-neon text-negro hover:bg-celeste-glow"
+                        : pathname === link.href
+                          ? "bg-negro text-white"
+                          : "text-azul hover:bg-celeste-light hover:text-azul-accent"
                     }`}
                   >
                     {link.label}

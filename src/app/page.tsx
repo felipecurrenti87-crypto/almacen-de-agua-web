@@ -196,7 +196,7 @@ export default function Home() {
               <TextRevealLine delay={150}>
                 <h1 className="font-heading font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white leading-[1.1] mb-4 sm:mb-6">
                   Agua pura{" "}
-                  <span className="gradient-text-glow">para tu familia</span>
+                  <span className="glow-text-wrap"><span className="gradient-text-glow">para tu familia</span></span>
                 </h1>
               </TextRevealLine>
 
@@ -383,10 +383,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── COMO FUNCIONA ── LIGHT */}
-      <section className="py-14 sm:py-20 md:py-28 bg-white">
+      {/* ── COMO FUNCIONA ── LIGHT (closely linked to Retira en tienda below) */}
+      <section className="pt-14 sm:pt-20 md:pt-28 pb-8 sm:pb-10 md:pb-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12 sm:mb-14">
             <AnimatedSection>
               <span className="font-heading font-semibold text-celeste-neon text-sm uppercase tracking-wider">
                 Proceso simple

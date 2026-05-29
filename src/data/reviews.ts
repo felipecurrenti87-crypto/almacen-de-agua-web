@@ -87,22 +87,6 @@ export const productReviews: Review[] = [
     fecha: "Hace 1 mes",
   },
 
-  // Monocasco Red
-  {
-    productId: "monocasco-red",
-    autor: "Valeria T.",
-    texto: "Compacto y funcional. Lo tengo en un departamento chico y ocupa muy poco espacio.",
-    rating: 4,
-    fecha: "Hace 2 meses",
-  },
-  {
-    productId: "monocasco-red",
-    autor: "Martin K.",
-    texto: "Muy buen dispenser para el precio. El agua fria sale helada como me gusta.",
-    rating: 5,
-    fecha: "Hace 1 mes",
-  },
-
   // Monocasco Bidon
   {
     productId: "monocasco-bidon",

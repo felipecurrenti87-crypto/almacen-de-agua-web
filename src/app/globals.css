@@ -72,6 +72,47 @@ html.dark .from-white {
 html.dark .via-white\/60 {
   --tw-gradient-via: rgba(10, 10, 15, 0.6) !important;
 }
+/* Tienda gradient bg in dark mode */
+html.dark .bg-gradient-to-b {
+  background: var(--color-negro) !important;
+}
+html.dark .from-celeste-light\/30 {
+  --tw-gradient-from: transparent !important;
+}
+html.dark .to-celeste-light\/20 {
+  --tw-gradient-to: transparent !important;
+}
+/* Header scrolled text contrast in dark mode */
+html.dark .bg-white\/95 {
+  background-color: rgba(10, 10, 15, 0.95) !important;
+}
+/* Product cards in dark mode */
+html.dark .bg-white.rounded-3xl,
+html.dark .group.bg-white {
+  background-color: var(--color-negro-light) !important;
+  border-color: rgba(56, 189, 248, 0.12) !important;
+}
+/* Input fields in dark mode */
+html.dark input[type="text"] {
+  background-color: var(--color-negro-medium) !important;
+  border-color: rgba(56, 189, 248, 0.15) !important;
+  color: #e2e8f0 !important;
+}
+html.dark input[type="text"]::placeholder {
+  color: rgba(148, 163, 184, 0.5) !important;
+}
+/* Filter pills in dark mode */
+html.dark .bg-white.rounded-2xl {
+  background-color: var(--color-negro-light) !important;
+}
+/* Card hover shadow */
+html.dark .hover\:shadow-xl:hover {
+  --tw-shadow-color: rgba(56, 189, 248, 0.08) !important;
+}
+/* Price text */
+html.dark .text-celeste-neon {
+  color: var(--color-celeste-neon) !important;
+}
 
 /* Lenis smooth scroll integration */
 html.lenis, html.lenis body {
@@ -126,11 +167,27 @@ html.lenis, html.lenis body {
 }
 
 .gradient-text-glow {
-  background: linear-gradient(135deg, #b4e7ff 0%, var(--color-celeste-neon) 40%, var(--color-celeste-glow) 70%, #e0f4ff 100%);
+  background: linear-gradient(135deg, #cef0ff 0%, var(--color-celeste-neon) 35%, var(--color-celeste-glow) 65%, #dff6ff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  filter: drop-shadow(0 0 18px rgba(56,189,248,0.35)) drop-shadow(0 0 40px rgba(125,211,252,0.15));
+  text-shadow: none;
+  paint-order: stroke fill;
+}
+/* Glow wrapper — add .glow-wrap parent around the gradient text span */
+.glow-text-wrap {
+  position: relative;
+  display: inline-block;
+}
+.glow-text-wrap::before {
+  content: "";
+  position: absolute;
+  inset: -8px -16px;
+  background: radial-gradient(ellipse at center, rgba(56,189,248,0.25) 0%, rgba(125,211,252,0.08) 50%, transparent 80%);
+  filter: blur(18px);
+  z-index: -1;
+  pointer-events: none;
+  border-radius: 50%;
 }
 
 .price {
