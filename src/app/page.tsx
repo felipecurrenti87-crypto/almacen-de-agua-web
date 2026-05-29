@@ -475,13 +475,13 @@ export default function Home() {
 
             <StaggerContainer className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-xl mx-auto mb-10">
               <StaggerItem>
-                <PriceComparison label="Bidon 20L" tienda={5000} reparto={6200} />
+                <PriceComparison label="Bidon 20L" tienda={5500} reparto={7500} />
               </StaggerItem>
               <StaggerItem>
-                <PriceComparison label="Bidon 12L" tienda={3000} reparto={4200} />
+                <PriceComparison label="Bidon 12L" tienda={4000} reparto={5500} />
               </StaggerItem>
               <StaggerItem>
-                <PriceComparison label="Soda 1.5L" tienda={1000} reparto={1900} />
+                <PriceComparison label="Soda 1.5L" tienda={1000} reparto={1200} />
               </StaggerItem>
             </StaggerContainer>
 
