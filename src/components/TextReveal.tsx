@@ -56,7 +56,7 @@ export function TextRevealWords({
         transition={{ delayChildren: delay / 1000 }}
       >
         {words.map((word, i) => (
-          <span key={i} className="overflow-hidden inline-block mr-[0.3em]">
+          <span key={i} className="overflow-hidden inline-block mr-[0.3em] pb-[0.1em] pt-[0.05em]">
             <motion.span className="inline-block" variants={wordVariants}>
               {word}
             </motion.span>

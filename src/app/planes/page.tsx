@@ -305,7 +305,7 @@ export default function PlanesPage() {
                     key={m}
                     onClick={() => setMode(m)}
                     className="relative px-6 sm:px-10 py-3.5 rounded-xl text-sm sm:text-base font-heading font-bold transition-colors duration-300 z-10"
-                    style={{ color: mode === m ? "#0A0A0F" : undefined }}
+                    style={{ color: mode === m ? "#0A0A0F" : "#e2e8f0" }}
                   >
                     {mode === m && (
                       <motion.div
