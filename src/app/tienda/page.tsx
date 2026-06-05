@@ -74,23 +74,10 @@ export default function TiendaPage() {
   let globalIndex = 0;
 
   return (
-    <div className="relative pt-20 sm:pt-24 pb-16 sm:pb-20 min-h-screen bg-gradient-to-b from-celeste-light/30 via-white to-celeste-light/20 overflow-hidden">
-      {/* Wave pattern background — identical to homepage */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <svg
-          className="absolute inset-0 w-full h-full opacity-[0.06] animate-wave-drift"
-          xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="none"
-        >
-          <defs>
-            <pattern id="waves-tienda" x="0" y="0" width="200" height="80" patternUnits="userSpaceOnUse">
-              <path d="M0 40 Q50 20, 100 40 Q150 60, 200 40" fill="none" stroke="rgba(125,211,252,0.5)" strokeWidth="1" />
-              <path d="M0 60 Q50 40, 100 60 Q150 80, 200 60" fill="none" stroke="rgba(56,189,248,0.3)" strokeWidth="1" />
-              <path d="M0 20 Q50 0, 100 20 Q150 40, 200 20" fill="none" stroke="rgba(125,211,252,0.25)" strokeWidth="1" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#waves-tienda)" />
-        </svg>
+    <div className="relative pt-20 sm:pt-24 pb-16 sm:pb-20 min-h-screen bg-gradient-to-b from-celeste-light/30 via-white to-celeste-light/20 dark:from-[#050E14] dark:via-[#050E14] dark:to-[#050E14] overflow-hidden">
+      {/* Mesh gradient — visible only in dark mode */}
+      <div className="hidden dark:block">
+        <MeshGradientBackground intensity="normal" interactive />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
