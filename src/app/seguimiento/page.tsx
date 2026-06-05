@@ -4,6 +4,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 import { TextRevealWords } from "@/components/TextReveal";
 import { StaggerContainer, StaggerItem } from "@/components/StaggerContainer";
 import { business } from "@/data/business";
+import MeshGradientBackground from "@/components/MeshGradientBackground";
 
 const steps = [
   { emoji: "📱", title: "Escribinos por WhatsApp", desc: "Indicanos tu nombre y que pedido realizaste." },
@@ -18,23 +19,8 @@ export default function SeguimientoPage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-negro overflow-hidden">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[-10%] left-[10%] w-[500px] h-[500px] rounded-full bg-celeste-neon/8 blur-[120px] animate-orb-pulse" />
-        <div className="absolute bottom-[-15%] right-[5%] w-[600px] h-[600px] rounded-full bg-celeste-glow/6 blur-[140px] animate-orb-pulse" style={{ animationDelay: "3s" }} />
-      </div>
-
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <svg className="absolute inset-0 w-full h-full opacity-[0.06] animate-wave-drift" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-          <defs>
-            <pattern id="waves-tracking" x="0" y="0" width="200" height="80" patternUnits="userSpaceOnUse">
-              <path d="M0 40 Q50 20, 100 40 Q150 60, 200 40" fill="none" stroke="rgba(125,211,252,0.5)" strokeWidth="1" />
-              <path d="M0 60 Q50 40, 100 60 Q150 80, 200 60" fill="none" stroke="rgba(56,189,248,0.3)" strokeWidth="1" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#waves-tracking)" />
-        </svg>
-      </div>
+    <div className="relative min-h-screen bg-[#050E14] overflow-hidden">
+      <MeshGradientBackground intensity="normal" interactive />
 
       <div className="relative pt-28 sm:pt-36 pb-16 sm:pb-20 max-w-3xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-10 sm:mb-14">

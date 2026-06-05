@@ -2,15 +2,14 @@
 
 import AnimatedSection from "@/components/AnimatedSection";
 import { TextRevealLine } from "@/components/TextReveal";
+import MeshGradientBackground from "@/components/MeshGradientBackground";
 
 export default function PoliticaPrivacidadPage() {
   return (
     <div>
       {/* Hero — DARK */}
-      <section className="relative bg-negro py-28 md:py-36 overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-[-5%] left-[15%] w-[400px] h-[400px] rounded-full bg-celeste-neon/6 blur-[120px] animate-orb-pulse" />
-        </div>
+      <section className="relative bg-[#050E14] py-28 md:py-36 overflow-hidden">
+        <MeshGradientBackground intensity="subtle" />
 
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <TextRevealLine>

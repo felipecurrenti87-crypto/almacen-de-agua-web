@@ -13,6 +13,7 @@ import { TextRevealLine, TextRevealWords } from "@/components/TextReveal";
 import { StaggerContainer, StaggerItem } from "@/components/StaggerContainer";
 import ProductImage3D from "@/components/ProductImage3D";
 import ProductReviews from "@/components/ProductReviews";
+import MeshGradientBackground from "@/components/MeshGradientBackground";
 
 export default function ProductDetailPage() {
   const params = useParams();
@@ -92,11 +93,8 @@ function DispenserDetail({ product }: { product: Product }) {
   return (
     <div>
       {/* Hero — DARK (full product showcase) */}
-      <section className="relative bg-negro pt-20 pb-12 sm:pt-28 sm:pb-20 md:pt-36 md:pb-40 overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-[-10%] right-[5%] w-[400px] h-[400px] rounded-full bg-celeste-neon/6 blur-[120px] animate-orb-pulse" />
-          <div className="absolute bottom-[-15%] left-[10%] w-[500px] h-[500px] rounded-full bg-celeste-glow/4 blur-[140px] animate-orb-pulse" style={{ animationDelay: "3s" }} />
-        </div>
+      <section className="relative bg-[#050E14] pt-20 pb-12 sm:pt-28 sm:pb-20 md:pt-36 md:pb-40 overflow-hidden">
+        <MeshGradientBackground intensity="normal" interactive />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
           {/* Breadcrumb */}
@@ -245,12 +243,9 @@ function DispenserDetail({ product }: { product: Product }) {
         {/* NO gradient here — stays dark into specs section */}
       </section>
 
-      {/* ── SPECS + BENEFITS ── DARK (same bg-negro, no transition break) */}
-      <section id="specs-section" className="py-12 sm:py-16 md:py-24 bg-negro relative overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-[20%] right-[-5%] w-[400px] h-[400px] rounded-full bg-celeste-glow/3 blur-[120px]" />
-          <div className="absolute bottom-[10%] left-[-5%] w-[300px] h-[300px] rounded-full bg-celeste-neon/4 blur-[100px]" />
-        </div>
+      {/* ── SPECS + BENEFITS ── */}
+      <section id="specs-section" className="py-12 sm:py-16 md:py-24 bg-[#050E14] relative overflow-hidden">
+        <MeshGradientBackground intensity="subtle" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
           {/* Section header */}
@@ -348,17 +343,15 @@ function DispenserDetail({ product }: { product: Product }) {
       </section>
 
       {/* Reviews */}
-      <section className="py-12 sm:py-16 bg-negro relative overflow-hidden">
+      <section className="py-12 sm:py-16 bg-[#050E14] relative overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
           <ProductReviews productId={product.id} />
         </div>
       </section>
 
       {/* CTA — slightly lighter dark */}
-      <section className="py-16 md:py-20 bg-negro-light relative overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-[30%] left-[40%] w-[300px] h-[300px] rounded-full bg-celeste-neon/5 blur-[100px]" />
-        </div>
+      <section className="py-16 md:py-20 bg-[#050E14] relative overflow-hidden">
+        <MeshGradientBackground intensity="intense" />
         <div className="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <AnimatedSection>
             <h2 className="font-heading font-bold text-2xl sm:text-3xl text-white mb-4">
@@ -418,11 +411,8 @@ function SimpleProductDetail({ product }: { product: Product }) {
   return (
     <div>
       {/* Hero — DARK */}
-      <section className="relative bg-negro pt-20 pb-12 sm:pt-28 sm:pb-20 md:pt-36 md:pb-28 overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-[-10%] right-[5%] w-[400px] h-[400px] rounded-full bg-celeste-neon/6 blur-[120px] animate-orb-pulse" />
-          <div className="absolute bottom-[-15%] left-[10%] w-[500px] h-[500px] rounded-full bg-celeste-glow/4 blur-[140px] animate-orb-pulse" style={{ animationDelay: "3s" }} />
-        </div>
+      <section className="relative bg-[#050E14] pt-20 pb-12 sm:pt-28 sm:pb-20 md:pt-36 md:pb-28 overflow-hidden">
+        <MeshGradientBackground intensity="normal" interactive />
 
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6">
           {/* Breadcrumb */}

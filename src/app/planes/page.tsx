@@ -7,6 +7,7 @@ import { formatPrice } from "@/data/products";
 import { business } from "@/data/business";
 import AnimatedSection from "@/components/AnimatedSection";
 import { TextRevealWords } from "@/components/TextReveal";
+import MeshGradientBackground from "@/components/MeshGradientBackground";
 
 type PlanMode = "hogar" | "comercio";
 
@@ -259,16 +260,8 @@ export default function PlanesPage() {
   const planes = mode === "hogar" ? planesHogar : planesComercio;
 
   return (
-    <div className="min-h-screen bg-negro text-white relative">
-      {/* Background glow orbs */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[10%] left-[-5%] w-[500px] h-[500px] rounded-full bg-celeste-neon/[0.04] blur-[150px] animate-orb-pulse" />
-        <div className="absolute top-[50%] right-[-10%] w-[600px] h-[600px] rounded-full bg-celeste-glow/[0.03] blur-[180px] animate-orb-pulse" style={{ animationDelay: "3s" }} />
-        <div className="absolute bottom-[5%] left-[30%] w-[400px] h-[400px] rounded-full bg-celeste-neon/[0.03] blur-[120px] animate-orb-pulse" style={{ animationDelay: "1.5s" }} />
-      </div>
-
-      {/* Wave background */}
-      <WaveBackground />
+    <div className="min-h-screen bg-[#050E14] text-white relative">
+      <MeshGradientBackground intensity="normal" interactive />
 
       {/* Hero */}
       <section className="relative pt-28 sm:pt-36 pb-12 sm:pb-20 overflow-hidden">

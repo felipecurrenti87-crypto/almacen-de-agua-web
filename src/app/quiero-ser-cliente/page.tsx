@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { business } from "@/data/business";
 import AnimatedSection from "@/components/AnimatedSection";
 import { TextRevealWords } from "@/components/TextReveal";
+import MeshGradientBackground from "@/components/MeshGradientBackground";
 
 interface FormData {
   nombre: string;
@@ -96,20 +97,11 @@ export default function QuieroSerClientePage() {
   const whatsappUrl = `${business.whatsappLink}?text=${encodeURIComponent(buildWhatsAppMsg())}`;
 
   return (
-    <div className="min-h-screen bg-negro text-white relative">
-      {/* Background wave */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-[0.03]">
-        <svg className="absolute bottom-0 left-0 w-[200%] h-[300px] wave-animate" viewBox="0 0 2880 320" fill="none" preserveAspectRatio="none"><path d="M0 224l48-10.7C96 203 192 181 288 186.7 384 192 480 224 576 229.3 672 235 768 213 864 186.7 960 160 1056 128 1152 128s192 32 288 58.7c96 26.3 192 48.3 288 42.6 96-5.3 192-37.3 288-48 96-10.3 192 .3 288 16 96 16.3 192 37.3 240 48l48 10.7V320H0z" fill="currentColor" className="text-celeste-neon" /></svg>
-        <svg className="absolute top-[40%] left-0 w-[200%] h-[200px] wave-animate-slow" viewBox="0 0 2880 320" fill="none" preserveAspectRatio="none"><path d="M0 256l48-16c48-16 144-48 240-48s192 32 288 37.3c96 5.7 192-16.3 288-21.3 96-5 192 5 288 26.7 96 21.3 192 53.3 288 48 96-5.7 192-48.3 288-58.7 96-10.3 192 10.7 288 21.3 96 10.7 192 10.7 240 10.7h48V320H0z" fill="currentColor" className="text-celeste-glow" /></svg>
-      </div>
+    <div className="min-h-screen bg-[#050E14] text-white relative">
+      <MeshGradientBackground intensity="normal" interactive />
       {/* Hero */}
       <section className="relative pt-28 sm:pt-36 pb-10 sm:pb-16 overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-[-20%] right-[10%] w-[400px] h-[400px] rounded-full bg-celeste-neon/6 blur-[120px]" />
-          <div className="absolute bottom-[-10%] left-[5%] w-[300px] h-[300px] rounded-full bg-celeste-glow/4 blur-[100px]" />
-        </div>
-
-        <div className="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
+        <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <AnimatedSection>
             <span className="inline-block bg-celeste-neon/10 text-celeste-neon text-sm font-heading font-bold px-5 py-2 rounded-full mb-6 border border-celeste-neon/20">
               Nuevo cliente

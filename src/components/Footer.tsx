@@ -4,15 +4,12 @@ import Link from "next/link";
 import { business } from "@/data/business";
 import AnimatedSection from "./AnimatedSection";
 import Logo from "./Logo";
+import MeshGradientBackground from "./MeshGradientBackground";
 
 export default function Footer() {
   return (
-    <footer className="bg-negro text-white relative overflow-hidden">
-      {/* Subtle orbs */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[-20%] left-[5%] w-[300px] h-[300px] rounded-full bg-celeste-neon/4 blur-[100px]" />
-        <div className="absolute bottom-[-10%] right-[10%] w-[400px] h-[400px] rounded-full bg-celeste-glow/3 blur-[120px]" />
-      </div>
+    <footer className="bg-[#050E14] text-white relative overflow-hidden">
+      <MeshGradientBackground intensity="subtle" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-10">

@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { categorias } from "@/data/products";
 import ProductCard from "@/components/ProductCard";
 import AnimatedSection from "@/components/AnimatedSection";
+import MeshGradientBackground from "@/components/MeshGradientBackground";
 import { TextRevealWords } from "@/components/TextReveal";
 import { StaggerContainer, StaggerItem } from "@/components/StaggerContainer";
 
@@ -254,10 +255,8 @@ export default function TiendaPage() {
 
         {/* Discount banner for dispensers */}
         <AnimatedSection delay={300}>
-          <div className="mt-10 sm:mt-16 relative overflow-hidden rounded-2xl sm:rounded-3xl bg-negro p-6 sm:p-8 md:p-12 border border-celeste-neon/10">
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-              <div className="absolute top-[-30%] right-[-10%] w-[300px] h-[300px] rounded-full bg-celeste-neon/8 blur-[80px]" />
-            </div>
+          <div className="mt-10 sm:mt-16 relative overflow-hidden rounded-2xl sm:rounded-3xl bg-[#050E14] p-6 sm:p-8 md:p-12 border border-celeste-neon/10">
+            <MeshGradientBackground intensity="subtle" />
             <div className="relative text-center">
               <span className="inline-block bg-celeste-neon/10 text-celeste-neon text-sm font-heading font-bold px-4 py-1.5 rounded-full mb-4 border border-celeste-neon/20">
                 Dispensers

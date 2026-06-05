@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { business } from "@/data/business";
+import MeshGradientBackground from "@/components/MeshGradientBackground";
 import AnimatedSection from "@/components/AnimatedSection";
 import { TextRevealLine, TextRevealWords } from "@/components/TextReveal";
 import { StaggerContainer, StaggerItem } from "@/components/StaggerContainer";
@@ -60,31 +61,10 @@ export default function NosotrosPage() {
   return (
     <div>
       {/* Hero — DARK */}
-      <section className="relative bg-negro py-32 md:py-40 overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-[-10%] right-[10%] w-[400px] h-[400px] rounded-full bg-celeste-neon/6 blur-[120px] animate-orb-pulse" />
-          <div className="absolute bottom-[-15%] left-[5%] w-[500px] h-[500px] rounded-full bg-celeste-glow/4 blur-[140px] animate-orb-pulse" style={{ animationDelay: "3s" }} />
-        </div>
+      <section className="relative bg-[#050E14] py-32 md:py-40 overflow-hidden">
+        <MeshGradientBackground intensity="normal" interactive />
 
-        {/* Wave pattern on hero */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <svg
-            className="absolute inset-0 w-full h-full opacity-[0.06] animate-wave-drift"
-            xmlns="http://www.w3.org/2000/svg"
-            preserveAspectRatio="none"
-          >
-            <defs>
-              <pattern id="waves-nosotros-hero" x="0" y="0" width="200" height="80" patternUnits="userSpaceOnUse">
-                <path d="M0 40 Q50 20, 100 40 Q150 60, 200 40" fill="none" stroke="rgba(125,211,252,0.5)" strokeWidth="1" />
-                <path d="M0 60 Q50 40, 100 60 Q150 80, 200 60" fill="none" stroke="rgba(56,189,248,0.3)" strokeWidth="1" />
-                <path d="M0 20 Q50 0, 100 20 Q150 40, 200 20" fill="none" stroke="rgba(125,211,252,0.25)" strokeWidth="1" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#waves-nosotros-hero)" />
-          </svg>
-        </div>
-
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 text-center">
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <AnimatedSection>
             <span className="font-heading font-semibold text-celeste-neon text-sm uppercase tracking-wider">
               Nuestra historia
@@ -405,10 +385,8 @@ export default function NosotrosPage() {
       </section>
 
       {/* CTA — DARK */}
-      <section className="py-20 md:py-28 bg-negro relative overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-[30%] left-[40%] w-[300px] h-[300px] rounded-full bg-celeste-neon/5 blur-[100px]" />
-        </div>
+      <section className="py-20 md:py-28 bg-[#050E14] relative overflow-hidden">
+        <MeshGradientBackground intensity="subtle" />
         <div className="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <AnimatedSection>
             <TextRevealWords className="font-heading font-bold text-3xl text-white mb-4">
