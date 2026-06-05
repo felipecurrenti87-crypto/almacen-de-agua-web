@@ -368,6 +368,48 @@ html.lenis, html.lenis body {
   animation: waveDrift 12s ease-in-out infinite;
 }
 
+/* ── Mesh Gradient Blob Animations ── */
+.mesh-blob {
+  filter: blur(100px);
+  will-change: transform;
+}
+@keyframes meshDrift1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(30px, -20px) scale(1.05); }
+  50% { transform: translate(-15px, 25px) scale(0.95); }
+  75% { transform: translate(20px, 10px) scale(1.02); }
+}
+@keyframes meshDrift2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(-25px, 15px) scale(0.97); }
+  50% { transform: translate(20px, -30px) scale(1.04); }
+  75% { transform: translate(-10px, -15px) scale(1.01); }
+}
+@keyframes meshDrift3 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.4; }
+  33% { transform: translate(25px, 20px) scale(1.06); opacity: 0.35; }
+  66% { transform: translate(-20px, -10px) scale(0.96); opacity: 0.45; }
+}
+@keyframes meshDrift4 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+  40% { transform: translate(-30px, 20px) scale(1.08); opacity: 0.25; }
+  80% { transform: translate(15px, -25px) scale(0.94); opacity: 0.35; }
+}
+.mesh-blob-1 { animation: meshDrift1 25s ease-in-out infinite; }
+.mesh-blob-2 { animation: meshDrift2 22s ease-in-out infinite 2s; }
+.mesh-blob-3 { animation: meshDrift3 28s ease-in-out infinite 4s; }
+.mesh-blob-4 { animation: meshDrift4 24s ease-in-out infinite 6s; }
+
+/* Mobile: reduce blur + less blobs handled via hidden sm:block in component */
+@media (max-width: 768px) {
+  .mesh-blob { filter: blur(80px); }
+}
+
+/* Quicksand font variable */
+.font-quicksand {
+  font-family: var(--font-quicksand), "Quicksand", sans-serif;
+}
+
 /* Reduced motion: disable complex animations */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
