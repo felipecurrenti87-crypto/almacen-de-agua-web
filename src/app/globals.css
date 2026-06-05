@@ -409,6 +409,49 @@ html.lenis, html.lenis body {
   font-family: var(--font-quicksand), "Quicksand", sans-serif;
 }
 
+/* ── Water Ripple Click Effect ── */
+.water-ripple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(91, 203, 245, 0.5);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  opacity: 0;
+}
+.water-ripple-1 {
+  animation: rippleExpand 1.4s ease-out forwards;
+}
+.water-ripple-2 {
+  animation: rippleExpand 1.4s ease-out 0.15s forwards;
+}
+.water-ripple-3 {
+  animation: rippleExpand 1.4s ease-out 0.3s forwards;
+}
+@keyframes rippleExpand {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0.7;
+    border-width: 3px;
+    border-color: rgba(91, 203, 245, 0.6);
+  }
+  50% {
+    opacity: 0.4;
+    border-color: rgba(6, 164, 221, 0.3);
+  }
+  100% {
+    width: 350px;
+    height: 350px;
+    opacity: 0;
+    border-width: 1px;
+    border-color: rgba(91, 203, 245, 0);
+  }
+}
+
 /* Reduced motion: disable complex animations */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
