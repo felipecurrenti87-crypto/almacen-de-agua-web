@@ -57,7 +57,7 @@ export default function Home() {
           A) HERO — full viewport, centered
           ══════════════════════════════════════════ */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#050E14]">
-        <MeshGradientBackground intensity="normal" />
+        <MeshGradientBackground intensity="normal" interactive />
 
         <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 text-center py-24 sm:py-32">
           {/* Pill */}
@@ -124,8 +124,6 @@ export default function Home() {
           </motion.div>
         </div>
 
-        {/* Bottom fade to next section */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#050E14] to-transparent" />
       </section>
 
       {/* ══════════════════════════════════════════
@@ -202,7 +200,7 @@ export default function Home() {
                 >
                   Estamos en{" "}
                   <em className="not-italic italic text-[#5BCBF5]">Mendoza</em>{" "}
-                  desde hace anos.
+                  desde hace años.
                 </h2>
                 <p className="font-quicksand text-[#B2DDF0]/60 text-sm sm:text-base leading-relaxed mb-6 max-w-lg">
                   Somos un local fisico real, con mas de 1.000 hogares
@@ -265,7 +263,7 @@ export default function Home() {
           D) CTA FINAL — mesh gradient intense
           ══════════════════════════════════════════ */}
       <section className="relative py-24 sm:py-32 md:py-40 bg-[#050E14] overflow-hidden">
-        <MeshGradientBackground intensity="intense" />
+        <MeshGradientBackground intensity="intense" interactive />
 
         <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <AnimatedSection>
