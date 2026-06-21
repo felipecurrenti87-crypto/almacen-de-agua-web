@@ -4,6 +4,8 @@ import { formatPrice } from "@/data/products";
 import { deletePlanAction } from "../../actions";
 import ConfirmDeleteButton from "../../ConfirmDeleteButton";
 
+export const dynamic = "force-dynamic";
+
 export default async function AdminPlanesPage() {
   const plans = await getAllPlans();
   const hogar = plans.filter((p) => p.tipo === "hogar");

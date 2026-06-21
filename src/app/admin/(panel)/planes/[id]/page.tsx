@@ -4,6 +4,8 @@ import { getPlanById } from "@/lib/db/plans";
 import PlanForm from "../../../PlanForm";
 import { updatePlanAction } from "../../../actions";
 
+export const dynamic = "force-dynamic";
+
 export default async function EditPlanPage({
   params,
 }: {

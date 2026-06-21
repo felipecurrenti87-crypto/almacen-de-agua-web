@@ -2,6 +2,8 @@ import Link from "next/link";
 import { getAllProducts } from "@/lib/db/products";
 import { getAllPlans } from "@/lib/db/plans";
 
+export const dynamic = "force-dynamic";
+
 export default async function AdminHomePage() {
   const [products, plans] = await Promise.all([getAllProducts(), getAllPlans()]);
   const planesHogar = plans.filter((p) => p.tipo === "hogar").length;

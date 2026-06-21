@@ -4,6 +4,8 @@ import { formatPrice } from "@/data/products";
 import { deleteProductAction } from "../../actions";
 import ConfirmDeleteButton from "../../ConfirmDeleteButton";
 
+export const dynamic = "force-dynamic";
+
 export default async function AdminProductosPage() {
   const products = await getAllProducts();
 

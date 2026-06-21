@@ -4,6 +4,8 @@ import { getProductById } from "@/lib/db/products";
 import ProductForm from "../../../ProductForm";
 import { updateProductAction } from "../../../actions";
 
+export const dynamic = "force-dynamic";
+
 export default async function EditProductPage({
   params,
 }: {

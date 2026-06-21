@@ -2,6 +2,8 @@ import Link from "next/link";
 import { getProductById, getAllProducts } from "@/lib/db/products";
 import ProductDetailClient from "./ProductDetailClient";
 
+export const dynamic = "force-dynamic";
+
 export default async function ProductDetailPage({
   params,
 }: {
