@@ -123,7 +123,7 @@ const STORAGE_KEY = "almacen-agua-cart";
 export function CartProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(cartReducer, {
     items: [],
-    deliveryMode: "reparto",
+    deliveryMode: "tienda",
     isOpen: false,
   });
 
@@ -135,7 +135,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         dispatch({
           type: "HYDRATE",
           items: parsed.items || [],
-          deliveryMode: parsed.deliveryMode || "reparto",
+          deliveryMode: parsed.deliveryMode || "tienda",
         });
       }
     } catch {

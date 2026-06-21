@@ -37,18 +37,20 @@ export function TextRevealWords({
   className = "",
   delay = 0,
   as: Tag = "h2",
+  center = false,
 }: {
   children: string;
   className?: string;
   delay?: number;
   as?: "h1" | "h2" | "h3" | "h4" | "p" | "span";
+  center?: boolean;
 }) {
   const words = children.split(" ");
 
   return (
     <Tag className={className}>
       <motion.span
-        className="inline-flex flex-wrap"
+        className={center ? "flex flex-wrap justify-center" : "inline-flex flex-wrap"}
         variants={wordContainerVariants}
         initial="hidden"
         whileInView="visible"

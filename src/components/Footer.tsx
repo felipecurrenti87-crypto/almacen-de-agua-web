@@ -4,27 +4,24 @@ import Link from "next/link";
 import { business } from "@/data/business";
 import AnimatedSection from "./AnimatedSection";
 import Logo from "./Logo";
-import MeshGradientBackground from "./MeshGradientBackground";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#050E14] text-white relative overflow-hidden">
-      <MeshGradientBackground intensity="subtle" />
-
+    <footer className="bg-white text-[#1C3055] relative overflow-hidden border-t border-[#BBD6E1]/60">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-10">
           <AnimatedSection className="col-span-2 lg:col-span-1">
             <div className="mb-4 sm:mb-5">
-              <Logo variant="light" className="h-12 sm:h-16" />
+              <Logo variant="dark" className="h-12 sm:h-16" />
             </div>
-            <p className="text-gris-dark text-xs sm:text-sm leading-relaxed">
+            <p className="text-[#52647A] text-xs sm:text-sm leading-relaxed">
               Agua purificada de calidad para tu familia. Negocio familiar con
               envío a toda la provincia de Mendoza.
             </p>
           </AnimatedSection>
 
           <AnimatedSection delay={100}>
-            <h4 className="font-heading font-bold text-xs sm:text-sm uppercase tracking-wider text-celeste-glow mb-3 sm:mb-4">
+            <h4 className="font-heading font-bold text-xs sm:text-sm uppercase tracking-wider text-[#639BB6] mb-3 sm:mb-4">
               Navegacion
             </h4>
             <ul className="space-y-1.5 sm:space-y-2">
@@ -33,12 +30,13 @@ export default function Footer() {
                 { href: "/tienda", label: "Tienda" },
                 { href: "/planes", label: "Planes" },
                 { href: "/nosotros", label: "Nosotros" },
+                { href: "/preguntas-frecuentes", label: "Preguntas frecuentes" },
                 { href: "/quiero-ser-cliente", label: "Ser cliente" },
               ].map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-gris-dark text-xs sm:text-sm hover:text-celeste-neon transition-colors duration-300"
+                    className="text-[#52647A] text-xs sm:text-sm hover:text-celeste-neon transition-colors duration-300"
                   >
                     {link.label}
                   </Link>
@@ -46,21 +44,18 @@ export default function Footer() {
               ))}
             </ul>
 
-            <h4 className="font-heading font-bold text-xs sm:text-sm uppercase tracking-wider text-celeste-glow mb-3 sm:mb-4 mt-5 sm:mt-6">
+            <h4 className="font-heading font-bold text-xs sm:text-sm uppercase tracking-wider text-[#639BB6] mb-3 sm:mb-4 mt-5 sm:mt-6">
               Herramientas
             </h4>
             <ul className="space-y-1.5 sm:space-y-2">
               {[
-                { href: "/calculadora-envio", label: "Calculadora de envio" },
-                { href: "/calculadora-hidratacion", label: "Calculadora de hidratacion" },
-                { href: "/comparador", label: "Comparador de dispensers" },
-                { href: "/recordatorio-pedido", label: "Recordatorio de pedido" },
                 { href: "/seguimiento", label: "Seguimiento de pedido" },
+                { href: "/sustentabilidad", label: "Sustentabilidad" },
               ].map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-gris-dark text-xs sm:text-sm hover:text-celeste-neon transition-colors duration-300"
+                    className="text-[#52647A] text-xs sm:text-sm hover:text-celeste-neon transition-colors duration-300"
                   >
                     {link.label}
                   </Link>
@@ -70,10 +65,10 @@ export default function Footer() {
           </AnimatedSection>
 
           <AnimatedSection delay={200}>
-            <h4 className="font-heading font-bold text-xs sm:text-sm uppercase tracking-wider text-celeste-glow mb-3 sm:mb-4">
+            <h4 className="font-heading font-bold text-xs sm:text-sm uppercase tracking-wider text-[#639BB6] mb-3 sm:mb-4">
               Contacto
             </h4>
-            <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-gris-dark">
+            <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-[#52647A]">
               <li className="flex items-start gap-2">
                 <svg
                   className="w-4 h-4 mt-0.5 text-celeste-neon flex-shrink-0"
@@ -132,10 +127,10 @@ export default function Footer() {
           </AnimatedSection>
 
           <AnimatedSection delay={300}>
-            <h4 className="font-heading font-bold text-xs sm:text-sm uppercase tracking-wider text-celeste-glow mb-3 sm:mb-4">
+            <h4 className="font-heading font-bold text-xs sm:text-sm uppercase tracking-wider text-[#639BB6] mb-3 sm:mb-4">
               Horarios
             </h4>
-            <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm text-gris-dark">
+            <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm text-[#52647A]">
               <li className="flex items-center gap-2">
                 <svg
                   className="w-4 h-4 text-celeste-neon flex-shrink-0"
@@ -168,7 +163,7 @@ export default function Footer() {
               <div className="inline-flex items-center gap-1 text-sm">
                 <span className="text-yellow-400">★★★★</span>
                 <span className="text-yellow-400/30">☆</span>
-                <span className="text-gris-dark ml-1">
+                <span className="text-[#52647A] ml-1">
                   {business.rating} ({business.totalResenas} reseñas)
                 </span>
               </div>
@@ -177,13 +172,13 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-celeste-neon/10 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
-          <p className="text-gris-dark/60 text-xs">
+          <p className="text-[#52647A]/60 text-xs">
             &copy; {new Date().getFullYear()} {business.nombre}. Todos los
             derechos reservados.
           </p>
           <Link
             href="/politica-de-privacidad"
-            className="text-gris-dark/40 text-xs hover:text-celeste-neon transition-colors"
+            className="text-[#52647A]/40 text-xs hover:text-celeste-neon transition-colors"
           >
             Politica de privacidad
           </Link>

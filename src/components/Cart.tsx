@@ -16,6 +16,7 @@ export default function Cart() {
     updateQuantity,
     totalPrice,
     deliveryMode,
+    setDeliveryMode,
     getItemPrice,
   } = useCart();
 
@@ -126,7 +127,7 @@ export default function Cart() {
                 <Link
                   href="/tienda"
                   onClick={closeCart}
-                  className="mt-6 bg-negro text-white px-6 py-3 rounded-2xl font-heading font-bold text-sm hover:bg-negro-medium transition-colors"
+                  className="mt-6 bg-[#1C3055] text-white px-6 py-3 rounded-2xl font-heading font-bold text-sm hover:bg-[#16264a] transition-colors"
                 >
                   Ir a la tienda
                 </Link>
@@ -256,7 +257,48 @@ export default function Cart() {
                   layout
                   className="border-t border-celeste-light p-5 space-y-3"
                 >
-                  <div className="flex justify-between items-center">
+                  {/* Selector de entrega — define qué precio se aplica */}
+                  <div>
+                    <p className="text-xs font-heading font-bold text-azul mb-2">
+                      ¿Como lo querés?
+                    </p>
+                    <div className="grid grid-cols-2 gap-2">
+                      <button
+                        onClick={() => setDeliveryMode("tienda")}
+                        className={`flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs sm:text-sm font-heading font-bold border transition-all ${
+                          deliveryMode === "tienda"
+                            ? "bg-[#1C3055] text-white border-[#1C3055]"
+                            : "bg-white text-azul border-celeste-medium/60 hover:border-[#639BB6]"
+                        }`}
+                      >
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 22V12h6v10" />
+                        </svg>
+                        Retiro en tienda
+                      </button>
+                      <button
+                        onClick={() => setDeliveryMode("reparto")}
+                        className={`flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs sm:text-sm font-heading font-bold border transition-all ${
+                          deliveryMode === "reparto"
+                            ? "bg-[#1C3055] text-white border-[#1C3055]"
+                            : "bg-white text-azul border-celeste-medium/60 hover:border-[#639BB6]"
+                        }`}
+                      >
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
+                        </svg>
+                        Envío a domicilio
+                      </button>
+                    </div>
+                    <p className="text-[11px] text-gris-suave mt-2 text-center">
+                      {deliveryMode === "tienda"
+                        ? "Retirás en el local. Precio más bajo."
+                        : "Te lo llevamos a tu puerta. Incluye el costo de reparto."}
+                    </p>
+                  </div>
+
+                  <div className="flex justify-between items-center pt-1">
                     <span className="text-gris-suave font-heading">Total</span>
                     <motion.span
                       key={totalPrice}
@@ -266,11 +308,6 @@ export default function Cart() {
                     >
                       {formatPrice(totalPrice)}
                     </motion.span>
-                  </div>
-                  <div className="text-xs text-gris-suave text-center">
-                    {deliveryMode === "tienda"
-                      ? "Precios de retiro en tienda"
-                      : "Precios con envío a domicilio"}
                   </div>
                   <div className="grid grid-cols-2 gap-3">
                     <a
@@ -291,7 +328,7 @@ export default function Cart() {
                     <Link
                       href="/checkout"
                       onClick={closeCart}
-                      className="flex items-center justify-center gap-2 bg-negro text-white py-3 rounded-2xl font-heading font-bold text-sm hover:bg-negro-medium transition-colors"
+                      className="flex items-center justify-center gap-2 bg-[#1C3055] text-white py-3 rounded-2xl font-heading font-bold text-sm hover:bg-[#16264a] transition-colors"
                     >
                       Pagar
                       <svg

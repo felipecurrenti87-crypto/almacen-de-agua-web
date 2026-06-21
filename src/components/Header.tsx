@@ -5,16 +5,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCart } from "@/context/CartContext";
-import PriceToggle from "./PriceToggle";
 import Logo from "./Logo";
-import DarkModeToggle from "./DarkModeToggle";
 
 const toolLinks = [
-  { href: "/calculadora-envio", label: "Calculadora de envio", emoji: "🗺️" },
-  { href: "/calculadora-hidratacion", label: "Calculadora de hidratacion", emoji: "💧" },
-  { href: "/comparador", label: "Comparador de dispensers", emoji: "🏷️" },
-  { href: "/recordatorio-pedido", label: "Recordatorio de pedido", emoji: "📅" },
   { href: "/seguimiento", label: "Seguimiento de pedido", emoji: "📦" },
+  { href: "/sustentabilidad", label: "Sustentabilidad", emoji: "♻️" },
 ];
 
 const navLinks = [
@@ -106,12 +101,12 @@ export default function Header() {
               href={link.href}
               className={
                 link.cta
-                  ? `px-5 py-2 rounded-full text-sm font-heading font-bold transition-all duration-300 ${
+                  ? `px-5 py-2 rounded-full text-sm font-body font-bold transition-all duration-300 ${
                       isOverDark
                         ? "bg-celeste-neon text-negro hover:bg-celeste-glow"
-                        : "bg-negro text-white hover:bg-negro-medium"
+                        : "bg-[#1C3055] text-white hover:bg-[#16264a]"
                     }`
-                  : `px-4 py-2 rounded-full text-sm font-heading font-semibold transition-all duration-300 ${textColor} ${hoverBg} ${
+                  : `px-4 py-2 rounded-full text-sm font-body font-semibold transition-all duration-300 ${textColor} ${hoverBg} ${
                       pathname === link.href
                         ? isOverDark
                           ? "bg-white/10"
@@ -127,9 +122,6 @@ export default function Header() {
 
         {/* Right controls — fixed right */}
         <div className="flex items-center gap-3 flex-shrink-0 ml-auto md:ml-0">
-          <PriceToggle className="hidden sm:flex" />
-          <DarkModeToggle className={`hidden sm:flex ${hoverBg} ${iconColor}`} />
-
           {/* Tools dropdown */}
           <div className="relative hidden sm:block">
             <button
@@ -159,7 +151,7 @@ export default function Header() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -8, scale: 0.95 }}
                     transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                    className="absolute right-0 top-12 z-30 w-56 bg-negro rounded-2xl border border-celeste-neon/15 shadow-xl shadow-celeste-neon/10 overflow-hidden py-2"
+                    className="absolute right-0 top-12 z-30 w-56 bg-[#1C3055] rounded-2xl border border-celeste-neon/15 shadow-xl shadow-celeste-neon/10 overflow-hidden py-2"
                   >
                     <p className="px-4 py-2 text-celeste-glow text-xs font-heading font-bold uppercase tracking-wider">
                       Herramientas
@@ -269,7 +261,7 @@ export default function Header() {
                       link.cta
                         ? "bg-celeste-neon text-negro hover:bg-celeste-glow"
                         : pathname === link.href
-                          ? "bg-negro text-white"
+                          ? "bg-[#1C3055] text-white"
                           : "text-azul hover:bg-celeste-light hover:text-azul-accent"
                     }`}
                   >
@@ -277,14 +269,6 @@ export default function Header() {
                   </Link>
                 </motion.div>
               ))}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.25 }}
-                className="mt-4"
-              >
-                <PriceToggle />
-              </motion.div>
             </nav>
           </motion.div>
         )}

@@ -18,7 +18,7 @@ export default function WhatsAppButton() {
       transition={{ delay: 1.5, type: "spring", stiffness: 300, damping: 20 }}
     >
       {/* Tooltip */}
-      <span className="bg-negro text-white text-sm font-semibold px-4 py-2 rounded-full shadow-lg transition-all duration-300 font-heading opacity-0 translate-x-4 pointer-events-none group-hover:opacity-100 group-hover:translate-x-0 border border-celeste-neon/20">
+      <span className="bg-[#1C3055] text-white text-sm font-semibold px-4 py-2 rounded-full shadow-lg transition-all duration-300 font-heading opacity-0 translate-x-4 pointer-events-none group-hover:opacity-100 group-hover:translate-x-0 border border-celeste-neon/20">
         Hacé tu pedido
       </span>
 

@@ -22,7 +22,7 @@ export default function ProductCard({
   product: Product;
   index?: number;
 }) {
-  const { addItem, deliveryMode, getItemPrice } = useCart();
+  const { addItem } = useCart();
   const [added, setAdded] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -32,14 +32,10 @@ export default function ProductCard({
     return window.matchMedia("(hover: none)").matches;
   }, []);
 
-  const price = getItemPrice(product);
-  const otherPrice =
-    deliveryMode === "tienda" ? product.precio_reparto : product.precio_tienda;
-  const otherLabel = deliveryMode === "tienda" ? "reparto" : "tienda";
-  const savings =
-    deliveryMode === "tienda"
-      ? product.precio_reparto - product.precio_tienda
-      : 0;
+  // Siempre se muestra el precio de tienda (el más barato). El precio de
+  // reparto se aclara como nota; la opción se elige en el carrito.
+  const price = product.precio_tienda;
+  const repartoPrice = product.precio_reparto;
 
   // Mouse position relative to card center (for tilt + magnetic)
   const mouseX = useMotionValue(0);
@@ -88,7 +84,6 @@ export default function ProductCard({
     setTimeout(() => setAdded(false), 1200);
   };
 
-  const displayNum = String(index + 1).padStart(2, "0");
   const isDispenser = product.categoria === "dispensers";
 
   return (
@@ -107,17 +102,6 @@ export default function ProductCard({
       whileHover={{ scale: 1.02 }}
       transition={{ scale: { duration: 0.3, ease: [0.22, 1, 0.36, 1] } }}
     >
-      {/* Large index number */}
-      <div className="absolute top-3 right-4 z-10 font-heading font-bold text-4xl text-azul/[0.06] select-none pointer-events-none leading-none">
-        {displayNum}
-      </div>
-
-      {savings > 0 && (
-        <div className="absolute top-3 left-3 z-10 bg-celeste-neon text-negro text-xs font-bold font-heading px-3 py-1 rounded-full">
-          Ahorrás {formatPrice(savings)}
-        </div>
-      )}
-
       <div className="relative aspect-square bg-gradient-to-br from-celeste-light to-white p-3 sm:p-6">
         <div className="absolute top-2 right-4 w-2 h-3 bg-celeste/30 rounded-full animate-drop" />
         <div className="absolute top-8 right-8 w-1.5 h-2.5 bg-celeste/20 rounded-full animate-drop-d1" />
@@ -150,9 +134,9 @@ export default function ProductCard({
             <span className="price text-xl sm:text-2xl font-bold text-celeste-neon">
               {formatPrice(price)}
             </span>
-            {price !== otherPrice && (
+            {repartoPrice > price && (
               <p className="text-[11px] sm:text-xs text-gris-suave mt-0.5">
-                En {otherLabel}: {formatPrice(otherPrice)}
+                Con reparto: {formatPrice(repartoPrice)}
               </p>
             )}
           </div>
@@ -219,7 +203,7 @@ export default function ProductCard({
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: -20, opacity: 0 }}
                   transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                  className="flex items-center justify-center gap-2 bg-negro text-white rounded-2xl absolute inset-0 hover:bg-negro-medium transition-colors duration-300"
+                  className="flex items-center justify-center gap-2 bg-[#1C3055] text-white rounded-2xl absolute inset-0 hover:bg-[#16264a] transition-colors duration-300"
                 >
                   <svg
                     className="w-5 h-5"

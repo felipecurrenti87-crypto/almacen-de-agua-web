@@ -12,11 +12,11 @@ export default function ProductReviews({ productId }: { productId: string }) {
   return (
     <div className="mt-8">
       <div className="flex items-center gap-3 mb-5">
-        <h3 className="font-heading font-bold text-white text-lg">Opiniones de clientes</h3>
-        <div className="flex items-center gap-1.5 bg-white/[0.06] px-3 py-1 rounded-full border border-white/10">
+        <h3 className="font-heading font-bold text-azul text-lg">Opiniones de clientes</h3>
+        <div className="flex items-center gap-1.5 bg-[#EEF5F8] px-3 py-1 rounded-full border border-[#BBD6E1]/60">
           <span className="text-yellow-400 text-sm">&#9733;</span>
-          <span className="text-white font-heading font-bold text-sm">{avg.toFixed(1)}</span>
-          <span className="text-gris-dark text-xs">({reviews.length})</span>
+          <span className="text-azul font-heading font-bold text-sm">{avg.toFixed(1)}</span>
+          <span className="text-[#52647A] text-xs">({reviews.length})</span>
         </div>
       </div>
 
@@ -28,25 +28,25 @@ export default function ProductReviews({ productId }: { productId: string }) {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.08, duration: 0.4 }}
             viewport={{ once: true }}
-            className="bg-white/[0.04] backdrop-blur-sm rounded-2xl p-4 border border-white/[0.06]"
+            className="bg-white rounded-2xl p-4 border border-[#BBD6E1]/50 shadow-sm"
           >
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2.5">
                 <div className="w-8 h-8 rounded-full bg-celeste-neon/15 flex items-center justify-center text-celeste-neon font-heading font-bold text-xs">
                   {review.autor[0]}
                 </div>
-                <span className="font-heading font-semibold text-white text-sm">{review.autor}</span>
+                <span className="font-heading font-semibold text-azul text-sm">{review.autor}</span>
               </div>
-              <span className="text-gris-dark text-xs">{getRelativeTime(review.fecha)}</span>
+              <span className="text-[#52647A] text-xs">{getRelativeTime(review.fecha)}</span>
             </div>
             <div className="flex items-center gap-0.5 mb-2">
               {Array.from({ length: 5 }).map((_, j) => (
-                <span key={j} className={`text-xs ${j < review.rating ? "text-yellow-400" : "text-white/10"}`}>
+                <span key={j} className={`text-xs ${j < review.rating ? "text-yellow-400" : "text-[#BBD6E1]"}`}>
                   &#9733;
                 </span>
               ))}
             </div>
-            <p className="text-gris-dark text-sm leading-relaxed">
+            <p className="text-[#52647A] text-sm leading-relaxed">
               {review.texto}
             </p>
           </motion.div>

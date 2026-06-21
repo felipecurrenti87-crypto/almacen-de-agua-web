@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Inter, Quicksand } from "next/font/google";
+import { Josefin_Sans, Montserrat } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
@@ -9,23 +9,18 @@ import Cart from "@/components/Cart";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import SmoothScroll from "@/components/SmoothScroll";
 import ChatWidgetLazy from "@/components/ChatWidgetLazy";
+import PublicChrome from "@/components/PublicChrome";
 
-const plusJakarta = Plus_Jakarta_Sans({
-  variable: "--font-plus-jakarta",
+const josefin = Josefin_Sans({
+  variable: "--font-josefin",
   subsets: ["latin"],
-  weight: ["500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700"],
 });
 
-const inter = Inter({
-  variable: "--font-inter",
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
-});
-
-const quicksand = Quicksand({
-  variable: "--font-quicksand",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -70,7 +65,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${plusJakarta.variable} ${inter.variable} ${quicksand.variable} antialiased`}
+      className={`${josefin.variable} ${montserrat.variable} antialiased`}
     >
       <head>
         <script
@@ -122,12 +117,12 @@ export default function RootLayout({
       <body className="min-h-screen flex flex-col bg-white">
         <CartProvider>
           <SmoothScroll>
-            <Header />
+            <PublicChrome><Header /></PublicChrome>
             <main className="flex-1">{children}</main>
-            <Footer />
-            <Cart />
-            <ChatWidgetLazy />
-            <WhatsAppButton />
+            <PublicChrome><Footer /></PublicChrome>
+            <PublicChrome><Cart /></PublicChrome>
+            <PublicChrome><ChatWidgetLazy /></PublicChrome>
+            <PublicChrome><WhatsAppButton /></PublicChrome>
             <Script
               src="https://www.googletagmanager.com/gtag/js?id=G-EHNXRGL2H4"
               strategy="afterInteractive"

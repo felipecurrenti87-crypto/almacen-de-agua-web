@@ -61,7 +61,7 @@ export default function NosotrosPage() {
   return (
     <div>
       {/* Hero — DARK */}
-      <section className="relative bg-[#050E14] py-32 md:py-40 overflow-hidden">
+      <section className="relative bg-[#EEF5F8] py-32 md:py-40 overflow-hidden">
         <MeshGradientBackground intensity="normal" interactive />
 
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center">
@@ -71,13 +71,12 @@ export default function NosotrosPage() {
             </span>
           </AnimatedSection>
           <TextRevealLine delay={100}>
-            <h1 className="font-heading font-bold text-4xl sm:text-5xl text-white mt-3 mb-6">
-              Conoce{" "}
-              <span className="gradient-text-glow">Almacen de Agua</span>
+            <h1 className="font-heading font-bold uppercase gradient-text-glow text-4xl sm:text-5xl mt-3 mb-6">
+              Conoce Almacen de Agua
             </h1>
           </TextRevealLine>
           <AnimatedSection delay={200}>
-            <p className="text-gris-dark text-lg leading-relaxed max-w-2xl mx-auto">
+            <p className="text-[#52647A] text-lg leading-relaxed max-w-2xl mx-auto">
               Somos un emprendimiento familiar mendocino dedicado a llevar agua
               purificada de la mejor calidad a cada hogar y negocio de la
               provincia.
@@ -175,7 +174,7 @@ export default function NosotrosPage() {
             {values.map((v) => (
               <StaggerItem key={v.title}>
                 <div className="bg-white rounded-3xl p-8 text-center hover:shadow-xl hover:shadow-celeste/10 transition-all duration-500 border border-celeste-medium/20 h-full">
-                  <div className="w-16 h-16 rounded-2xl bg-negro text-celeste-neon flex items-center justify-center mx-auto mb-5">
+                  <div className="w-16 h-16 rounded-2xl bg-[#1C3055] text-celeste-neon flex items-center justify-center mx-auto mb-5">
                     {v.icon}
                   </div>
                   <h3 className="font-heading font-bold text-azul text-xl mb-3">
@@ -373,7 +372,7 @@ export default function NosotrosPage() {
                   <motion.button
                     type="submit"
                     whileTap={{ scale: 0.98 }}
-                    className="w-full py-4 rounded-2xl bg-negro text-white font-heading font-bold hover:bg-negro-medium transition-all duration-300 hover:shadow-xl hover:shadow-celeste-neon/15"
+                    className="w-full py-4 rounded-2xl bg-[#1C3055] text-[#ffffff] font-heading font-bold hover:bg-[#16264a] transition-all duration-300 hover:shadow-xl hover:shadow-celeste-neon/15"
                   >
                     Enviar mensaje
                   </motion.button>
@@ -385,14 +384,14 @@ export default function NosotrosPage() {
       </section>
 
       {/* CTA — DARK */}
-      <section className="py-20 md:py-28 bg-[#050E14] relative overflow-hidden">
+      <section className="py-20 md:py-28 bg-[#EEF5F8] relative overflow-hidden">
         <MeshGradientBackground intensity="subtle" />
         <div className="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <AnimatedSection>
-            <TextRevealWords className="font-heading font-bold text-3xl text-white mb-4">
+            <TextRevealWords className="font-heading font-bold text-3xl text-azul mb-4">
               Queres probar nuestra agua?
             </TextRevealWords>
-            <p className="text-gris-dark text-lg mb-8">
+            <p className="text-[#52647A] text-lg mb-8">
               Hace tu primer pedido y descubri por que nuestros clientes nos
               eligen cada semana.
             </p>
@@ -427,7 +426,7 @@ function ContactItem({
 }) {
   const content = (
     <div className="flex items-start gap-4 group">
-      <div className="w-11 h-11 rounded-xl bg-negro text-celeste-neon flex items-center justify-center flex-shrink-0 group-hover:bg-celeste-neon group-hover:text-negro transition-all duration-300">
+      <div className="w-11 h-11 rounded-xl bg-[#1C3055] text-celeste-neon flex items-center justify-center flex-shrink-0 group-hover:bg-celeste-neon group-hover:text-negro transition-all duration-300">
         {icon}
       </div>
       <div>

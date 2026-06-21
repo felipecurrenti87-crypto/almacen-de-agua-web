@@ -8,17 +8,17 @@ export default function PoliticaPrivacidadPage() {
   return (
     <div>
       {/* Hero — DARK */}
-      <section className="relative bg-[#050E14] py-28 md:py-36 overflow-hidden">
+      <section className="relative bg-[#EEF5F8] py-28 md:py-36 overflow-hidden">
         <MeshGradientBackground intensity="subtle" />
 
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <TextRevealLine>
-            <h1 className="font-heading font-bold text-4xl sm:text-5xl text-white mb-4">
+            <h1 className="font-heading font-bold text-4xl sm:text-5xl text-azul mb-4">
               Politica de Privacidad
             </h1>
           </TextRevealLine>
           <AnimatedSection delay={150}>
-            <p className="text-gris-dark text-lg max-w-lg mx-auto">
+            <p className="text-[#52647A] text-lg max-w-lg mx-auto">
               Protegemos tu informacion personal con los mas altos estandares de seguridad.
             </p>
           </AnimatedSection>

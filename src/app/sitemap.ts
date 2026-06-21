@@ -35,25 +35,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
-      url: `${baseUrl}/calculadora-envio`,
+      url: `${baseUrl}/conoce-el-sistema`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/sustentabilidad`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.6,
     },
     {
-      url: `${baseUrl}/calculadora-hidratacion`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.5,
-    },
-    {
-      url: `${baseUrl}/comparador`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/recordatorio-pedido`,
+      url: `${baseUrl}/preguntas-frecuentes`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.5,

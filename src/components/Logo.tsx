@@ -70,10 +70,10 @@ export default function Logo({
 
   return (
     <Image
-      src="/images/logo.png"
+      src={variant === "dark" ? "/images/logo-navy.png" : "/images/logo.png"}
       alt="Almacén de Agua"
-      width={160}
-      height={48}
+      width={190}
+      height={60}
       className={`object-contain transition-all duration-300 ${
         variant === "light" ? "brightness-0 invert" : ""
       } ${className}`}

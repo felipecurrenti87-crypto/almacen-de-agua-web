@@ -3,15 +3,21 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { business } from "@/data/business";
+import { business, resenas } from "@/data/business";
 import AnimatedSection from "@/components/AnimatedSection";
-import MeshGradientBackground from "@/components/MeshGradientBackground";
+import WaveDivider from "@/components/WaveDivider";
 import { StaggerContainer, StaggerItem } from "@/components/StaggerContainer";
 
 /* ─────────────────────────────────────────────
-   A) HERO — 100vh, centrado, mesh gradient
+   Brand colors
+   navy #1C3055 · azul medio #639BB6 · azul claro #BBD6E1
    ───────────────────────────────────────────── */
+const NAVY = "#1C3055";
+const FOOTER_BG = "#FFFFFF";
 
+/* ─────────────────────────────────────────────
+   Animation variants
+   ───────────────────────────────────────────── */
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
   visible: (i: number) => ({
@@ -26,25 +32,21 @@ const fadeUp = {
 };
 
 /* ─────────────────────────────────────────────
-   B) CÓMO FUNCIONA — 3 cards glass
+   Steps data (copy intacto)
    ───────────────────────────────────────────── */
-
 const steps = [
   {
     num: "01",
-    numColor: "#5BCBF5",
     title: "Registrate",
     desc: "Completa tus datos en 30 segundos. Una sola vez.",
   },
   {
     num: "02",
-    numColor: "#3D87A8",
     title: "Confirma",
     desc: "Te avisamos por WhatsApp cuando estas llegando al final del bidon.",
   },
   {
     num: "03",
-    numColor: "#06A4DD",
     title: "Recibi",
     desc: "Seguis el camion en vivo y recibis tu agua en la puerta.",
   },
@@ -54,37 +56,40 @@ export default function Home() {
   return (
     <>
       {/* ══════════════════════════════════════════
-          A) HERO — full viewport, centered
+          A) HERO — Video full-bleed (estilo Waiakea)
           ══════════════════════════════════════════ */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#050E14]">
-        <MeshGradientBackground intensity="normal" interactive />
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#1C3055]">
+        {/* Video de fondo */}
+        <video
+          className="absolute inset-0 w-full h-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster="/images/hero-principal.jpg"
+          aria-hidden="true"
+          tabIndex={-1}
+        >
+          <source src="/videos/hero-1.mp4" type="video/mp4" />
+        </video>
 
-        <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 text-center py-24 sm:py-32">
-          {/* Pill */}
-          <motion.div
-            custom={0}
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-          >
-            <span className="inline-flex items-center gap-2 bg-white/[0.06] backdrop-blur-sm text-[#B2DDF0] text-xs sm:text-sm font-heading font-semibold px-4 py-2 rounded-full border border-white/[0.08] mb-6 sm:mb-8">
-              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-              Nuevo en Mendoza
-            </span>
-          </motion.div>
+        {/* Velo neutro muy sutil solo para legibilidad del texto (sin filtro azul) */}
+        <div className="absolute inset-0 bg-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-black/15" />
 
+        {/* Contenido — empujado hacia arriba para dejar lugar a la imagen sobre el corte */}
+        <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 text-center pt-24 pb-[30vh] sm:pb-[30vh]">
           {/* Headline */}
           <motion.h1
             custom={1}
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            className="font-heading font-extrabold text-white leading-[1.08] mb-5 sm:mb-6"
-            style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}
+            className="font-heading font-semibold text-white leading-[1.05] uppercase tracking-[0.01em]"
+            style={{ fontSize: "clamp(2.4rem, 6vw, 4.75rem)" }}
           >
-            Tu agua,{" "}
-            <em className="not-italic text-[#5BCBF5] italic">siempre</em> a
-            tiempo.
+            Tu agua, siempre a tiempo
           </motion.h1>
 
           {/* Subtitle */}
@@ -93,8 +98,8 @@ export default function Home() {
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            className="font-quicksand font-medium text-[#B2DDF0] max-w-[600px] mx-auto mb-8 sm:mb-10 leading-relaxed"
-            style={{ fontSize: "clamp(1rem, 2vw, 1.25rem)" }}
+            className="font-quicksand font-normal text-white/85 max-w-[560px] mx-auto mt-6 mb-9 leading-relaxed"
+            style={{ fontSize: "clamp(0.95rem, 1.8vw, 1.15rem)" }}
           >
             El primer sistema de reparto predictivo de Mendoza. Predice cuando
             se te termina y te avisa antes. Vos confirmas por WhatsApp, nosotros
@@ -110,69 +115,97 @@ export default function Home() {
             className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
           >
             <Link
-              href="/quiero-ser-cliente"
-              className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#06A4DD] text-white font-heading font-bold text-base sm:text-lg transition-all duration-300 hover:shadow-[0_8px_32px_rgba(6,164,221,0.4)] hover:-translate-y-0.5 active:translate-y-0"
+              href="/tienda"
+              className="cta-glass w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#639BB6] text-white font-body font-bold text-base sm:text-lg transition-all duration-300 hover:bg-[#74acc6] hover:-translate-y-0.5 active:translate-y-0"
             >
-              Quiero ser cliente
+              Comprar ahora
             </Link>
             <Link
-              href="/tienda"
-              className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-full bg-transparent border border-white/20 text-white font-heading font-bold text-base sm:text-lg transition-all duration-300 hover:bg-white/[0.05] hover:border-white/40"
+              href="/nosotros"
+              className="cta-glass w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-full bg-white/10 border border-white/35 text-white font-body font-bold text-base sm:text-lg transition-all duration-300 hover:bg-white/20 hover:border-white/60"
             >
-              Conoce el sistema
+              Sobre nosotros
             </Link>
+          </motion.div>
+
+          {/* Indicador de scroll */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.1, duration: 0.8 }}
+            className="mt-10 sm:mt-14 flex justify-center"
+          >
+            <motion.div
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+              className="text-white/55"
+              aria-hidden="true"
+            >
+              <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7" />
+              </svg>
+            </motion.div>
           </motion.div>
         </div>
 
+        {/* Onda doble (estilo Waiakea) hacia la sección blanca */}
+        <div className="absolute bottom-0 left-0 right-0 z-10">
+          <WaveDivider color="#FFFFFF" backColor="#DCEAF2" double />
+        </div>
       </section>
 
       {/* ══════════════════════════════════════════
-          B) CÓMO FUNCIONA — dark, glass cards
+          B) CÓMO FUNCIONA — claro
           ══════════════════════════════════════════ */}
-      <section className="relative py-20 sm:py-28 md:py-36 bg-[#050E14] overflow-hidden">
-        {/* Very subtle blobs */}
-        <MeshGradientBackground intensity="subtle" />
+      <section className="relative pt-[160px] sm:pt-[240px] pb-20 sm:pb-28 bg-white">
+        {/* Imagen de producto sobre el corte de onda (estilo Waiakea) */}
+        <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 -top-[178px] sm:-top-[310px] w-[90%] max-w-[720px] z-20">
+          <Image
+            src="/images/hero-productos-v2.png"
+            alt="Productos Almacen de Agua: bidones, soda Puragua y dispensers"
+            width={1500}
+            height={1055}
+            priority
+            sizes="(max-width: 768px) 90vw, 720px"
+            className="w-full h-auto drop-shadow-[0_30px_45px_rgba(28,48,85,0.28)]"
+          />
+        </div>
 
-        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6">
-          {/* Section header */}
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-14 sm:mb-20">
             <AnimatedSection>
-              <span className="font-heading font-semibold text-[#5BCBF5] text-xs uppercase tracking-[3px]">
+              <span className="brand-eyebrow text-[#639BB6] text-xs">
                 El sistema
               </span>
             </AnimatedSection>
             <AnimatedSection delay={80}>
               <h2
-                className="font-heading font-extrabold text-white mt-4 mb-4"
-                style={{ fontSize: "clamp(1.75rem, 4vw, 2.75rem)" }}
+                className="font-heading font-semibold text-[#1C3055] mt-4 mb-4 tracking-[-0.01em]"
+                style={{ fontSize: "clamp(1.85rem, 4vw, 2.85rem)" }}
               >
                 Tres pasos.{" "}
-                <em className="not-italic italic text-[#5BCBF5]">Cero</em>{" "}
+                <em className="not-italic italic text-[#639BB6]">Cero</em>{" "}
                 complicaciones.
               </h2>
             </AnimatedSection>
             <AnimatedSection delay={160}>
-              <p className="font-quicksand font-medium text-[#B2DDF0]/70 text-sm sm:text-base max-w-md mx-auto">
+              <p className="font-quicksand text-[#5A6B7D] text-sm sm:text-base max-w-md mx-auto">
                 Sin app, sin formularios complejos. Solo WhatsApp.
               </p>
             </AnimatedSection>
           </div>
 
-          {/* 3 Glass cards */}
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
             {steps.map((step) => (
               <StaggerItem key={step.num}>
-                <div className="relative rounded-2xl p-6 sm:p-7 h-full border border-white/[0.08] bg-white/[0.04] backdrop-blur-[20px] transition-all duration-500 hover:border-white/[0.15] hover:bg-white/[0.06]">
-                  <span
-                    className="font-heading font-extrabold text-sm tracking-[2px] block mb-4"
-                    style={{ color: step.numColor }}
-                  >
+                <div className="relative rounded-2xl p-6 sm:p-7 h-full border border-[#BBD6E1]/60 bg-[#EEF5F8] transition-all duration-500 hover:border-[#639BB6]/50 hover:shadow-[0_12px_40px_-12px_rgba(28,48,85,0.18)] hover:-translate-y-1">
+                  <span className="font-heading font-bold text-sm tracking-[2px] block mb-4 text-[#639BB6]">
                     {step.num}
                   </span>
-                  <h3 className="font-heading font-bold text-white text-xl sm:text-2xl mb-2">
+                  <h3 className="font-heading font-semibold uppercase text-[#1C3055] text-xl sm:text-2xl mb-2">
                     {step.title}
                   </h3>
-                  <p className="font-quicksand text-[#B2DDF0]/60 text-sm leading-relaxed">
+                  <p className="font-quicksand text-[#5A6B7D] text-sm leading-relaxed">
                     {step.desc}
                   </p>
                 </div>
@@ -183,26 +216,114 @@ export default function Home() {
       </section>
 
       {/* ══════════════════════════════════════════
-          C) NUESTRO LOCAL — split layout
+          PRUEBA SOCIAL — opiniones reales
           ══════════════════════════════════════════ */}
-      <section className="relative py-20 sm:py-28 md:py-36 bg-[#050E14] overflow-hidden">
-        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
+      <section className="relative py-20 sm:py-28 bg-white overflow-hidden">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-12 sm:mb-16">
+            <AnimatedSection>
+              <span className="brand-eyebrow text-[#639BB6] text-xs">Opiniones reales</span>
+            </AnimatedSection>
+            <AnimatedSection delay={80}>
+              <h2
+                className="font-heading font-semibold text-[#1C3055] mt-4 tracking-[-0.01em]"
+                style={{ fontSize: "clamp(1.75rem, 4vw, 2.6rem)" }}
+              >
+                Lo que dicen nuestros clientes
+              </h2>
+            </AnimatedSection>
+            <AnimatedSection delay={140}>
+              <div className="inline-flex items-center gap-2 mt-5 bg-[#EEF5F8] border border-[#BBD6E1]/60 rounded-full px-4 py-2">
+                <span className="text-yellow-400 text-sm tracking-tight">
+                  ★★★★<span className="text-[#BBD6E1]">★</span>
+                </span>
+                <span className="font-heading font-bold text-[#1C3055] text-sm">
+                  {business.rating}
+                </span>
+                <span className="font-quicksand text-[#52647A] text-xs">
+                  · {business.totalResenas} reseñas en Google
+                </span>
+              </div>
+            </AnimatedSection>
+          </div>
+
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+            {resenas.map((r, i) => (
+              <StaggerItem key={i}>
+                <div className="h-full flex flex-col rounded-2xl p-6 bg-[#EEF5F8] border border-[#BBD6E1]/60">
+                  <span className="text-yellow-400 text-sm mb-3">
+                    {"★".repeat(r.rating)}
+                  </span>
+                  <p className="font-quicksand text-[#52647A] text-sm leading-relaxed mb-5 flex-1">
+                    &ldquo;{r.texto}&rdquo;
+                  </p>
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-8 h-8 rounded-full bg-[#639BB6]/15 text-[#639BB6] flex items-center justify-center font-heading font-bold text-xs flex-shrink-0">
+                      {r.autor[0]}
+                    </div>
+                    <span className="font-heading font-semibold text-[#1C3055] text-sm">
+                      {r.autor}
+                    </span>
+                  </div>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════
+          BLOQUE NAVY (continuo): video · nuestro local · CTA
+          ══════════════════════════════════════════ */}
+
+      {/* B.2) SEGUNDO VIDEO — bloque de producto */}
+      <section className="relative bg-[#1C3055] h-[58vh] min-h-[360px] overflow-hidden">
+        <video
+          className="absolute inset-0 w-full h-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
+          tabIndex={-1}
+        >
+          <source src="/videos/hero-2.mp4" type="video/mp4" />
+        </video>
+        {/* Video natural, sin filtro azul. La sección clara TERMINA sobre el
+            video con una onda blanca; abajo se funde en navy hacia el bloque. */}
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#1C3055] to-transparent" />
+
+        {/* Onda blanca arriba — la sección clara termina sobre el video */}
+        <div className="absolute top-0 left-0 right-0 z-10">
+          <WaveDivider color="#FFFFFF" flip />
+        </div>
+
+        {/* Onda navy abajo — el video se disuelve en el bloque navy */}
+        <div className="absolute bottom-0 left-0 right-0 z-10">
+          <WaveDivider color={NAVY} />
+        </div>
+      </section>
+
+      {/* C) NUESTRO LOCAL — navy, texto claro */}
+      <section className="relative py-16 sm:py-24 md:py-28 bg-[#1C3055] overflow-hidden">
+        <div className="absolute inset-0 brand-texture opacity-[0.018] pointer-events-none" />
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-            {/* Text */}
             <AnimatedSection>
               <div>
-                <span className="font-heading font-semibold text-[#5BCBF5] text-xs uppercase tracking-[3px] block mb-4">
+                <span className="brand-eyebrow text-[#BBD6E1] text-xs block mb-4">
                   Visitanos
                 </span>
                 <h2
-                  className="font-heading font-extrabold text-white mb-5"
-                  style={{ fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)" }}
+                  className="font-heading font-semibold text-white mb-5 tracking-[-0.01em]"
+                  style={{ fontSize: "clamp(1.85rem, 3.5vw, 2.6rem)" }}
                 >
                   Estamos en{" "}
-                  <em className="not-italic italic text-[#5BCBF5]">Mendoza</em>{" "}
+                  <em className="not-italic italic text-[#BBD6E1]">Mendoza</em>{" "}
                   desde hace años.
                 </h2>
-                <p className="font-quicksand text-[#B2DDF0]/60 text-sm sm:text-base leading-relaxed mb-6 max-w-lg">
+                <p className="font-quicksand text-white/80 text-sm sm:text-base leading-relaxed mb-6 max-w-lg">
                   Somos un local fisico real, con mas de 1.000 hogares
                   atendidos. Pasa a conocernos o registrate para que te llevemos
                   el agua a casa.
@@ -211,7 +332,7 @@ export default function Home() {
                   href={business.googleMapsEmbed.replace("/embed?", "/dir/?")}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-[#5BCBF5] font-heading font-bold text-sm hover:text-white transition-colors group"
+                  className="inline-flex items-center gap-2 text-[#BBD6E1] font-heading font-semibold text-sm hover:text-white transition-colors group"
                 >
                   Como llegar
                   <svg
@@ -231,9 +352,8 @@ export default function Home() {
               </div>
             </AnimatedSection>
 
-            {/* Image */}
             <AnimatedSection delay={150}>
-              <div className="relative rounded-3xl overflow-hidden aspect-[4/3]">
+              <div className="relative rounded-3xl overflow-hidden aspect-[4/3] shadow-[0_24px_60px_-20px_rgba(0,0,0,0.5)] ring-1 ring-white/10">
                 <Image
                   src="/images/about-store.jpg"
                   alt="Tienda Almacen de Agua - Godoy Cruz, Mendoza"
@@ -242,14 +362,12 @@ export default function Home() {
                   className="w-full h-full object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
-                {/* Navy gradient overlay from bottom */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#050E14]/70 via-transparent to-transparent" />
-                {/* Address badge */}
-                <div className="absolute bottom-4 left-4 right-4 bg-white/[0.06] backdrop-blur-md rounded-xl px-4 py-3 border border-white/[0.08]">
-                  <p className="font-heading font-bold text-white text-sm">
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1C3055]/60 via-transparent to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md rounded-xl px-4 py-3 border border-white/60 shadow-lg">
+                  <p className="font-heading font-semibold text-[#1C3055] text-sm">
                     {business.direccion}
                   </p>
-                  <p className="font-quicksand text-[#B2DDF0]/60 text-xs mt-0.5">
+                  <p className="font-quicksand text-[#5A6B7D] text-xs mt-0.5">
                     {business.horarios.semana} | {business.horarios.sabado}
                   </p>
                 </div>
@@ -259,35 +377,33 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════
-          D) CTA FINAL — mesh gradient intense
-          ══════════════════════════════════════════ */}
-      <section className="relative py-24 sm:py-32 md:py-40 bg-[#050E14] overflow-hidden">
-        <MeshGradientBackground intensity="intense" interactive />
+      {/* D) CTA FINAL — navy (cierre del bloque) */}
+      <section className="relative pt-8 pb-24 sm:pb-32 bg-[#1C3055] overflow-hidden">
+        {/* Textura geométrica muy sutil (misma opacidad que "Estamos en Mendoza") */}
+        <div className="absolute inset-0 brand-texture opacity-[0.018] pointer-events-none" />
 
         <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <AnimatedSection>
             <h2
-              className="font-heading font-extrabold text-white mb-4"
-              style={{ fontSize: "clamp(1.75rem, 4vw, 2.75rem)" }}
+              className="font-heading font-semibold text-white mb-4 tracking-[-0.01em]"
+              style={{ fontSize: "clamp(1.85rem, 4vw, 2.85rem)" }}
             >
-              Listo para no quedarte{" "}
-              <em className="not-italic italic text-[#5BCBF5]">nunca mas</em>{" "}
-              sin agua?
+              Registrate{" "}
+              <em className="not-italic italic text-[#BBD6E1]">gratis</em>{" "}
+              al Reparto Inteligente
             </h2>
           </AnimatedSection>
 
           <AnimatedSection delay={100}>
-            <p className="font-quicksand font-medium text-[#B2DDF0]/70 text-sm sm:text-base max-w-lg mx-auto mb-8 sm:mb-10">
-              Registrate gratis al Reparto Inteligente. 30 segundos. Por
-              WhatsApp.
+            <p className="font-quicksand text-white/75 text-sm sm:text-base max-w-lg mx-auto mb-8 sm:mb-10">
+              30 segundos y listo. Te registrás directo por WhatsApp.
             </p>
           </AnimatedSection>
 
           <AnimatedSection delay={200}>
             <Link
               href="/quiero-ser-cliente"
-              className="inline-flex items-center justify-center gap-2 px-10 py-4.5 rounded-full bg-[#06A4DD] text-white font-heading font-bold text-lg transition-all duration-300 hover:shadow-[0_8px_40px_rgba(6,164,221,0.45)] hover:-translate-y-0.5 active:translate-y-0"
+              className="inline-flex items-center justify-center gap-2 px-10 py-4 rounded-full bg-white text-[#1C3055] font-heading font-semibold text-lg transition-all duration-300 hover:bg-[#BBD6E1] hover:-translate-y-0.5 active:translate-y-0 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.4)]"
             >
               Quiero ser cliente
               <svg
@@ -307,10 +423,15 @@ export default function Home() {
           </AnimatedSection>
 
           <AnimatedSection delay={300}>
-            <p className="font-quicksand text-[#B2DDF0]/40 text-xs sm:text-sm mt-6">
+            <p className="font-quicksand text-white/45 text-xs sm:text-sm mt-6">
               Sin costo. Sin app. Sin compromiso.
             </p>
           </AnimatedSection>
+        </div>
+
+        {/* Onda hacia el footer (claro) */}
+        <div className="absolute bottom-0 left-0 right-0">
+          <WaveDivider color={FOOTER_BG} />
         </div>
       </section>
     </>

@@ -115,7 +115,7 @@ export default function CheckoutPage() {
           <div className="space-y-3">
             <Link
               href="/tienda"
-              className="block bg-negro text-white px-8 py-3 rounded-2xl font-heading font-bold hover:bg-negro-medium transition-colors"
+              className="block bg-[#1C3055] text-white px-8 py-3 rounded-2xl font-heading font-bold hover:bg-[#16264a] transition-colors"
             >
               Seguir comprando
             </Link>
@@ -154,7 +154,7 @@ export default function CheckoutPage() {
           </p>
           <Link
             href="/tienda"
-            className="bg-negro text-white px-8 py-3 rounded-2xl font-heading font-bold hover:bg-negro-medium transition-colors"
+            className="bg-[#1C3055] text-white px-8 py-3 rounded-2xl font-heading font-bold hover:bg-[#16264a] transition-colors"
           >
             Ir a la tienda
           </Link>
@@ -352,7 +352,7 @@ export default function CheckoutPage() {
                   <motion.button
                     type="submit"
                     whileTap={{ scale: 0.98 }}
-                    className="w-full py-4 rounded-2xl font-heading font-bold text-white bg-negro hover:bg-negro-medium transition-all duration-300 hover:shadow-xl hover:shadow-celeste-neon/15"
+                    className="w-full py-4 rounded-2xl font-heading font-bold text-white bg-[#1C3055] hover:bg-[#16264a] transition-all duration-300 hover:shadow-xl hover:shadow-celeste-neon/15"
                   >
                     Confirmar por WhatsApp
                   </motion.button>

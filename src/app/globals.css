@@ -1,21 +1,28 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-celeste: #5BB7E8;
-  --color-celeste-light: #E8F4FA;
-  --color-celeste-medium: #B8D9EE;
-  --color-celeste-dark: #3A9BD5;
-  --color-celeste-glow: #7DD3FC;
-  --color-celeste-neon: #38BDF8;
-  --color-azul: #1B3A5C;
-  --color-azul-accent: #2E86C1;
+  /* ── Brand palette (Almacén de Agua) ──
+     Navy #1C3055 · Azul medio #639BB6 · Azul claro #BBD6E1 · Blanco #FFFFFF
+     Tokens existentes remapeados a la marca para re-skin global sin tocar componentes. */
+  --color-celeste: #639BB6;        /* azul medio — secundario */
+  --color-celeste-light: #EEF5F8;  /* azul claro muy tenue — fondos suaves */
+  --color-celeste-medium: #BBD6E1; /* azul claro */
+  --color-celeste-dark: #4E7E97;   /* azul medio oscurecido — hover/acentos */
+  --color-celeste-glow: #BBD6E1;   /* azul claro — brillos */
+  --color-celeste-neon: #639BB6;   /* azul medio — CTAs/precios (antes neón) */
+  --color-azul: #1C3055;           /* navy — texto fuerte / principal */
+  --color-azul-accent: #639BB6;    /* azul medio — resaltados */
   --color-negro: #0A0A0F;
   --color-negro-light: #141420;
   --color-negro-medium: #1C1C2E;
-  --color-gris-suave: #6B7B8D;
-  --color-gris-dark: #94A3B8;
-  --font-heading: var(--font-plus-jakarta), "Plus Jakarta Sans", sans-serif;
-  --font-body: var(--font-inter), "Inter", sans-serif;
+  --color-gris-suave: #5A6B7D;
+  --color-gris-dark: #7C8DA0;
+  /* Marca explícita (para usar directo donde haga falta) */
+  --color-navy: #1C3055;
+  --color-azul-medio: #639BB6;
+  --color-azul-claro: #BBD6E1;
+  --font-heading: var(--font-josefin), "Josefin Sans", sans-serif;
+  --font-body: var(--font-montserrat), "Montserrat", sans-serif;
 }
 
 /* Default cursor restored */
@@ -32,86 +39,12 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Dark mode overrides */
-html.dark body {
-  background-color: var(--color-negro);
-  color: var(--color-gris-dark);
-}
-html.dark .bg-white {
-  background-color: var(--color-negro) !important;
-}
-html.dark .bg-celeste-light\/30,
-html.dark .bg-celeste-light\/40,
-html.dark .bg-celeste-light\/20 {
-  background-color: var(--color-negro-light) !important;
-}
-html.dark .text-azul {
-  color: #e2e8f0 !important;
-}
-html.dark .text-gris-suave {
-  color: var(--color-gris-dark) !important;
-}
-html.dark .bg-white\/90 {
-  background-color: rgba(10, 10, 15, 0.9) !important;
-}
-html.dark .bg-white\/80 {
-  background-color: rgba(10, 10, 15, 0.8) !important;
-}
-html.dark .bg-white\/50 {
-  background-color: rgba(10, 10, 15, 0.5) !important;
-}
-html.dark .border-celeste-medium\/30 {
-  border-color: rgba(56, 189, 248, 0.15) !important;
-}
-html.dark .shadow-lg {
-  --tw-shadow-color: rgba(56, 189, 248, 0.05);
-}
-html.dark .from-white {
-  --tw-gradient-from: var(--color-negro) !important;
-}
-html.dark .via-white\/60 {
-  --tw-gradient-via: rgba(10, 10, 15, 0.6) !important;
-}
-/* Tienda gradient bg in dark mode */
-html.dark .bg-gradient-to-b {
-  background: var(--color-negro) !important;
-}
-html.dark .from-celeste-light\/30 {
-  --tw-gradient-from: transparent !important;
-}
-html.dark .to-celeste-light\/20 {
-  --tw-gradient-to: transparent !important;
-}
-/* Header scrolled text contrast in dark mode */
-html.dark .bg-white\/95 {
-  background-color: rgba(10, 10, 15, 0.95) !important;
-}
-/* Product cards in dark mode */
-html.dark .bg-white.rounded-3xl,
-html.dark .group.bg-white {
-  background-color: var(--color-negro-light) !important;
-  border-color: rgba(56, 189, 248, 0.12) !important;
-}
-/* Input fields in dark mode */
-html.dark input[type="text"] {
-  background-color: var(--color-negro-medium) !important;
-  border-color: rgba(56, 189, 248, 0.15) !important;
-  color: #e2e8f0 !important;
-}
-html.dark input[type="text"]::placeholder {
-  color: rgba(148, 163, 184, 0.5) !important;
-}
-/* Filter pills in dark mode */
-html.dark .bg-white.rounded-2xl {
-  background-color: var(--color-negro-light) !important;
-}
-/* Card hover shadow */
-html.dark .hover\:shadow-xl:hover {
-  --tw-shadow-color: rgba(56, 189, 248, 0.08) !important;
-}
-/* Price text */
-html.dark .text-celeste-neon {
-  color: var(--color-celeste-neon) !important;
+/* Títulos: Josefin Sans en peso semibold (elegante, geométrico) en vez de
+   bold/extrabold. La especificidad elemento+clase gana sobre las utilidades
+   font-bold/font-extrabold, así que con una sola regla todos los títulos del
+   sitio quedan en el peso correcto sin tocar botones ni etiquetas. */
+h1.font-heading, h2.font-heading, h3.font-heading {
+  font-weight: 600;
 }
 
 /* Lenis smooth scroll integration */
@@ -139,7 +72,7 @@ html.lenis, html.lenis body {
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
 ::selection {
-  background: rgba(56, 189, 248, 0.3);
+  background: rgba(99, 155, 182, 0.3);
   color: var(--color-azul);
 }
 
@@ -151,13 +84,6 @@ html.lenis, html.lenis body {
   border: 1px solid rgba(255, 255, 255, 0.35);
 }
 
-.glass-dark {
-  background: rgba(10, 10, 15, 0.8);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(125, 211, 252, 0.1);
-}
-
 /* Gradient text utilities */
 .gradient-text {
   background: linear-gradient(135deg, var(--color-celeste) 0%, var(--color-azul-accent) 100%);
@@ -167,7 +93,7 @@ html.lenis, html.lenis body {
 }
 
 .gradient-text-glow {
-  background: linear-gradient(135deg, #cef0ff 0%, var(--color-celeste-neon) 35%, var(--color-celeste-glow) 65%, #dff6ff 100%);
+  background: linear-gradient(135deg, #1C3055 0%, #639BB6 55%, #1C3055 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -263,69 +189,7 @@ html.lenis, html.lenis body {
 }
 .animate-orb-pulse { animation: orbPulse 6s ease-in-out infinite; }
 
-/* Liquid Glass Buttons */
-.liquid-glass-btn {
-  background: linear-gradient(135deg, rgba(56,189,248,0.25) 0%, rgba(125,211,252,0.1) 50%, rgba(56,189,248,0.2) 100%);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(125,211,252,0.3);
-  box-shadow:
-    0 0 0 1px rgba(255,255,255,0.05) inset,
-    0 1px 0 0 rgba(255,255,255,0.1) inset,
-    0 4px 20px rgba(56,189,248,0.15),
-    0 1px 3px rgba(0,0,0,0.2);
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-.liquid-glass-btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 50%;
-  background: linear-gradient(180deg, rgba(255,255,255,0.12) 0%, transparent 100%);
-  border-radius: inherit;
-  pointer-events: none;
-}
-.liquid-glass-btn:hover {
-  background: linear-gradient(135deg, rgba(56,189,248,0.35) 0%, rgba(125,211,252,0.15) 50%, rgba(56,189,248,0.3) 100%);
-  border-color: rgba(125,211,252,0.5);
-  box-shadow:
-    0 0 0 1px rgba(255,255,255,0.08) inset,
-    0 1px 0 0 rgba(255,255,255,0.15) inset,
-    0 8px 32px rgba(56,189,248,0.25),
-    0 2px 6px rgba(0,0,0,0.2);
-}
-
-.liquid-glass-btn-outline {
-  background: rgba(255,255,255,0.03);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(125,211,252,0.2);
-  box-shadow: 0 0 0 1px rgba(255,255,255,0.03) inset;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-.liquid-glass-btn-outline::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 50%;
-  background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, transparent 100%);
-  border-radius: inherit;
-  pointer-events: none;
-}
-.liquid-glass-btn-outline:hover {
-  background: rgba(56,189,248,0.08);
-  border-color: rgba(125,211,252,0.4);
-  box-shadow: 0 4px 16px rgba(56,189,248,0.1);
-}
-
+/* Liquid Glass Button (claro) — usado en ProductCard */
 .liquid-glass-btn-light {
   background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(232,244,250,0.6) 100%);
   backdrop-filter: blur(12px);
@@ -368,88 +232,96 @@ html.lenis, html.lenis body {
   animation: waveDrift 12s ease-in-out infinite;
 }
 
-/* ── Mesh Gradient Blob Animations ── */
-.mesh-blob {
-  filter: blur(100px);
+/* Quicksand remapeado a Montserrat (marca) — se mantiene la clase para no tocar componentes */
+.font-quicksand {
+  font-family: var(--font-montserrat), "Montserrat", sans-serif;
+}
+
+/* Subtítulo / etiqueta de marca: Montserrat 300, tracking amplio, interlineado generoso */
+.brand-eyebrow {
+  font-family: var(--font-montserrat), "Montserrat", sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  line-height: 1.8;
+  text-transform: uppercase;
+}
+
+/* Textura geométrica de marca como overlay muy sutil */
+.brand-texture {
+  background-image: url("/images/textures/texture-1.png");
+  background-repeat: repeat;
+  background-size: 320px;
+}
+
+/* ── Reflejos de agua (caustics) — deriva lenta de dos capas ── */
+@keyframes causticsDriftA {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(1.8%, 1.4%) scale(1.07); }
+}
+@keyframes causticsDriftB {
+  0%, 100% { transform: translate(0, 0) scale(1.06); }
+  50% { transform: translate(-2.2%, -1.2%) scale(1); }
+}
+.caustics-drift-a {
+  animation: causticsDriftA 24s ease-in-out infinite;
+  opacity: 0.13;
   will-change: transform;
 }
-@keyframes meshDrift1 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  20% { transform: translate(80px, -50px) scale(1.15); }
-  40% { transform: translate(-40px, 70px) scale(0.9); }
-  60% { transform: translate(60px, 30px) scale(1.1); }
-  80% { transform: translate(-30px, -40px) scale(0.95); }
-}
-@keyframes meshDrift2 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  25% { transform: translate(-70px, 40px) scale(0.92); }
-  50% { transform: translate(50px, -60px) scale(1.12); }
-  75% { transform: translate(-20px, -30px) scale(1.05); }
-}
-@keyframes meshDrift3 {
-  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.4; }
-  30% { transform: translate(60px, 50px) scale(1.18); opacity: 0.55; }
-  60% { transform: translate(-50px, -30px) scale(0.88); opacity: 0.35; }
-}
-@keyframes meshDrift4 {
-  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
-  35% { transform: translate(-60px, 50px) scale(1.2); opacity: 0.45; }
-  70% { transform: translate(40px, -50px) scale(0.85); opacity: 0.25; }
-}
-.mesh-blob-1 { animation: meshDrift1 10s ease-in-out infinite; }
-.mesh-blob-2 { animation: meshDrift2 8s ease-in-out infinite 1s; }
-.mesh-blob-3 { animation: meshDrift3 12s ease-in-out infinite 2s; }
-.mesh-blob-4 { animation: meshDrift4 9s ease-in-out infinite 0.5s; }
-
-@media (max-width: 768px) {
-  .mesh-blob { filter: blur(80px); }
+.caustics-drift-b {
+  animation: causticsDriftB 32s ease-in-out infinite;
+  opacity: 0.08;
+  mix-blend-mode: multiply;
+  will-change: transform;
 }
 
-.font-quicksand {
-  font-family: var(--font-quicksand), "Quicksand", sans-serif;
+/* ── CTA Liquid Glass + brillo (botones del hero) ── */
+.cta-glass {
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -8px 18px rgba(255, 255, 255, 0.06),
+    inset 0 1px 8px rgba(255, 255, 255, 0.18),
+    0 10px 30px -8px rgba(28, 48, 85, 0.45);
 }
-
-/* ── Water Ripple Click Effect ── */
-.water-ripple {
+/* Reflejo superior tipo vidrio */
+.cta-glass::before {
+  content: "";
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  border: 2px solid rgba(91, 203, 245, 0.5);
-  transform: translate(-50%, -50%);
+  inset: 0 0 55% 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%);
   pointer-events: none;
-  opacity: 0;
+  z-index: 1;
 }
-.water-ripple-1 {
-  animation: rippleExpand 1.4s ease-out forwards;
+/* Barrido de brillo (sweep) */
+.cta-glass::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: -75%;
+  width: 55%;
+  height: 140%;
+  background: linear-gradient(
+    75deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.55) 50%,
+    transparent 100%
+  );
+  transform: skewX(-18deg);
+  pointer-events: none;
+  z-index: 2;
+  animation: ctaShine 5s ease-in-out infinite;
 }
-.water-ripple-2 {
-  animation: rippleExpand 1.4s ease-out 0.15s forwards;
+.cta-glass > * {
+  position: relative;
+  z-index: 3;
 }
-.water-ripple-3 {
-  animation: rippleExpand 1.4s ease-out 0.3s forwards;
-}
-@keyframes rippleExpand {
-  0% {
-    width: 0;
-    height: 0;
-    opacity: 0.7;
-    border-width: 3px;
-    border-color: rgba(91, 203, 245, 0.6);
-  }
-  50% {
-    opacity: 0.4;
-    border-color: rgba(6, 164, 221, 0.3);
-  }
-  100% {
-    width: 350px;
-    height: 350px;
-    opacity: 0;
-    border-width: 1px;
-    border-color: rgba(91, 203, 245, 0);
-  }
+@keyframes ctaShine {
+  0% { left: -75%; }
+  16% { left: 130%; }
+  100% { left: 130%; }
 }
 
 /* Reduced motion: disable complex animations */
