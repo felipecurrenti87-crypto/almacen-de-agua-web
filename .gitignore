@@ -36,6 +36,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+# carpetas de assets viejos / referencia, no son del codigo del sitio
+/arreglo de web 1/
+/ejemplo/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
