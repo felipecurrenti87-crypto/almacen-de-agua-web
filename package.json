@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "db:schema": "tsx scripts/run-schema.ts",
-    "db:seed": "tsx scripts/seed.ts"
+    "db:schema": "tsx --env-file=.env.local scripts/run-schema.ts",
+    "db:seed": "tsx --env-file=.env.local scripts/seed.ts"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.1.0",

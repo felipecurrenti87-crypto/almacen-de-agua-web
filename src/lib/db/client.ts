@@ -15,10 +15,14 @@ let cached: NeonQueryFunction<false, false> | null = null;
 
 function getSql(): NeonQueryFunction<false, false> {
   if (cached) return cached;
-  const url = process.env.DATABASE_URL;
+  const url =
+    process.env.DATABASE_URL ||
+    process.env.POSTGRES_URL ||
+    process.env.POSTGRES_URL_NON_POOLING ||
+    process.env.DATABASE_URL_UNPOOLED;
   if (!url) {
     throw new Error(
-      "DATABASE_URL no esta definida. Configurala en .env.local (local) o en las env vars de Vercel (deploy).",
+      "Ninguna URL de Postgres definida (DATABASE_URL / POSTGRES_URL / POSTGRES_URL_NON_POOLING / DATABASE_URL_UNPOOLED). Configurala en .env.local (local) o en Vercel (deploy).",
     );
   }
   cached = neon(url);

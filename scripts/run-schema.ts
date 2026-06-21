@@ -6,18 +6,23 @@
  */
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { config } from "dotenv";
 import { neon } from "@neondatabase/serverless";
 
-// Carga .env.local primero (Next style), luego .env
-config({ path: ".env.local" });
-config({ path: ".env" });
+// Node carga .env.local via --env-file=.env.local (ver package.json:db:schema).
 
-const url = process.env.DATABASE_URL;
+const url =
+  process.env.DATABASE_URL ||
+  process.env.POSTGRES_URL ||
+  process.env.POSTGRES_URL_NON_POOLING ||
+  process.env.DATABASE_URL_UNPOOLED;
 if (!url) {
-  console.error("[schema] Falta DATABASE_URL en .env.local");
+  console.error(
+    "[schema] Falta DATABASE_URL (o POSTGRES_URL) en .env.local.\n" +
+      "  Corre: npx vercel env pull .env.local --environment=production",
+  );
   process.exit(1);
 }
+console.log(`[schema] Usando ${url.split("@")[1]?.split("/")[0] || "?"} como host`);
 
 const sql = neon(url);
 const ddl = readFileSync(join(process.cwd(), "scripts", "schema.sql"), "utf8");
