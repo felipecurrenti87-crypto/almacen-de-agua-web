@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -53,14 +54,30 @@ const steps = [
 ];
 
 export default function Home() {
+  const heroVideoRef = useRef<HTMLVideoElement>(null);
+
+  // Elegir el video segun el dispositivo: celular = version liviana (2MB),
+  // compu = original en calidad (8MB). Se carga uno solo (sin doble descarga)
+  // y se fuerza el play para que no quede "tildado" el autoplay en mobile.
+  useEffect(() => {
+    const v = heroVideoRef.current;
+    if (!v) return;
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    v.src = isMobile ? "/videos/hero-1-mobile.mp4" : "/videos/hero-1.mp4";
+    v.load();
+    v.play().catch(() => {});
+  }, []);
+
   return (
     <>
       {/* ══════════════════════════════════════════
           A) HERO — Video full-bleed (estilo Waiakea)
           ══════════════════════════════════════════ */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#1C3055]">
-        {/* Video de fondo */}
+        {/* Video de fondo — el src lo elige useEffect segun el dispositivo.
+            El poster (foto liviana) se ve al instante mientras el video carga. */}
         <video
+          ref={heroVideoRef}
           className="absolute inset-0 w-full h-full object-cover"
           autoPlay
           muted
@@ -70,9 +87,7 @@ export default function Home() {
           poster="/images/hero-principal.jpg"
           aria-hidden="true"
           tabIndex={-1}
-        >
-          <source src="/videos/hero-1.mp4" type="video/mp4" />
-        </video>
+        />
 
         {/* Velo neutro muy sutil solo para legibilidad del texto (sin filtro azul) */}
         <div className="absolute inset-0 bg-black/20" />
