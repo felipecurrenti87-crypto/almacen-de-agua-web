@@ -106,6 +106,14 @@ export default function ChatWidget() {
     }
   }, [messages, typing]);
 
+  // Avisar al boton de WhatsApp para que se oculte mientras el chat esta abierto
+  // (en mobile quedan superpuestos y el tap se va a WhatsApp por error).
+  useEffect(() => {
+    window.dispatchEvent(
+      new CustomEvent("chatwidget:toggle", { detail: { open } }),
+    );
+  }, [open]);
+
   const send = (text: string) => {
     if (!text.trim()) return;
     const userMsg: Message = { role: "user", text: text.trim() };

@@ -1,12 +1,26 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { business } from "@/data/business";
 
 export default function WhatsAppButton() {
   const url = `${business.whatsappLink}?text=${encodeURIComponent(business.whatsappMensaje)}`;
+  const [chatOpen, setChatOpen] = useState(false);
+
+  // Ocultar el boton mientras el chat esta abierto (evita taps cruzados en mobile)
+  useEffect(() => {
+    const onToggle = (e: Event) => {
+      const detail = (e as CustomEvent<{ open?: boolean }>).detail;
+      setChatOpen(Boolean(detail?.open));
+    };
+    window.addEventListener("chatwidget:toggle", onToggle);
+    return () => window.removeEventListener("chatwidget:toggle", onToggle);
+  }, []);
 
   return (
+    <AnimatePresence>
+      {!chatOpen && (
     <motion.a
       href={url}
       target="_blank"
@@ -15,7 +29,8 @@ export default function WhatsAppButton() {
       aria-label="Contactar por WhatsApp"
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
-      transition={{ delay: 1.5, type: "spring", stiffness: 300, damping: 20 }}
+      exit={{ scale: 0, opacity: 0 }}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
     >
       {/* Tooltip */}
       <span className="bg-[#1C3055] text-white text-sm font-semibold px-4 py-2 rounded-full shadow-lg transition-all duration-300 font-heading opacity-0 translate-x-4 pointer-events-none group-hover:opacity-100 group-hover:translate-x-0 border border-celeste-neon/20">
@@ -37,5 +52,7 @@ export default function WhatsAppButton() {
         <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-20" />
       </span>
     </motion.a>
+      )}
+    </AnimatePresence>
   );
 }
