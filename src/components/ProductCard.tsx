@@ -218,7 +218,14 @@ export default function ProductCard({
                       d="M12 4v16m8-8H4"
                     />
                   </svg>
-                  {isDispenser ? "Agregar" : "Agregar al carrito"}
+                  {isDispenser ? (
+                    "Agregar"
+                  ) : (
+                    <>
+                      <span className="sm:hidden">Agregar</span>
+                      <span className="hidden sm:inline">Agregar al carrito</span>
+                    </>
+                  )}
                 </motion.span>
               )}
             </AnimatePresence>
