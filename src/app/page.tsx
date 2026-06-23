@@ -57,19 +57,12 @@ export default function Home() {
   const heroVideoRef = useRef<HTMLVideoElement>(null);
   const heroVideo2Ref = useRef<HTMLVideoElement>(null);
 
-  // Elegir el video segun el dispositivo: celular = version liviana,
-  // compu = original en calidad. Se carga uno solo (sin doble descarga)
-  // y se fuerza el play para que no quede "tildado" el autoplay en mobile.
+  // Video original (full calidad) en todos los dispositivos. El src va en el
+  // <source> (carga al parsear); aca solo forzamos el play para que el autoplay
+  // no quede "tildado" en algunos navegadores mobile.
   useEffect(() => {
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
-    const setup = (v: HTMLVideoElement | null, base: string) => {
-      if (!v) return;
-      v.src = isMobile ? `${base}-mobile.mp4` : `${base}.mp4`;
-      v.load();
-      v.play().catch(() => {});
-    };
-    setup(heroVideoRef.current, "/videos/hero-1");
-    setup(heroVideo2Ref.current, "/videos/hero-2");
+    heroVideoRef.current?.play().catch(() => {});
+    heroVideo2Ref.current?.play().catch(() => {});
   }, []);
 
   return (
@@ -78,8 +71,8 @@ export default function Home() {
           A) HERO — Video full-bleed (estilo Waiakea)
           ══════════════════════════════════════════ */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#1C3055]">
-        {/* Video de fondo — el src lo elige useEffect segun el dispositivo.
-            El poster (foto liviana) se ve al instante mientras el video carga. */}
+        {/* Video de fondo (full calidad). El poster = primer cuadro del video,
+            asi el arranque es invisible mientras carga. */}
         <video
           ref={heroVideoRef}
           className="absolute inset-0 w-full h-full object-cover"
@@ -91,7 +84,9 @@ export default function Home() {
           poster="/images/hero-poster.jpg"
           aria-hidden="true"
           tabIndex={-1}
-        />
+        >
+          <source src="/videos/hero-1.mp4" type="video/mp4" />
+        </video>
 
         {/* Velo neutro muy sutil solo para legibilidad del texto (sin filtro azul) */}
         <div className="absolute inset-0 bg-black/20" />
@@ -307,7 +302,9 @@ export default function Home() {
           preload="metadata"
           aria-hidden="true"
           tabIndex={-1}
-        />
+        >
+          <source src="/videos/hero-2.mp4" type="video/mp4" />
+        </video>
         {/* Video natural, sin filtro azul. La sección clara TERMINA sobre el
             video con una onda blanca; abajo se funde en navy hacia el bloque. */}
         <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#1C3055] to-transparent" />
