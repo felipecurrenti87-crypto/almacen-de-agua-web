@@ -162,14 +162,14 @@ export default function ProductCard({
           {isDispenser && (
             <Link
               href={`/tienda/${product.id}`}
-              className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-2xl font-heading font-bold text-sm liquid-glass-btn-light text-azul hover:text-white transition-all"
+              className="w-full sm:flex-1 h-[48px] flex items-center justify-center gap-2 px-4 rounded-2xl font-heading font-bold text-sm liquid-glass-btn-light text-azul hover:text-white transition-all"
             >
               Ver detalles
             </Link>
           )}
           <button
             onClick={handleAdd}
-            className={`relative ${isDispenser ? "flex-1" : "w-full"} h-[48px] rounded-2xl font-heading font-bold text-sm overflow-hidden`}
+            className={`relative ${isDispenser ? "w-full sm:flex-1" : "w-full"} h-[48px] rounded-2xl font-heading font-bold text-sm overflow-hidden`}
           >
             <AnimatePresence mode="wait" initial={false}>
               {added ? (

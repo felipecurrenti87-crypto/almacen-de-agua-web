@@ -55,17 +55,21 @@ const steps = [
 
 export default function Home() {
   const heroVideoRef = useRef<HTMLVideoElement>(null);
+  const heroVideo2Ref = useRef<HTMLVideoElement>(null);
 
-  // Elegir el video segun el dispositivo: celular = version liviana (2MB),
-  // compu = original en calidad (8MB). Se carga uno solo (sin doble descarga)
+  // Elegir el video segun el dispositivo: celular = version liviana,
+  // compu = original en calidad. Se carga uno solo (sin doble descarga)
   // y se fuerza el play para que no quede "tildado" el autoplay en mobile.
   useEffect(() => {
-    const v = heroVideoRef.current;
-    if (!v) return;
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
-    v.src = isMobile ? "/videos/hero-1-mobile.mp4" : "/videos/hero-1.mp4";
-    v.load();
-    v.play().catch(() => {});
+    const setup = (v: HTMLVideoElement | null, base: string) => {
+      if (!v) return;
+      v.src = isMobile ? `${base}-mobile.mp4` : `${base}.mp4`;
+      v.load();
+      v.play().catch(() => {});
+    };
+    setup(heroVideoRef.current, "/videos/hero-1");
+    setup(heroVideo2Ref.current, "/videos/hero-2");
   }, []);
 
   return (
@@ -176,10 +180,10 @@ export default function Home() {
         {/* Imagen de producto sobre el corte de onda (estilo Waiakea) */}
         <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 -top-[178px] sm:-top-[310px] w-[90%] max-w-[720px] z-20">
           <Image
-            src="/images/hero-productos-v2.png"
+            src="/images/hero-productos-v3.png"
             alt="Productos Almacen de Agua: bidones, soda Puragua y dispensers"
             width={1500}
-            height={1055}
+            height={844}
             priority
             sizes="(max-width: 768px) 90vw, 720px"
             className="w-full h-auto drop-shadow-[0_30px_45px_rgba(28,48,85,0.28)]"
@@ -294,6 +298,7 @@ export default function Home() {
       {/* B.2) SEGUNDO VIDEO — bloque de producto */}
       <section className="relative bg-[#1C3055] h-[58vh] min-h-[360px] overflow-hidden">
         <video
+          ref={heroVideo2Ref}
           className="absolute inset-0 w-full h-full object-cover"
           autoPlay
           muted
@@ -302,9 +307,7 @@ export default function Home() {
           preload="metadata"
           aria-hidden="true"
           tabIndex={-1}
-        >
-          <source src="/videos/hero-2.mp4" type="video/mp4" />
-        </video>
+        />
         {/* Video natural, sin filtro azul. La sección clara TERMINA sobre el
             video con una onda blanca; abajo se funde en navy hacia el bloque. */}
         <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#1C3055] to-transparent" />

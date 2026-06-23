@@ -46,3 +46,6 @@ next-env.d.ts
 
 .vercel
 .env*
+
+# carpeta fuente de imagenes (no va al repo)
+/IMAGEN PRINCIPAL/
