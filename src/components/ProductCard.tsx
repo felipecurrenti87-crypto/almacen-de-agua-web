@@ -162,14 +162,14 @@ export default function ProductCard({
           {isDispenser && (
             <Link
               href={`/tienda/${product.id}`}
-              className="w-full sm:flex-1 h-[48px] flex items-center justify-center gap-2 px-4 rounded-2xl font-heading font-bold text-sm liquid-glass-btn-light text-azul hover:text-white transition-all"
+              className="w-full sm:flex-1 h-[48px] flex items-center justify-center gap-1.5 px-3 rounded-2xl font-body font-semibold text-xs sm:text-sm whitespace-nowrap liquid-glass-btn-light text-azul hover:text-white transition-all"
             >
               Ver detalles
             </Link>
           )}
           <button
             onClick={handleAdd}
-            className={`relative ${isDispenser ? "w-full sm:flex-1" : "w-full"} h-[48px] rounded-2xl font-heading font-bold text-sm overflow-hidden`}
+            className={`relative ${isDispenser ? "w-full sm:flex-1" : "w-full"} h-[48px] rounded-2xl font-body font-semibold text-xs sm:text-sm overflow-hidden`}
           >
             <AnimatePresence mode="wait" initial={false}>
               {added ? (
@@ -179,10 +179,10 @@ export default function ProductCard({
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: -20, opacity: 0 }}
                   transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                  className="flex items-center justify-center gap-2 bg-green-500 text-white rounded-2xl absolute inset-0"
+                  className="flex items-center justify-center gap-1.5 px-2 whitespace-nowrap bg-green-500 text-white rounded-2xl absolute inset-0"
                 >
                   <svg
-                    className="w-5 h-5"
+                    className="w-4 h-4 shrink-0"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -203,10 +203,10 @@ export default function ProductCard({
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: -20, opacity: 0 }}
                   transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                  className="flex items-center justify-center gap-2 bg-[#1C3055] text-white rounded-2xl absolute inset-0 hover:bg-[#16264a] transition-colors duration-300"
+                  className="flex items-center justify-center gap-1.5 px-2 whitespace-nowrap bg-[#1C3055] text-white rounded-2xl absolute inset-0 hover:bg-[#16264a] transition-colors duration-300"
                 >
                   <svg
-                    className="w-5 h-5"
+                    className="w-4 h-4 shrink-0"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"

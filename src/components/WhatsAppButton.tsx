@@ -3,10 +3,12 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { business } from "@/data/business";
+import { useCart } from "@/context/CartContext";
 
 export default function WhatsAppButton() {
   const url = `${business.whatsappLink}?text=${encodeURIComponent(business.whatsappMensaje)}`;
   const [chatOpen, setChatOpen] = useState(false);
+  const { isOpen: cartOpen } = useCart();
 
   // Ocultar el boton mientras el chat esta abierto (evita taps cruzados en mobile)
   useEffect(() => {
@@ -18,9 +20,11 @@ export default function WhatsAppButton() {
     return () => window.removeEventListener("chatwidget:toggle", onToggle);
   }, []);
 
+  // Tambien se oculta con el carrito abierto: en desktop el boton flotante
+  // tapaba el boton "Pagar" del carrito.
   return (
     <AnimatePresence>
-      {!chatOpen && (
+      {!chatOpen && !cartOpen && (
     <motion.a
       href={url}
       target="_blank"

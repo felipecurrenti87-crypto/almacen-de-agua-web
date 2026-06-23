@@ -88,7 +88,7 @@ export default function Home() {
           loop
           playsInline
           preload="metadata"
-          poster="/images/hero-principal.jpg"
+          poster="/images/hero-poster.jpg"
           aria-hidden="true"
           tabIndex={-1}
         />
@@ -339,7 +339,7 @@ export default function Home() {
                 >
                   Estamos en{" "}
                   <em className="not-italic italic text-[#BBD6E1]">Mendoza</em>{" "}
-                  desde hace años.
+                  hace 12 años.
                 </h2>
                 <p className="font-quicksand text-white/80 text-sm sm:text-base leading-relaxed mb-6 max-w-lg">
                   Somos un local fisico real, con mas de 1.000 hogares
