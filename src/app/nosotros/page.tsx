@@ -92,7 +92,7 @@ export default function NosotrosPage() {
       </section>
 
       {/* Story section — blanco */}
-      <section className="relative pt-20 md:pt-28 bg-white overflow-hidden">
+      <section className="relative py-20 md:py-28 bg-white overflow-hidden">
         {/* Wave pattern background — identical to homepage */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <svg
@@ -157,13 +157,10 @@ export default function NosotrosPage() {
             </div>
           </div>
         </div>
-
-        {/* Onda hacia la seccion celeste */}
-        <WaveDivider color="#EEF5F8" className="mt-12 md:mt-16" />
       </section>
 
       {/* Values — celeste claro */}
-      <section className="relative pt-20 md:pt-28 bg-[#EEF5F8] overflow-hidden">
+      <section className="relative py-20 md:py-28 bg-[#EEF5F8] overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-16">
             <AnimatedSection>
@@ -194,9 +191,6 @@ export default function NosotrosPage() {
             ))}
           </StaggerContainer>
         </div>
-
-        {/* Onda hacia la seccion blanca */}
-        <WaveDivider color="#FFFFFF" className="mt-12 md:mt-16" />
       </section>
 
       {/* ── CONTACTO SECTION ── blanco */}
