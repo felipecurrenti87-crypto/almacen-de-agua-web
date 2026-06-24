@@ -20,7 +20,7 @@ export const seedProducts: Product[] = [
   // ─── Agua y Soda ───
   {
     id: "bidon-20l",
-    nombre: "Bidon de agua 20 litros",
+    nombre: "Botellón de agua 20 litros",
     descripcion:
       "Agua purificada Puragua en botellón de 20 litros. Ideal para dispenser o soporte.",
     precio_tienda: 5500,
@@ -30,7 +30,7 @@ export const seedProducts: Product[] = [
   },
   {
     id: "bidon-12l",
-    nombre: "Bidon de agua 12 litros",
+    nombre: "Botellón de agua 12 litros",
     descripcion:
       "Agua purificada Puragua en botellón de 12 litros. Mas liviano y facil de manejar.",
     precio_tienda: 4000,
