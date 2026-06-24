@@ -92,7 +92,7 @@ export default function NosotrosPage() {
       </section>
 
       {/* Story section — blanco */}
-      <section className="relative py-20 md:py-28 bg-white overflow-hidden">
+      <section className="relative pt-20 md:pt-28 bg-white overflow-hidden">
         {/* Wave pattern background — identical to homepage */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <svg
@@ -163,7 +163,7 @@ export default function NosotrosPage() {
       </section>
 
       {/* Values — celeste claro */}
-      <section className="relative py-20 md:py-28 bg-[#EEF5F8] overflow-hidden">
+      <section className="relative pt-20 md:pt-28 bg-[#EEF5F8] overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-16">
             <AnimatedSection>
@@ -200,7 +200,7 @@ export default function NosotrosPage() {
       </section>
 
       {/* ── CONTACTO SECTION ── blanco */}
-      <section className="relative py-20 md:py-28 bg-white overflow-hidden">
+      <section className="relative pt-20 md:pt-28 bg-white overflow-hidden">
         {/* Wave pattern background — identical to homepage */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <svg
@@ -396,7 +396,7 @@ export default function NosotrosPage() {
       </section>
 
       {/* CTA — banda navy (contraste) */}
-      <section className="py-20 md:py-28 bg-[#1C3055] relative overflow-hidden">
+      <section className="pt-20 md:pt-28 bg-[#1C3055] relative overflow-hidden">
         <div className="absolute inset-0 brand-texture opacity-[0.02] pointer-events-none" />
         <div className="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <AnimatedSection>
