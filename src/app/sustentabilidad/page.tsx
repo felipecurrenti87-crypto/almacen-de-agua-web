@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import AnimatedSection from "@/components/AnimatedSection";
 import WaterCaustics from "@/components/WaterCaustics";
+import WaveDivider from "@/components/WaveDivider";
 import { StaggerContainer, StaggerItem } from "@/components/StaggerContainer";
 
 const fadeUp = {
@@ -215,7 +216,7 @@ export default function SustentabilidadPage() {
       </section>
 
       {/* ── RECICLAMOS LAS TAPAS ── */}
-      <section className="relative py-20 sm:py-28 bg-white overflow-hidden">
+      <section className="relative pt-20 sm:pt-28 bg-white overflow-hidden">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <AnimatedSection>
@@ -258,6 +259,9 @@ export default function SustentabilidadPage() {
             </AnimatedSection>
           </div>
         </div>
+
+        {/* Onda de entrada a la banda navy */}
+        <WaveDivider color="#1C3055" className="mt-12 sm:mt-16" />
       </section>
 
       {/* ── CTA ── */}
@@ -289,6 +293,11 @@ export default function SustentabilidadPage() {
               </svg>
             </Link>
           </AnimatedSection>
+        </div>
+
+        {/* Onda de salida hacia el footer */}
+        <div className="absolute bottom-0 left-0 right-0">
+          <WaveDivider color="#FFFFFF" />
         </div>
       </section>
     </div>
