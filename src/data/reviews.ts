@@ -24,7 +24,7 @@ export function getRelativeTime(isoDate: string): string {
 }
 
 export const productReviews: Review[] = [
-  // Bidon 20L
+  // Botellón 20L
   {
     productId: "bidon-20l",
     autor: "Jose V.",
@@ -42,12 +42,12 @@ export const productReviews: Review[] = [
   {
     productId: "bidon-20l",
     autor: "Carlos R.",
-    texto: "Buen producto y buen precio. El bidon viene siempre sellado y limpio.",
+    texto: "Buen producto y buen precio. El botellón viene siempre sellado y limpio.",
     rating: 4,
     fecha: "2025-05-02",
   },
 
-  // Bidon 12L
+  // Botellón 12L
   {
     productId: "bidon-12l",
     autor: "Ana P.",
@@ -74,12 +74,12 @@ export const productReviews: Review[] = [
   {
     productId: "soda-sifon",
     autor: "Roberto D.",
-    texto: "Siempre pido soda junto con los bidones. Muy buena calidad.",
+    texto: "Siempre pido soda junto con los botellones. Muy buena calidad.",
     rating: 5,
     fecha: "2025-04-18",
   },
 
-  // Platinum 3 Temp Bidon
+  // Platinum 3 Temp Botellón
   {
     productId: "platinum-3temp-bidon",
     autor: "Familia Gonzalez",
@@ -104,7 +104,7 @@ export const productReviews: Review[] = [
     fecha: "2025-04-10",
   },
 
-  // Monocasco Bidon
+  // Monocasco Botellón
   {
     productId: "monocasco-bidon",
     autor: "Laura F.",
@@ -122,7 +122,7 @@ export const productReviews: Review[] = [
     fecha: "2025-05-08",
   },
 
-  // Zafiro LED Bidon
+  // Zafiro LED Botellón
   {
     productId: "zafiro-led-bidon",
     autor: "Diego A.",

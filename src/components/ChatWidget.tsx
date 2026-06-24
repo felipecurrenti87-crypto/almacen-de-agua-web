@@ -13,7 +13,7 @@ interface Message {
 
 const quickReplies = [
   "Que productos tienen?",
-  "Cuanto cuesta el bidon de 20L?",
+  "Cuanto cuesta el botellón de 20L?",
   "Hacen envios?",
   "Quiero hablar con alguien",
 ];
@@ -28,18 +28,18 @@ function generateResponse(input: string): string {
 
   // Products list
   if (/producto|catalogo|que venden|que tienen/.test(q)) {
-    return "Tenemos agua purificada (bidones de 12L y 20L), soda Puragua 1500cc, y una gran variedad de dispensers: Platinum, Monocasco, Zafiro, con opcion de botellon o conexion a red. ¿Te interesa algun producto en particular?";
+    return "Tenemos agua purificada (botellones de 12L y 20L), soda Puragua 1500cc, y una gran variedad de dispensers: Platinum, Monocasco, Zafiro, con opcion de botellón o conexion a red. ¿Te interesa algun producto en particular?";
   }
 
   // Specific product prices
   if (/precio|cuesta|cuanto|valor/.test(q)) {
     if (/20/.test(q)) {
       const p = allProducts.find((x) => x.id === "bidon-20l")!;
-      return `El bidon de 20L tiene un precio de ${formatPrice(p.precio_tienda)} en tienda y ${formatPrice(p.precio_reparto)} con envio a domicilio. 💧`;
+      return `El botellón de 20L tiene un precio de ${formatPrice(p.precio_tienda)} en tienda y ${formatPrice(p.precio_reparto)} con envio a domicilio. 💧`;
     }
     if (/12/.test(q)) {
       const p = allProducts.find((x) => x.id === "bidon-12l")!;
-      return `El bidon de 12L cuesta ${formatPrice(p.precio_tienda)} en tienda y ${formatPrice(p.precio_reparto)} con reparto. Ideal si buscas algo mas liviano. 💧`;
+      return `El botellón de 12L cuesta ${formatPrice(p.precio_tienda)} en tienda y ${formatPrice(p.precio_reparto)} con reparto. Ideal si buscas algo mas liviano. 💧`;
     }
     if (/soda|sifon/.test(q)) {
       const p = allProducts.find((x) => x.id === "soda-sifon")!;
@@ -48,7 +48,7 @@ function generateResponse(input: string): string {
     if (/dispenser/.test(q)) {
       return "Los dispensers van desde $9.000 (naturales, sin electricidad) hasta $580.000 (Platinum Digital con fabricadora de hielo). Todos incluyen envio e instalacion gratis. ¿Queres que te ayude a elegir uno?";
     }
-    return "Nuestros precios: Bidon 20L desde $5.000, Bidon 12L desde $3.000, Soda desde $1.000. Los dispensers arrancan en $9.000. ¿Sobre que producto queres saber?";
+    return "Nuestros precios: Botellón 20L desde $5.000, Botellón 12L desde $3.000, Soda desde $1.000. Los dispensers arrancan en $9.000. ¿Sobre que producto queres saber?";
   }
 
   // Shipping / delivery
@@ -69,7 +69,7 @@ function generateResponse(input: string): string {
 
   // Dispensers
   if (/dispenser|maquina|chopera/.test(q)) {
-    return "Tenemos dispensers para todos los gustos: Platinum 3 Temperaturas, Monocasco, Zafiro con LED, y hasta uno con fabricadora de hielo! Vienen en version botellon o conexion a red. Todos con envio e instalacion gratis. ¿Queres comparar modelos?";
+    return "Tenemos dispensers para todos los gustos: Platinum 3 Temperaturas, Monocasco, Zafiro con LED, y hasta uno con fabricadora de hielo! Vienen en version botellón o conexion a red. Todos con envio e instalacion gratis. ¿Queres comparar modelos?";
   }
 
   // Human contact

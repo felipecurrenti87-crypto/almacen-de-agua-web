@@ -17,7 +17,7 @@ const values = [
       </svg>
     ),
     title: "Calidad garantizada",
-    desc: "Agua purificada con los mas altos estandares de calidad. Cada bidon pasa por un riguroso proceso de purificacion para que tu familia beba agua segura.",
+    desc: "Agua purificada con los mas altos estandares de calidad. Cada botellón pasa por un riguroso proceso de purificacion para que tu familia beba agua segura.",
   },
   {
     icon: (
@@ -146,7 +146,7 @@ export default function NosotrosPage() {
                   </p>
                   <p>
                     Trabajamos con productos Puragua, una marca reconocida por su
-                    calidad y confiabilidad, garantizando que cada bidon de agua y
+                    calidad y confiabilidad, garantizando que cada botellón de agua y
                     cada soda que entregamos cumple con los mas altos estandares.
                   </p>
                 </div>

@@ -65,7 +65,7 @@ const inteligente = [
   {
     num: "02",
     title: "Te avisamos antes de que se termine",
-    desc: 'El sistema calcula cuando se te acaba el bidon. Cuando se acerca la fecha, te escribimos por WhatsApp: "Hola Juan, calculamos que en 2 dias se te termina el agua. Te llevamos?"',
+    desc: 'El sistema calcula cuando se te acaba el botellón. Cuando se acerca la fecha, te escribimos por WhatsApp: "Hola Juan, calculamos que en 2 dias se te termina el agua. Te llevamos?"',
   },
   {
     num: "03",
@@ -92,7 +92,7 @@ const beneficiosPrecio = [
       </svg>
     ),
     title: "Precio preferencial",
-    desc: "Pagas menos por bidon que en el reparto tradicional.",
+    desc: "Pagas menos por botellón que en el reparto tradicional.",
   },
   {
     icon: (

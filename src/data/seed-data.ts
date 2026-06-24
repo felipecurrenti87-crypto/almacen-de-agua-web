@@ -22,7 +22,7 @@ export const seedProducts: Product[] = [
     id: "bidon-20l",
     nombre: "Bidon de agua 20 litros",
     descripcion:
-      "Agua purificada Puragua en bidon de 20 litros. Ideal para dispenser o soporte.",
+      "Agua purificada Puragua en botellón de 20 litros. Ideal para dispenser o soporte.",
     precio_tienda: 5500,
     precio_reparto: 7500,
     imagen: "/images/products/bidon-20l.png",
@@ -32,7 +32,7 @@ export const seedProducts: Product[] = [
     id: "bidon-12l",
     nombre: "Bidon de agua 12 litros",
     descripcion:
-      "Agua purificada Puragua en bidon de 12 litros. Mas liviano y facil de manejar.",
+      "Agua purificada Puragua en botellón de 12 litros. Mas liviano y facil de manejar.",
     precio_tienda: 4000,
     precio_reparto: 5500,
     imagen: "/images/products/bidon-12l.png",
@@ -52,7 +52,7 @@ export const seedProducts: Product[] = [
   // ─── Dispensers ───
   {
     id: "platinum-3temp-bidon",
-    nombre: "Platinum 3 Temperaturas - Bidon",
+    nombre: "Platinum 3 Temperaturas - Botellón",
     descripcion:
       "Dispenser frio/calor/natural con iluminacion LED y diseno moderno. Ideal para hogar y oficina.",
     precio_tienda: 340000,
@@ -108,7 +108,7 @@ export const seedProducts: Product[] = [
   },
   {
     id: "chopera-friocalor-bidon",
-    nombre: "Chopera Frio/Calor - Bidon",
+    nombre: "Chopera Frio/Calor - Botellón",
     descripcion:
       "Dispenser 2 temperaturas con canillas choperas. Agua fria y caliente con estilo practico y moderno.",
     precio_tienda: 330000,
@@ -123,7 +123,7 @@ export const seedProducts: Product[] = [
     beneficios: [
       "Canillas choperas practicas y elegantes",
       "2 temperaturas: fria y caliente",
-      "Instalacion simple con botellon",
+      "Instalacion simple con botellón",
     ],
   },
   {
@@ -148,9 +148,9 @@ export const seedProducts: Product[] = [
   },
   {
     id: "monocasco-bidon",
-    nombre: "Monocasco - Bidon",
+    nombre: "Monocasco - Botellón",
     descripcion:
-      "Dispenser compacto con botellon. Agua fria y caliente con diseno moderno, practico y eficiente.",
+      "Dispenser compacto con botellón. Agua fria y caliente con diseno moderno, practico y eficiente.",
     precio_tienda: 260000,
     precio_reparto: 260000,
     imagen: "/images/products/monocasco-bidon.png",
@@ -162,13 +162,13 @@ export const seedProducts: Product[] = [
     },
     beneficios: [
       "Diseno moderno y compacto",
-      "Instalacion simple con botellon",
+      "Instalacion simple con botellón",
       "Ideal para espacios reducidos",
     ],
   },
   {
     id: "ada-cuyum-bidon",
-    nombre: "Ada-Cuyum Frio/Calor - Bidon",
+    nombre: "Ada-Cuyum Frio/Calor - Botellón",
     descripcion:
       "Maquina frio/calor con 2 canillas choperas y proteccion de agua caliente. Diseno moderno en color blanco.",
     precio_tienda: 360000,
@@ -183,15 +183,15 @@ export const seedProducts: Product[] = [
     beneficios: [
       "Canillas choperas con proteccion de agua caliente",
       "Diseno moderno y elegante en blanco",
-      "Instalacion simple con botellon",
+      "Instalacion simple con botellón",
       "Ideal para hogar y oficina",
     ],
   },
   {
     id: "ada-lamo-bidon",
-    nombre: "Ada-Lamo Frio/Calor con Heladera - Bidon",
+    nombre: "Ada-Lamo Frio/Calor con Heladera - Botellón",
     descripcion:
-      "Maquina frio/calor con heladerita integrada y botellon. Diseno moderno en color gris oscuro.",
+      "Maquina frio/calor con heladerita integrada y botellón. Diseno moderno en color gris oscuro.",
     precio_tienda: 360000,
     precio_reparto: 360000,
     imagen: "/images/products/ada-lamo-bidon.png",
@@ -237,9 +237,9 @@ export const seedProducts: Product[] = [
   },
   {
     id: "platinum-refrigerador-bidon",
-    nombre: "Platinum con Refrigerador - Bidon",
+    nombre: "Platinum con Refrigerador - Botellón",
     descripcion:
-      "Dispenser premium con display digital y heladerita integrada. Instalacion simple con botellon.",
+      "Dispenser premium con display digital y heladerita integrada. Instalacion simple con botellón.",
     precio_tienda: 450000,
     precio_reparto: 450000,
     imagen: "/images/products/platinum-refrigerador-bidon.png",
@@ -264,7 +264,7 @@ export const seedProducts: Product[] = [
   },
   {
     id: "zafiro-led-bidon",
-    nombre: "Zafiro con LED - Bidon",
+    nombre: "Zafiro con LED - Botellón",
     descripcion:
       "Dispenser elegante con iluminacion LED. 10 L/h fria y 8 L/h caliente. Diseno premium para cualquier espacio.",
     precio_tienda: 290000,
@@ -335,9 +335,9 @@ export const seedProducts: Product[] = [
   },
   {
     id: "mini-zafiro-bidon",
-    nombre: "Mini Zafiro - Bidon",
+    nombre: "Mini Zafiro - Botellón",
     descripcion:
-      "Dispenser compacto con botellon. 10 L/h fria y 8 L/h caliente. Perfecto para cualquier espacio.",
+      "Dispenser compacto con botellón. 10 L/h fria y 8 L/h caliente. Perfecto para cualquier espacio.",
     precio_tienda: 260000,
     precio_reparto: 260000,
     imagen: "/images/products/mini-zafiro-bidon.png",
@@ -352,13 +352,13 @@ export const seedProducts: Product[] = [
     },
     beneficios: [
       "Tamano compacto, gran rendimiento",
-      "Instalacion simple con botellon",
+      "Instalacion simple con botellón",
       "Diseno elegante y moderno",
     ],
   },
   {
     id: "zafiro-sinled-bidon",
-    nombre: "Zafiro Frio/Calor - Bidon",
+    nombre: "Zafiro Frio/Calor - Botellón",
     descripcion:
       "Dispenser funcional y confiable. 10 L/h fria y 8 L/h caliente. Simplicidad sin sacrificar rendimiento.",
     precio_tienda: 330000,
@@ -402,7 +402,7 @@ export const seedProducts: Product[] = [
   },
   {
     id: "platinum-digital-hielo-bidon",
-    nombre: "Platinum Digital con Hielo - Bidon",
+    nombre: "Platinum Digital con Hielo - Botellón",
     descripcion:
       "Dispenser premium con fabricadora de hielo integrada, panel tactil digital y 3 temperaturas. Hasta 13 kg de hielo/dia.",
     precio_tienda: 550000,
@@ -459,7 +459,7 @@ export const seedProducts: Product[] = [
   {
     id: "natural-blanco",
     nombre: "Dispenser Natural - Blanco",
-    descripcion: "Dispenser para agua a temperatura ambiente. Compatible con bidones de 10, 12 y 20L. Sin conexion electrica.",
+    descripcion: "Dispenser para agua a temperatura ambiente. Compatible con botellones de 10, 12 y 20L. Sin conexion electrica.",
     precio_tienda: 10000,
     precio_reparto: 10000,
     imagen: "/images/products/natural-blanco.png",
@@ -467,11 +467,11 @@ export const seedProducts: Product[] = [
     conexion: "natural",
     specs: {
       dimensiones: "30cm x 25cm x 25cm",
-      extras: ["Peso: 600g", "Material: Plastico de alta resistencia", "Compatible: Bidones de 10, 12 y 20L"],
+      extras: ["Peso: 600g", "Material: Plastico de alta resistencia", "Compatible: Botellones de 10, 12 y 20L"],
     },
     beneficios: [
       "No requiere conexion electrica",
-      "Compatible con bidones de 10, 12 y 20 litros",
+      "Compatible con botellones de 10, 12 y 20 litros",
       "Diseno ergonomico para llenado facil",
       "Material resistente y duradero",
       "Ideal para hogares, oficinas y comercios",
@@ -480,7 +480,7 @@ export const seedProducts: Product[] = [
   {
     id: "natural-gris",
     nombre: "Dispenser Natural - Gris",
-    descripcion: "Dispenser para agua a temperatura ambiente. Compatible con bidones de 10, 12 y 20L. Sin conexion electrica.",
+    descripcion: "Dispenser para agua a temperatura ambiente. Compatible con botellones de 10, 12 y 20L. Sin conexion electrica.",
     precio_tienda: 10000,
     precio_reparto: 10000,
     imagen: "/images/products/natural-gris.png",
@@ -488,11 +488,11 @@ export const seedProducts: Product[] = [
     conexion: "natural",
     specs: {
       dimensiones: "30cm x 25cm x 25cm",
-      extras: ["Peso: 600g", "Material: Plastico de alta resistencia", "Compatible: Bidones de 10, 12 y 20L"],
+      extras: ["Peso: 600g", "Material: Plastico de alta resistencia", "Compatible: Botellones de 10, 12 y 20L"],
     },
     beneficios: [
       "No requiere conexion electrica",
-      "Compatible con bidones de 10, 12 y 20 litros",
+      "Compatible con botellones de 10, 12 y 20 litros",
       "Diseno ergonomico para llenado facil",
       "Material resistente y duradero",
       "Ideal para hogares, oficinas y comercios",
@@ -501,7 +501,7 @@ export const seedProducts: Product[] = [
   {
     id: "natural-negro",
     nombre: "Dispenser Natural - Negro",
-    descripcion: "Dispenser para agua a temperatura ambiente. Compatible con bidones de 10, 12 y 20L. Sin conexion electrica.",
+    descripcion: "Dispenser para agua a temperatura ambiente. Compatible con botellones de 10, 12 y 20L. Sin conexion electrica.",
     precio_tienda: 10000,
     precio_reparto: 10000,
     imagen: "/images/products/natural-negro.png",
@@ -509,11 +509,11 @@ export const seedProducts: Product[] = [
     conexion: "natural",
     specs: {
       dimensiones: "30cm x 25cm x 25cm",
-      extras: ["Peso: 600g", "Material: Plastico de alta resistencia", "Compatible: Bidones de 10, 12 y 20L"],
+      extras: ["Peso: 600g", "Material: Plastico de alta resistencia", "Compatible: Botellones de 10, 12 y 20L"],
     },
     beneficios: [
       "No requiere conexion electrica",
-      "Compatible con bidones de 10, 12 y 20 litros",
+      "Compatible con botellones de 10, 12 y 20 litros",
       "Diseno ergonomico para llenado facil",
       "Material resistente y duradero",
       "Ideal para hogares, oficinas y comercios",
@@ -530,7 +530,7 @@ export const seedPlans: SeedPlan[] = [
     precioTienda: 11000,
     descripcion: "Ideal para personas solas o parejas con consumo moderado.",
     detalles: [
-      "2 Bidones Retornables de 20L/mes",
+      "2 Botellones Retornables de 20L/mes",
       "Envio programado sin cargo en Gran Mendoza",
       "Ahorra un 27% retirando en tienda ($5.500 c/u)",
       "Ideal con dispenser propio o bomba USB",
@@ -546,7 +546,7 @@ export const seedPlans: SeedPlan[] = [
     destacado: true,
     tag: "Popular",
     detalles: [
-      "4 Bidones Retornables de 20L/mes",
+      "4 Botellones Retornables de 20L/mes",
       "Reparto semanal directo a tu puerta",
       "Ahorra un 27% retirando en tienda ($5.500 c/u)",
       "Compatible con dispensers de pie",
@@ -559,7 +559,7 @@ export const seedPlans: SeedPlan[] = [
     precioTienda: 33000,
     descripcion: "Para familias numerosas o deportistas que priorizan hidratacion constante.",
     detalles: [
-      "6 Bidones Retornables de 20L/mes",
+      "6 Botellones Retornables de 20L/mes",
       "Entrega semanal con prioridad de reparto",
       "Ahorra un 27% retirando en tienda ($5.500 c/u)",
       "Excelente para dispenser de pie clasico",
@@ -574,7 +574,7 @@ export const seedPlans: SeedPlan[] = [
     descripcion: "Ideal para estudios profesionales, oficinas chicas o consultorios medicos.",
     detalles: [
       "Dispenser Frio/Calor Bacope en comodato",
-      "4 Bidones de 20L/mes incluidos",
+      "4 Botellones de 20L/mes incluidos",
       "Higienizacion y mantenimiento tecnico incluido",
       "Reparto corporativo semanal sin cargo",
       "Factura corporativa A o B",
@@ -589,7 +589,7 @@ export const seedPlans: SeedPlan[] = [
     tag: "Empresas",
     detalles: [
       "Dispenser Frio/Calor Bacope en comodato",
-      "30 Bidones de 20L/mes incluidos",
+      "30 Botellones de 20L/mes incluidos",
       "Entrega semanal prioritaria en Mendoza",
       "Higienizacion semestral bonificada 100%",
       "Factura A o B con precios congelados",

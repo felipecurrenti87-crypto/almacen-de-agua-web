@@ -29,10 +29,10 @@ export const metadata: Metadata = {
     template: "%s | Almacén de Agua",
   },
   description:
-    "Venta de agua purificada, soda y dispensers con entrega a domicilio en toda la provincia de Mendoza. Bidones de 12 y 20 litros, soda Puragua y dispensers Bacope.",
+    "Venta de agua purificada, soda y dispensers con entrega a domicilio en toda la provincia de Mendoza. Botellones de 12 y 20 litros, soda Puragua y dispensers Bacope.",
   keywords: [
     "agua purificada",
-    "bidones de agua",
+    "botellones de agua",
     "soda",
     "dispenser",
     "Mendoza",

@@ -44,7 +44,7 @@ const steps = [
   {
     num: "02",
     title: "Confirma",
-    desc: "Te avisamos por WhatsApp cuando estas llegando al final del bidon.",
+    desc: "Te avisamos por WhatsApp cuando estas llegando al final del botellón.",
   },
   {
     num: "03",
@@ -176,7 +176,7 @@ export default function Home() {
         <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 -top-[178px] sm:-top-[310px] w-[90%] max-w-[720px] z-20">
           <Image
             src="/images/hero-productos-v3.png"
-            alt="Productos Almacen de Agua: bidones, soda Puragua y dispensers"
+            alt="Productos Almacen de Agua: botellones, soda Puragua y dispensers"
             width={1500}
             height={844}
             priority

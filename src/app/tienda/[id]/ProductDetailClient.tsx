@@ -124,7 +124,7 @@ function DispenserDetail({ product }: { product: Product }) {
                         : "bg-cyan-500/20 text-cyan-300 border border-cyan-400/30"
                     }`}>
                       <span className="w-2 h-2 rounded-full bg-current" />
-                      {product.conexion === "red" ? "Conexion a Red" : "Botellon"}
+                      {product.conexion === "red" ? "Conexion a Red" : "Botellón"}
                     </span>
                   </div>
                 )}

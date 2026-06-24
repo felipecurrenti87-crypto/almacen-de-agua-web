@@ -153,7 +153,7 @@ export default function ProductCard({
                   : "bg-cyan-500/10 text-cyan-500 border border-cyan-500/25"
             }`}>
               <span className="w-1.5 h-1.5 rounded-full bg-current" />
-              {product.conexion === "red" ? "Conexion a Red" : product.conexion === "natural" ? "Natural" : "Botellon"}
+              {product.conexion === "red" ? "Conexion a Red" : product.conexion === "natural" ? "Natural" : "Botellón"}
             </span>
           </div>
         )}

@@ -34,17 +34,17 @@ const initialForm: FormData = {
 
 const consumoOptions = [
   { value: "", label: "Seleccionar..." },
-  { value: "1-2", label: "1-2 bidones/mes" },
-  { value: "3-4", label: "3-4 bidones/mes" },
-  { value: "5-6", label: "5-6 bidones/mes" },
-  { value: "7-10", label: "7-10 bidones/mes" },
-  { value: "10+", label: "Mas de 10 bidones/mes" },
+  { value: "1-2", label: "1-2 botellones/mes" },
+  { value: "3-4", label: "3-4 botellones/mes" },
+  { value: "5-6", label: "5-6 botellones/mes" },
+  { value: "7-10", label: "7-10 botellones/mes" },
+  { value: "10+", label: "Mas de 10 botellones/mes" },
   { value: "red", label: "Me interesa conexion a red" },
 ];
 
 const dispenserOptions = [
   { value: "no", label: "No necesito dispenser" },
-  { value: "si-bidon", label: "Si, dispenser a bidon" },
+  { value: "si-bidon", label: "Si, dispenser a botellón" },
   { value: "si-red", label: "Si, dispenser a red" },
   { value: "si-natural", label: "Si, dispenser natural" },
   { value: "consultar", label: "Quiero que me asesoren" },

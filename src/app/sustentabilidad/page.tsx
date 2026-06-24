@@ -24,8 +24,8 @@ const stats = [
   {
     value: "40",
     unit: "botellas",
-    label: "menos por cada bidón",
-    desc: "Un bidón retornable de 20L reemplaza a unas 40 botellas descartables de 500ml. Cada recarga es plástico que no se fabrica ni se tira.",
+    label: "menos por cada botellón",
+    desc: "Un botellón retornable de 20L reemplaza a unas 40 botellas descartables de 500ml. Cada recarga es plástico que no se fabrica ni se tira.",
     icon: (
       <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 3h6m-5 0v2.5L7.5 9A4 4 0 007 11v8a2 2 0 002 2h6a2 2 0 002-2v-8a4 4 0 00-.5-2L14 5.5V3" />
@@ -63,12 +63,12 @@ const ciclo = [
   {
     num: "01",
     title: "Se usa",
-    desc: "Recibís el bidón lleno y lo usás en casa o en la oficina. El mismo envase, una y otra vez.",
+    desc: "Recibís el botellón lleno y lo usás en casa o en la oficina. El mismo envase, una y otra vez.",
   },
   {
     num: "02",
     title: "Vuelve",
-    desc: "Cuando se termina, retiramos el bidón vacío en la próxima entrega. No queda plástico dando vueltas.",
+    desc: "Cuando se termina, retiramos el botellón vacío en la próxima entrega. No queda plástico dando vueltas.",
   },
   {
     num: "03",
@@ -78,7 +78,7 @@ const ciclo = [
   {
     num: "04",
     title: "Se recarga",
-    desc: "El bidón vuelve a salir lleno de agua purificada. Cero envases descartables en el camino.",
+    desc: "El botellón vuelve a salir lleno de agua purificada. Cero envases descartables en el camino.",
   },
 ];
 
@@ -188,7 +188,7 @@ export default function SustentabilidadPage() {
             </AnimatedSection>
             <AnimatedSection delay={140}>
               <p className="font-quicksand text-[#52647A] text-sm sm:text-base max-w-xl mx-auto">
-                El bidón retornable es el corazón de un sistema circular: no se
+                El botellón retornable es el corazón de un sistema circular: no se
                 descarta, vuelve, se sanitiza y se recarga.
               </p>
             </AnimatedSection>

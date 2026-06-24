@@ -48,7 +48,7 @@ export default function PoliticaPrivacidadPage() {
             <AnimatedSection>
               <PolicySection title="1. Responsable del Tratamiento">
                 <p>
-                  El sitio web y los servicios de reparto de bidones y dispensers son operados bajo la denominacion comercial de <strong>Almacen de Agua</strong>, con domicilio de operaciones y distribucion en Mendoza, Argentina.
+                  El sitio web y los servicios de reparto de botellones y dispensers son operados bajo la denominacion comercial de <strong>Almacen de Agua</strong>, con domicilio de operaciones y distribucion en Mendoza, Argentina.
                 </p>
                 <p>
                   Nos comprometemos a garantizar la proteccion, confidencialidad y seguridad de los datos personales de nuestros usuarios y clientes, en total conformidad con la <strong>Ley N° 25.326 de Proteccion de Datos Personales</strong> de la Republica Argentina.

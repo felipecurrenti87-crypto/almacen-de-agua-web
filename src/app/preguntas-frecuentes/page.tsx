@@ -28,8 +28,8 @@ const faqs = [
     a: "Sí. Todos los dispensers incluyen instalación y garantía. Si tenés cualquier inconveniente, lo resolvemos. Consultá por financiación y planes de pago.",
   },
   {
-    q: "¿Cómo funciona el bidón retornable?",
-    a: "Usás el bidón, y cuando se termina lo retiramos vacío en la próxima entrega. Lo sanitizamos y lo volvemos a llenar. Es un sistema circular: el mismo envase, una y otra vez, sin plástico de un solo uso.",
+    q: "¿Cómo funciona el botellón retornable?",
+    a: "Usás el botellón, y cuando se termina lo retiramos vacío en la próxima entrega. Lo sanitizamos y lo volvemos a llenar. Es un sistema circular: el mismo envase, una y otra vez, sin plástico de un solo uso.",
   },
   {
     q: "¿Cada cuánto reparten?",

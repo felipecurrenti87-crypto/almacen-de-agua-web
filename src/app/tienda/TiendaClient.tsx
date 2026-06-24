@@ -21,7 +21,7 @@ const filters: { slug: FilterSlug; label: string }[] = [
 
 const subFilters: { slug: SubFilter; label: string }[] = [
   { slug: "todos", label: "Todos" },
-  { slug: "bidon", label: "Bidón" },
+  { slug: "bidon", label: "Botellón" },
   { slug: "red", label: "Red" },
   { slug: "natural", label: "Naturales" },
 ];
