@@ -99,6 +99,7 @@ export default function ChatWidget() {
   const [input, setInput] = useState("");
   const [typing, setTyping] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -112,6 +113,30 @@ export default function ChatWidget() {
     window.dispatchEvent(
       new CustomEvent("chatwidget:toggle", { detail: { open } }),
     );
+  }, [open]);
+
+  // En mobile el chat es pantalla completa. Cuando se abre el teclado, iOS no
+  // achica el viewport, asi que ajustamos el panel al "visual viewport" para que
+  // el input quede siempre justo arriba del teclado (no flotando raro).
+  useEffect(() => {
+    if (!open) return;
+    const vv = window.visualViewport;
+    const el = panelRef.current;
+    if (!vv || !el) return;
+    if (!window.matchMedia("(max-width: 639px)").matches) return;
+    const update = () => {
+      el.style.height = `${vv.height}px`;
+      el.style.top = `${vv.offsetTop}px`;
+    };
+    update();
+    vv.addEventListener("resize", update);
+    vv.addEventListener("scroll", update);
+    return () => {
+      vv.removeEventListener("resize", update);
+      vv.removeEventListener("scroll", update);
+      el.style.height = "";
+      el.style.top = "";
+    };
   }, [open]);
 
   const send = (text: string) => {
@@ -153,12 +178,12 @@ export default function ChatWidget() {
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            ref={panelRef}
+            initial={{ opacity: 0, y: 20, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.95 }}
+            exit={{ opacity: 0, y: 20, scale: 0.98 }}
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed bottom-5 right-5 z-50 w-[360px] max-w-[calc(100vw-40px)] bg-negro rounded-2xl border border-celeste-neon/15 shadow-2xl shadow-celeste-neon/10 overflow-hidden flex flex-col"
-            style={{ height: "500px", maxHeight: "calc(100vh - 120px)" }}
+            className="fixed z-50 flex flex-col overflow-hidden bg-negro border border-celeste-neon/15 shadow-2xl shadow-celeste-neon/10 inset-x-0 top-0 h-[100dvh] rounded-none sm:inset-auto sm:top-auto sm:bottom-5 sm:right-5 sm:left-auto sm:w-[360px] sm:max-w-[calc(100vw-40px)] sm:h-[500px] sm:max-h-[calc(100vh-120px)] sm:rounded-2xl"
           >
             {/* Header */}
             <div className="flex items-center justify-between px-4 py-3 bg-negro-light border-b border-celeste-neon/10">
