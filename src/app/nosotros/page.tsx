@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { business } from "@/data/business";
 import MeshGradientBackground from "@/components/MeshGradientBackground";
@@ -190,6 +191,41 @@ export default function NosotrosPage() {
               </StaggerItem>
             ))}
           </StaggerContainer>
+        </div>
+      </section>
+
+      {/* SUSTENTABILIDAD — teaser hacia la pagina completa */}
+      <section className="relative py-20 md:py-28 bg-white overflow-hidden">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <AnimatedSection>
+            <div className="relative rounded-3xl bg-gradient-to-br from-emerald-50 to-[#EEF5F8] border border-emerald-200/50 p-8 sm:p-12 text-center overflow-hidden">
+              <div className="w-14 h-14 mx-auto rounded-2xl bg-emerald-500/15 text-emerald-600 flex items-center justify-center mb-5">
+                <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 4.5l2.6 4.5H5l2.5-4.5zM4.2 11.5L2 15.3a2 2 0 001.7 3h4.6m9-13.8l2.6 4.5m1.3 2.5l1.6 2.8a2 2 0 01-1.7 3h-4.4M9 21.5l-1.5-1.5 1.5-1.5" />
+                </svg>
+              </div>
+              <span className="brand-eyebrow text-emerald-600 text-xs block mb-3">
+                Sustentabilidad
+              </span>
+              <TextRevealWords className="font-heading font-bold text-2xl sm:text-3xl text-[#1C3055] mb-3">
+                Cuidamos el agua y el planeta
+              </TextRevealWords>
+              <p className="font-quicksand text-[#52647A] text-sm sm:text-base max-w-xl mx-auto mb-8">
+                Nuestro sistema de botellones retornables evita miles de botellas
+                de un solo uso, y reciclamos las tapas. Cada recarga es plastico
+                que no se fabrica ni se tira.
+              </p>
+              <Link
+                href="/sustentabilidad"
+                className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 rounded-2xl font-heading font-bold text-base transition-colors"
+              >
+                Conoce nuestro impacto
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </Link>
+            </div>
+          </AnimatedSection>
         </div>
       </section>
 

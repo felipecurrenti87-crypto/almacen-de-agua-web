@@ -9,14 +9,13 @@ import Logo from "./Logo";
 
 const toolLinks = [
   { href: "/seguimiento", label: "Seguimiento de pedido", emoji: "📦" },
-  { href: "/sustentabilidad", label: "Sustentabilidad", emoji: "♻️" },
 ];
 
 const navLinks = [
   { href: "/", label: "Inicio" },
-  { href: "/tienda", label: "Tienda" },
-  { href: "/planes", label: "Planes" },
   { href: "/nosotros", label: "Nosotros" },
+  { href: "/planes", label: "Planes" },
+  { href: "/tienda", label: "Tienda" },
   { href: "/quiero-ser-cliente", label: "Quiero ser cliente", cta: true },
 ];
 
@@ -234,6 +233,26 @@ export default function Header() {
           </button>
         </div>
       </div>
+
+      {/* Onda blanca que remarca la barra de navegacion (solo en el home, arriba) */}
+      {isOverDark && (
+        <div
+          className="absolute left-0 right-0 bottom-0 translate-y-full pointer-events-none overflow-hidden leading-[0]"
+          aria-hidden="true"
+        >
+          <svg
+            viewBox="0 0 1440 48"
+            preserveAspectRatio="none"
+            className="w-full h-[20px] sm:h-[26px]"
+          >
+            <path
+              d="M0,24 C240,52 480,4 720,26 C960,50 1200,6 1440,28 L1440,0 L0,0 Z"
+              fill="#FFFFFF"
+              opacity="0.92"
+            />
+          </svg>
+        </div>
+      )}
 
       {/* Mobile menu with AnimatePresence */}
       <AnimatePresence>

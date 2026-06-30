@@ -70,7 +70,7 @@ export default function Home() {
       {/* ══════════════════════════════════════════
           A) HERO — Video full-bleed (estilo Waiakea)
           ══════════════════════════════════════════ */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#1C3055]">
+      <section className="relative h-[68vh] min-h-[460px] flex items-center justify-center overflow-hidden bg-[#1C3055]">
         {/* Video de fondo (full calidad). El poster = primer cuadro del video,
             asi el arranque es invisible mientras carga. */}
         <video
@@ -93,15 +93,15 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-black/15" />
 
         {/* Contenido — empujado hacia arriba para dejar lugar a la imagen sobre el corte */}
-        <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 text-center pt-24 pb-[30vh] sm:pb-[30vh]">
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center pt-20 pb-[16vh] sm:pb-[16vh]">
           {/* Headline */}
           <motion.h1
             custom={1}
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            className="font-heading font-semibold text-white leading-[1.05] uppercase tracking-[0.01em]"
-            style={{ fontSize: "clamp(2.4rem, 6vw, 4.75rem)" }}
+            className="font-heading font-semibold text-white leading-[1.05] uppercase tracking-[0.01em] md:whitespace-nowrap"
+            style={{ fontSize: "clamp(2.1rem, 5vw, 4.5rem)" }}
           >
             Tu agua, siempre a tiempo
           </motion.h1>
