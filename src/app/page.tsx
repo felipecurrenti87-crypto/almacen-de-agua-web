@@ -70,7 +70,7 @@ export default function Home() {
       {/* ══════════════════════════════════════════
           A) HERO — Video full-bleed (estilo Waiakea)
           ══════════════════════════════════════════ */}
-      <section className="relative h-[68vh] min-h-[460px] flex items-center justify-center overflow-hidden bg-[#1C3055]">
+      <section className="relative h-[68vh] min-h-[460px] overflow-hidden bg-[#1C3055]">
         {/* Video de fondo (full calidad). El poster = primer cuadro del video,
             asi el arranque es invisible mientras carga. */}
         <video
@@ -92,8 +92,8 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/20" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-black/15" />
 
-        {/* Contenido — empujado hacia arriba para dejar lugar a la imagen sobre el corte */}
-        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center pt-20 pb-[16vh] sm:pb-[16vh]">
+        {/* Contenido — debajo de la banda blanca del nav */}
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center pt-[120px] sm:pt-[170px] pb-[8vh]">
           {/* Headline */}
           <motion.h1
             custom={1}
@@ -106,27 +106,13 @@ export default function Home() {
             Tu agua, siempre a tiempo
           </motion.h1>
 
-          {/* Subtitle */}
-          <motion.p
+          {/* Buttons */}
+          <motion.div
             custom={2}
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            className="font-quicksand font-normal text-white/85 max-w-[560px] mx-auto mt-6 mb-9 leading-relaxed"
-            style={{ fontSize: "clamp(0.95rem, 1.8vw, 1.15rem)" }}
-          >
-            El primer sistema de reparto predictivo de Mendoza. Predice cuando
-            se te termina y te avisa antes. Vos confirmas por WhatsApp, nosotros
-            te lo llevamos.
-          </motion.p>
-
-          {/* Buttons */}
-          <motion.div
-            custom={3}
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
+            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mt-8 sm:mt-10"
           >
             <Link
               href="/tienda"

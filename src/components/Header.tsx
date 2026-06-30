@@ -63,11 +63,11 @@ export default function Header() {
     return () => window.removeEventListener("keydown", handleKey);
   }, [toolsOpen]);
 
-  const textColor = isOverDark ? "text-white" : "text-azul";
-  const hoverBg = isOverDark
-    ? "hover:bg-white/10"
-    : "hover:bg-celeste-light";
-  const iconColor = isOverDark ? "text-white" : "text-azul";
+  // El header siempre es claro (banda blanca). En el home, arriba, ademas
+  // muestra una onda blanca rellena que separa el nav del video.
+  const textColor = "text-azul";
+  const hoverBg = "hover:bg-celeste-light";
+  const iconColor = "text-azul";
 
   return (
     <header
@@ -75,8 +75,8 @@ export default function Header() {
         scrolled
           ? "bg-white/90 backdrop-blur-xl shadow-lg shadow-celeste/5 py-2"
           : isOverDark
-            ? "bg-transparent py-4"
-            : "bg-white/50 backdrop-blur-sm py-4"
+            ? "bg-white py-4"
+            : "bg-white/80 backdrop-blur-sm py-4"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center">
@@ -87,7 +87,7 @@ export default function Header() {
           onClick={() => setMenuOpen(false)}
         >
           <Logo
-            variant={isOverDark ? "light" : "dark"}
+            variant="dark"
             className="h-10 sm:h-14 group-hover:scale-105 transition-transform"
           />
         </Link>
@@ -100,17 +100,9 @@ export default function Header() {
               href={link.href}
               className={
                 link.cta
-                  ? `px-5 py-2 rounded-full text-sm font-body font-bold transition-all duration-300 ${
-                      isOverDark
-                        ? "bg-celeste-neon text-negro hover:bg-celeste-glow"
-                        : "bg-[#1C3055] text-white hover:bg-[#16264a]"
-                    }`
+                  ? "px-5 py-2 rounded-full text-sm font-body font-bold transition-all duration-300 bg-[#1C3055] text-white hover:bg-[#16264a]"
                   : `px-4 py-2 rounded-full text-sm font-body font-semibold transition-all duration-300 ${textColor} ${hoverBg} ${
-                      pathname === link.href
-                        ? isOverDark
-                          ? "bg-white/10"
-                          : "bg-celeste-light text-azul-accent"
-                        : ""
+                      pathname === link.href ? "bg-celeste-light text-azul-accent" : ""
                     }`
               }
             >
@@ -234,21 +226,21 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Onda blanca que remarca la barra de navegacion (solo en el home, arriba) */}
+      {/* Banda blanca ondulada: el nav va sobre blanco y el borde inferior es
+          una onda rellena que separa la barra del video (solo en el home, arriba) */}
       {isOverDark && (
         <div
-          className="absolute left-0 right-0 bottom-0 translate-y-full pointer-events-none overflow-hidden leading-[0]"
+          className="absolute left-0 right-0 top-full pointer-events-none overflow-hidden leading-[0]"
           aria-hidden="true"
         >
           <svg
-            viewBox="0 0 1440 48"
+            viewBox="0 0 1440 80"
             preserveAspectRatio="none"
-            className="w-full h-[20px] sm:h-[26px]"
+            className="w-full h-[46px] sm:h-[64px]"
           >
             <path
-              d="M0,24 C240,52 480,4 720,26 C960,50 1200,6 1440,28 L1440,0 L0,0 Z"
+              d="M0,36 C240,80 480,6 720,40 C960,80 1200,8 1440,42 L1440,0 L0,0 Z"
               fill="#FFFFFF"
-              opacity="0.92"
             />
           </svg>
         </div>
