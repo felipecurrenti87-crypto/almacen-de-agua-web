@@ -70,7 +70,7 @@ export default function Home() {
       {/* ══════════════════════════════════════════
           A) HERO — Video full-bleed (estilo Waiakea)
           ══════════════════════════════════════════ */}
-      <section className="relative h-[92vh] min-h-[580px] overflow-hidden bg-[#1C3055]">
+      <section className="relative h-[85vh] min-h-[540px] overflow-hidden bg-[#1C3055]">
         {/* Video de fondo (full calidad). El poster = primer cuadro del video,
             asi el arranque es invisible mientras carga. */}
         <video
@@ -92,8 +92,8 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/20" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-black/15" />
 
-        {/* Contenido — debajo de la banda blanca del nav */}
-        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center pt-[120px] sm:pt-[170px] pb-[8vh]">
+        {/* Contenido — arriba, con margen para la banda del nav (la imagen ocupa abajo) */}
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center pt-[110px] sm:pt-[150px] pb-[8vh]">
           {/* Headline */}
           <motion.h1
             custom={1}
@@ -158,15 +158,16 @@ export default function Home() {
           B) CÓMO FUNCIONA — claro
           ══════════════════════════════════════════ */}
       <section className="relative pt-[160px] sm:pt-[240px] pb-20 sm:pb-28 bg-white">
-        {/* Imagen de producto sobre el corte de onda (estilo Waiakea) */}
-        <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 -top-[178px] sm:-top-[310px] w-[90%] max-w-[720px] z-20">
+        {/* Imagen de producto sobre el corte de onda (estilo Waiakea).
+            Sube mas alto para que los cajones asomen desde la primera vista. */}
+        <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 -top-[240px] sm:-top-[400px] w-[85%] max-w-[640px] z-20">
           <Image
             src="/images/hero-productos-v3.png"
             alt="Productos Almacen de Agua: botellones, soda Puragua y dispensers"
             width={1500}
             height={844}
             priority
-            sizes="(max-width: 768px) 90vw, 720px"
+            sizes="(max-width: 768px) 85vw, 640px"
             className="w-full h-auto drop-shadow-[0_30px_45px_rgba(28,48,85,0.28)]"
           />
         </div>
