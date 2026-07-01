@@ -88,24 +88,11 @@ export default function Home() {
           <source src="/videos/hero-1.mp4" type="video/mp4" />
         </video>
 
-        {/* Panel navy organico sobre el video (como la maqueta): contiene el
-            titulo y los CTAs. El video queda visible en los margenes laterales. */}
-        <div
-          className="absolute inset-x-0 top-[44px] sm:top-[52px] bottom-[8%] pointer-events-none"
-          aria-hidden="true"
-        >
-          <svg className="w-full h-full" viewBox="0 0 1440 800" preserveAspectRatio="none">
-            <path
-              d="M250,96 C400,34 560,52 720,40 C880,28 1040,48 1190,96
-                 C1300,136 1330,240 1326,380 C1322,520 1268,632 1108,696
-                 C960,752 880,738 720,748 C560,758 470,744 332,696
-                 C172,632 118,520 114,380 C110,240 140,136 250,96 Z"
-              fill="#1C3055"
-            />
-          </svg>
-        </div>
+        {/* Velo neutro muy sutil solo para legibilidad del texto sobre el video */}
+        <div className="absolute inset-0 bg-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-black/15" />
 
-        {/* Contenido — dentro del panel navy */}
+        {/* Contenido */}
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 text-center pt-[120px] sm:pt-[170px] pb-[8vh]">
           {/* Headline */}
           <motion.h1
