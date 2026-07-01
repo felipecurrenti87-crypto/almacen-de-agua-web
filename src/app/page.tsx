@@ -88,20 +88,33 @@ export default function Home() {
           <source src="/videos/hero-1.mp4" type="video/mp4" />
         </video>
 
-        {/* Velo neutro muy sutil solo para legibilidad del texto (sin filtro azul) */}
-        <div className="absolute inset-0 bg-black/20" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-black/15" />
+        {/* Panel navy organico sobre el video (como la maqueta): contiene el
+            titulo y los CTAs. El video queda visible en los margenes laterales. */}
+        <div
+          className="absolute inset-x-0 top-[44px] sm:top-[52px] bottom-[8%] pointer-events-none"
+          aria-hidden="true"
+        >
+          <svg className="w-full h-full" viewBox="0 0 1440 800" preserveAspectRatio="none">
+            <path
+              d="M250,96 C400,34 560,52 720,40 C880,28 1040,48 1190,96
+                 C1300,136 1330,240 1326,380 C1322,520 1268,632 1108,696
+                 C960,752 880,738 720,748 C560,758 470,744 332,696
+                 C172,632 118,520 114,380 C110,240 140,136 250,96 Z"
+              fill="#1C3055"
+            />
+          </svg>
+        </div>
 
-        {/* Contenido — arriba, con margen para la banda del nav (la imagen ocupa abajo) */}
-        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 text-center pt-[130px] sm:pt-[180px] pb-[8vh]">
-          {/* Headline — gigante, wrap natural */}
+        {/* Contenido — dentro del panel navy */}
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 text-center pt-[120px] sm:pt-[170px] pb-[8vh]">
+          {/* Headline */}
           <motion.h1
             custom={1}
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            className="font-heading font-semibold text-white leading-[1.02] uppercase tracking-[0.01em]"
-            style={{ fontSize: "clamp(2.6rem, 8vw, 7rem)" }}
+            className="font-heading font-semibold text-white leading-[1.05] uppercase tracking-[0.01em]"
+            style={{ fontSize: "clamp(2.4rem, 6.5vw, 5.5rem)" }}
           >
             Tu agua, siempre a tiempo
           </motion.h1>
@@ -112,39 +125,20 @@ export default function Home() {
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mt-8 sm:mt-10"
+            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-10 mt-10 sm:mt-14"
           >
             <Link
               href="/tienda"
-              className="cta-glass w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#639BB6] text-white font-body font-bold text-base sm:text-lg transition-all duration-300 hover:bg-[#74acc6] hover:-translate-y-0.5 active:translate-y-0"
+              className="cta-glass w-full sm:w-auto inline-flex items-center justify-center px-10 py-4 rounded-2xl bg-white/10 border border-white/40 text-white font-body font-bold text-base sm:text-lg transition-all duration-300 hover:bg-white/20 hover:border-white/60 hover:-translate-y-0.5 active:translate-y-0"
             >
               Comprar ahora
             </Link>
             <Link
-              href="/nosotros"
-              className="cta-glass w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-full bg-white/10 border border-white/35 text-white font-body font-bold text-base sm:text-lg transition-all duration-300 hover:bg-white/20 hover:border-white/60"
+              href="/quiero-ser-cliente"
+              className="cta-glass w-full sm:w-auto inline-flex items-center justify-center px-10 py-4 rounded-2xl bg-white/10 border border-white/40 text-white font-body font-bold text-base sm:text-lg transition-all duration-300 hover:bg-white/20 hover:border-white/60 hover:-translate-y-0.5 active:translate-y-0"
             >
-              Sobre nosotros
+              Quiero ser cliente
             </Link>
-          </motion.div>
-
-          {/* Indicador de scroll */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.1, duration: 0.8 }}
-            className="mt-10 sm:mt-14 flex justify-center"
-          >
-            <motion.div
-              animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-              className="text-white/55"
-              aria-hidden="true"
-            >
-              <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7" />
-              </svg>
-            </motion.div>
           </motion.div>
         </div>
 
@@ -159,15 +153,15 @@ export default function Home() {
           ══════════════════════════════════════════ */}
       <section className="relative pt-[160px] sm:pt-[240px] pb-20 sm:pb-28 bg-white">
         {/* Imagen de producto sobre el corte de onda (estilo Waiakea).
-            Grande y arriba para que los cajones queden visibles en la primera vista. */}
-        <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 -top-[280px] sm:-top-[470px] w-[92%] max-w-[900px] z-20">
+            Centrada debajo de los CTAs, cruzando del navy al blanco. */}
+        <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 -top-[260px] sm:-top-[430px] w-[90%] max-w-[760px] z-20">
           <Image
             src="/images/hero-productos-v3.png"
             alt="Productos Almacen de Agua: botellones, soda Puragua y dispensers"
             width={1500}
             height={844}
             priority
-            sizes="(max-width: 768px) 92vw, 900px"
+            sizes="(max-width: 768px) 90vw, 760px"
             className="w-full h-auto drop-shadow-[0_30px_45px_rgba(28,48,85,0.28)]"
           />
         </div>
