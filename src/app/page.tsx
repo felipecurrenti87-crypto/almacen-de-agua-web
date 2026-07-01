@@ -70,7 +70,7 @@ export default function Home() {
       {/* ══════════════════════════════════════════
           A) HERO — Video full-bleed (estilo Waiakea)
           ══════════════════════════════════════════ */}
-      <section className="relative h-[68vh] min-h-[460px] overflow-hidden bg-[#1C3055]">
+      <section className="relative h-[92vh] min-h-[580px] overflow-hidden bg-[#1C3055]">
         {/* Video de fondo (full calidad). El poster = primer cuadro del video,
             asi el arranque es invisible mientras carga. */}
         <video
